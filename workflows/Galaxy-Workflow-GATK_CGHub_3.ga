@@ -1,0 +1,661 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "", 
+    "format-version": "0.1", 
+    "name": "GATK_CGHub_3", 
+    "steps": {
+        "0": {
+            "annotation": "INPUT_BAM_1", 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool CGHub GeneTorrent", 
+                    "name": "cred_file"
+                }, 
+                {
+                    "description": "runtime parameter for tool CGHub GeneTorrent", 
+                    "name": "gnos_endpoint"
+                }, 
+                {
+                    "description": "runtime parameter for tool CGHub GeneTorrent", 
+                    "name": "uuid"
+                }
+            ], 
+            "label": null, 
+            "name": "CGHub GeneTorrent", 
+            "outputs": [
+                {
+                    "name": "outfile", 
+                    "type": "bam"
+                }
+            ], 
+            "position": {
+                "left": 154, 
+                "top": 127
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutfile": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "outfile"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "cghub_genetorrent", 
+            "tool_state": "{\"__page__\": 0, \"gnos_endpoint\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"cred_file\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"server\": \"{\\\"cghub\\\": \\\"yes\\\", \\\"__current_case__\\\": 1}\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "0bf4f272-b288-4dfa-8467-b009a17b2927"
+        }, 
+        "1": {
+            "annotation": "INPUT_BAM_2", 
+            "id": 1, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool CGHub GeneTorrent", 
+                    "name": "cred_file"
+                }, 
+                {
+                    "description": "runtime parameter for tool CGHub GeneTorrent", 
+                    "name": "gnos_endpoint"
+                }, 
+                {
+                    "description": "runtime parameter for tool CGHub GeneTorrent", 
+                    "name": "uuid"
+                }
+            ], 
+            "label": null, 
+            "name": "CGHub GeneTorrent", 
+            "outputs": [
+                {
+                    "name": "outfile", 
+                    "type": "bam"
+                }
+            ], 
+            "position": {
+                "left": 149, 
+                "top": 199
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutfile": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "outfile"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "cghub_genetorrent", 
+            "tool_state": "{\"__page__\": 0, \"gnos_endpoint\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"cred_file\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"server\": \"{\\\"cghub\\\": \\\"yes\\\", \\\"__current_case__\\\": 1}\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "3a66fd6f-302e-4f22-9f89-6ecd4cdb1f9b"
+        }, 
+        "2": {
+            "annotation": "INPUT_BAM_3", 
+            "id": 2, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool CGHub GeneTorrent", 
+                    "name": "cred_file"
+                }, 
+                {
+                    "description": "runtime parameter for tool CGHub GeneTorrent", 
+                    "name": "gnos_endpoint"
+                }, 
+                {
+                    "description": "runtime parameter for tool CGHub GeneTorrent", 
+                    "name": "uuid"
+                }
+            ], 
+            "label": null, 
+            "name": "CGHub GeneTorrent", 
+            "outputs": [
+                {
+                    "name": "outfile", 
+                    "type": "bam"
+                }
+            ], 
+            "position": {
+                "left": 151.5, 
+                "top": 283.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutfile": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "outfile"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "cghub_genetorrent", 
+            "tool_state": "{\"__page__\": 0, \"gnos_endpoint\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"cred_file\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"server\": \"{\\\"cghub\\\": \\\"yes\\\", \\\"__current_case__\\\": 1}\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "277699d8-b4f0-4c59-a34d-6bb698c3d976"
+        }, 
+        "3": {
+            "annotation": "", 
+            "id": 3, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "reference_genome"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 161.5, 
+                "top": 383
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"reference_genome\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "2f013268-ad72-4918-a8b7-474cb6aa9106"
+        }, 
+        "4": {
+            "annotation": "", 
+            "id": 4, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "phase_one_indels"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 155, 
+                "top": 572
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"phase_one_indels\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "1640cdc8-2c81-4753-aef8-49a496964c13"
+        }, 
+        "5": {
+            "annotation": "", 
+            "id": 5, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "gold_indels"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 158.5, 
+                "top": 471
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"gold_indels\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "8d17b8db-6b72-484d-89b9-b9de83c2a91a"
+        }, 
+        "6": {
+            "annotation": "", 
+            "id": 6, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "dbsnp"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 153, 
+                "top": 706
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"dbsnp\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "3a793cd2-2529-44ce-b6cb-0082a873f5d9"
+        }, 
+        "7": {
+            "annotation": "", 
+            "id": 7, 
+            "input_connections": {
+                "input|input_bam_1": {
+                    "id": 0, 
+                    "output_name": "outfile"
+                }, 
+                "input|input_bam_2": {
+                    "id": 1, 
+                    "output_name": "outfile"
+                }, 
+                "input|input_bam_3": {
+                    "id": 2, 
+                    "output_name": "outfile"
+                }, 
+                "known_0|input": {
+                    "id": 5, 
+                    "output_name": "output"
+                }, 
+                "known_1|input": {
+                    "id": 4, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 3, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "GATK INDEL", 
+            "outputs": [
+                {
+                    "name": "output_bam_1", 
+                    "type": "bam"
+                }, 
+                {
+                    "name": "output_bam_2", 
+                    "type": "bam"
+                }, 
+                {
+                    "name": "output_bam_3", 
+                    "type": "bam"
+                }, 
+                {
+                    "name": "output_bam_4", 
+                    "type": "bam"
+                }, 
+                {
+                    "name": "output_bam_5", 
+                    "type": "bam"
+                }, 
+                {
+                    "name": "output_bam_6", 
+                    "type": "bam"
+                }, 
+                {
+                    "name": "output_bam_7", 
+                    "type": "bam"
+                }, 
+                {
+                    "name": "output_bam_8", 
+                    "type": "bam"
+                }, 
+                {
+                    "name": "output_bam_9", 
+                    "type": "bam"
+                }, 
+                {
+                    "name": "output_bam_10", 
+                    "type": "bam"
+                }
+            ], 
+            "position": {
+                "left": 435.5, 
+                "top": 161
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_bam_1": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_bam_1"
+                }, 
+                "HideDatasetActionoutput_bam_10": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_bam_10"
+                }, 
+                "HideDatasetActionoutput_bam_2": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_bam_2"
+                }, 
+                "HideDatasetActionoutput_bam_3": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_bam_3"
+                }, 
+                "HideDatasetActionoutput_bam_4": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_bam_4"
+                }, 
+                "HideDatasetActionoutput_bam_5": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_bam_5"
+                }, 
+                "HideDatasetActionoutput_bam_6": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_bam_6"
+                }, 
+                "HideDatasetActionoutput_bam_7": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_bam_7"
+                }, 
+                "HideDatasetActionoutput_bam_8": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_bam_8"
+                }, 
+                "HideDatasetActionoutput_bam_9": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_bam_9"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "gatk_indel", 
+            "tool_state": "{\"known\": \"[{\\\"__index__\\\": 0, \\\"input\\\": null}, {\\\"__index__\\\": 1, \\\"input\\\": null}]\", \"input\": \"{\\\"input_bam_3\\\": null, \\\"input_bam_2\\\": null, \\\"input_bam_1\\\": null, \\\"input_count\\\": \\\"3\\\", \\\"__current_case__\\\": 2}\", \"__rerun_remap_job_id__\": null, \"reference\": \"null\", \"__page__\": 0}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "067901f3-6861-4937-a2af-6196e5388c92"
+        }, 
+        "8": {
+            "annotation": "", 
+            "id": 8, 
+            "input_connections": {
+                "input_bam": {
+                    "id": 7, 
+                    "output_name": "output_bam_1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_bam", 
+                    "type": "bam"
+                }
+            ], 
+            "position": {
+                "left": 801, 
+                "top": 181.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_bam": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_bam"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "tcga_reheader", 
+            "tool_state": "{\"__page__\": 0, \"center_name\": \"\\\"\\\"\", \"sample_info\": \"{\\\"defined\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"platform\": \"\\\"ILLUMINA\\\"\", \"__rerun_remap_job_id__\": null, \"input_bam\": \"null\", \"platform_model\": \"\\\"Illumina HiSeq\\\"\"}", 
+            "tool_version": "0.1.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "733c6932-94cc-411e-9215-96fc44561017"
+        }, 
+        "9": {
+            "annotation": "", 
+            "id": 9, 
+            "input_connections": {
+                "input_bam": {
+                    "id": 7, 
+                    "output_name": "output_bam_2"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_bam", 
+                    "type": "bam"
+                }
+            ], 
+            "position": {
+                "left": 799, 
+                "top": 424.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_bam": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_bam"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "tcga_reheader", 
+            "tool_state": "{\"__page__\": 0, \"center_name\": \"\\\"\\\"\", \"sample_info\": \"{\\\"defined\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"platform\": \"\\\"ILLUMINA\\\"\", \"__rerun_remap_job_id__\": null, \"input_bam\": \"null\", \"platform_model\": \"\\\"Illumina HiSeq\\\"\"}", 
+            "tool_version": "0.1.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "b790bf93-cf20-451d-8644-9796d7f8cfe8"
+        }, 
+        "10": {
+            "annotation": "", 
+            "id": 10, 
+            "input_connections": {
+                "input_bam": {
+                    "id": 7, 
+                    "output_name": "output_bam_3"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_bam", 
+                    "type": "bam"
+                }
+            ], 
+            "position": {
+                "left": 794, 
+                "top": 641.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_bam": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_bam"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "tcga_reheader", 
+            "tool_state": "{\"__page__\": 0, \"center_name\": \"\\\"\\\"\", \"sample_info\": \"{\\\"defined\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"platform\": \"\\\"ILLUMINA\\\"\", \"__rerun_remap_job_id__\": null, \"input_bam\": \"null\", \"platform_model\": \"\\\"Illumina HiSeq\\\"\"}", 
+            "tool_version": "0.1.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "1e335f2a-fd2d-4c5e-a95a-f30474255bf4"
+        }, 
+        "11": {
+            "annotation": "", 
+            "id": 11, 
+            "input_connections": {
+                "input_bam": {
+                    "id": 8, 
+                    "output_name": "output_bam"
+                }, 
+                "known_sites": {
+                    "id": 6, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 3, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": "BQSR_1", 
+            "name": "GATK BQSR", 
+            "outputs": [
+                {
+                    "name": "output_report", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "output_bam", 
+                    "type": "bam"
+                }
+            ], 
+            "position": {
+                "left": 1040.5, 
+                "top": 222
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_report": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_report"
+                }, 
+                "RenameDatasetActionoutput_bam": {
+                    "action_arguments": {
+                        "newname": "OUTPUT_BAM_1"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_bam"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "gatk_bqsr", 
+            "tool_state": "{\"__page__\": 0, \"reference\": \"null\", \"__rerun_remap_job_id__\": null, \"emit_oq\": \"\\\"True\\\"\", \"known_sites\": \"null\", \"input_bam\": \"null\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "b75cb979-1d68-4efb-9b6d-39e8d5d92523"
+        }, 
+        "12": {
+            "annotation": "", 
+            "id": 12, 
+            "input_connections": {
+                "input_bam": {
+                    "id": 9, 
+                    "output_name": "output_bam"
+                }, 
+                "known_sites": {
+                    "id": 6, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 3, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": "BQSR_2", 
+            "name": "GATK BQSR", 
+            "outputs": [
+                {
+                    "name": "output_report", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "output_bam", 
+                    "type": "bam"
+                }
+            ], 
+            "position": {
+                "left": 1041.5, 
+                "top": 458
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_report": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_report"
+                }, 
+                "RenameDatasetActionoutput_bam": {
+                    "action_arguments": {
+                        "newname": "OUTPUT_BAM_2"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_bam"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "gatk_bqsr", 
+            "tool_state": "{\"__page__\": 0, \"reference\": \"null\", \"__rerun_remap_job_id__\": null, \"emit_oq\": \"\\\"True\\\"\", \"known_sites\": \"null\", \"input_bam\": \"null\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "b1be8ac2-1cae-4ab9-a104-6c97efd9e39b"
+        }, 
+        "13": {
+            "annotation": "", 
+            "id": 13, 
+            "input_connections": {
+                "input_bam": {
+                    "id": 10, 
+                    "output_name": "output_bam"
+                }, 
+                "known_sites": {
+                    "id": 6, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 3, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": "BQSR_3", 
+            "name": "GATK BQSR", 
+            "outputs": [
+                {
+                    "name": "output_report", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "output_bam", 
+                    "type": "bam"
+                }
+            ], 
+            "position": {
+                "left": 1045, 
+                "top": 686.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_report": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_report"
+                }, 
+                "RenameDatasetActionoutput_bam": {
+                    "action_arguments": {
+                        "newname": "OUTPUT_BAM_3"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_bam"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "gatk_bqsr", 
+            "tool_state": "{\"__page__\": 0, \"reference\": \"null\", \"__rerun_remap_job_id__\": null, \"emit_oq\": \"\\\"True\\\"\", \"known_sites\": \"null\", \"input_bam\": \"null\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "6be89ebf-2ac5-488a-9f5e-60bedf4ab61f"
+        }
+    }, 
+    "uuid": "892fbaf0-97e9-489f-8feb-c2448d53382e"
+}

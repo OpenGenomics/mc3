@@ -1,0 +1,24 @@
+[submodule "tools/gatk-cocleaning-tool"]
+	path = tools/gatk-cocleaning-tool
+	url = https://github.com/ucscCancer/gatk-cocleaning-tool.git
+[submodule "tools/muse-tool"]
+	path = tools/muse-tool
+	url = https://github.com/ucscCancer/muse-tool.git
+[submodule "tools/radia-tool"]
+	path = tools/radia-tool
+	url = https://github.com/ucscCancer/radia-tool.git
+[submodule "tools/somaticsniper-tool"]
+	path = tools/somaticsniper-tool
+	url = https://github.com/ucscCancer/somaticsniper-tool.git
+[submodule "tools/fpfilter-tool"]
+	path = tools/fpfilter-tool
+	url = https://github.com/ucscCancer/fpfilter-tool.git
+[submodule "tools/varscan-tool"]
+	path = tools/varscan-tool
+	url = https://github.com/ucscCancer/varscan-tool.git
+[submodule "tools/samtools-pileup-tool"]
+	path = tools/samtools-pileup-tool
+	url = https://github.com/ucscCancer/samtools-pileup-tool.git
+[submodule "tools/pindel-tool"]
+	path = tools/pindel-tool
+	url = https://github.com/ucscCancer/pindel-tool.git

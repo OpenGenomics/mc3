@@ -25,3 +25,6 @@
 [submodule "tools/genetorrent-tool"]
 	path = tools/genetorrent-tool
 	url = https://github.com/ucscCancer/genetorrent-tool.git
+[submodule "tools/tcgavcf-tool"]
+	path = tools/tcgavcf-tool
+	url = https://github.com/ucscCancer/tcgavcf-tool.git

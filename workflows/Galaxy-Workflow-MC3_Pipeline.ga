@@ -1,0 +1,698 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "", 
+    "format-version": "0.1", 
+    "name": "MC3_Pipeline", 
+    "steps": {
+        "0": {
+            "annotation": "", 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "tumor_bam"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 200, 
+                "top": 199
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"tumor_bam\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "750571aa-b165-4d73-b9f6-7cd813eda3ad"
+        }, 
+        "1": {
+            "annotation": "", 
+            "id": 1, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "normal_bam"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 201, 
+                "top": 292
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"normal_bam\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "56b21306-75eb-479c-a43c-5f4a19ea9fb5"
+        }, 
+        "2": {
+            "annotation": "", 
+            "id": 2, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "reference_genome"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 202, 
+                "top": 428
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"reference_genome\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "e83a493b-317f-4c73-be8f-f31ea1031c83"
+        }, 
+        "3": {
+            "annotation": "", 
+            "id": 3, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "db_snp"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 206, 
+                "top": 554
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"db_snp\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "2408268d-dc6d-4e2d-8934-9e360721ae5f"
+        }, 
+        "4": {
+            "annotation": "", 
+            "id": 4, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "centromere"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 200.5, 
+                "top": 679
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"centromere\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "e14fd51e-8ead-4dc3-9acd-a0e750f2f5ec"
+        }, 
+        "5": {
+            "annotation": "", 
+            "id": 5, 
+            "input_connections": {
+                "normal": {
+                    "id": 1, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "tumor": {
+                    "id": 0, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Somatic Sniper", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 769.5, 
+                "top": 391
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "somatic_sniper", 
+            "tool_state": "{\"somaticq\": \"\\\"15\\\"\", \"reference\": \"null\", \"normal\": \"null\", \"__page__\": 0, \"loh\": \"\\\"False\\\"\", \"tumor_name\": \"\\\"TUMOR\\\"\", \"normal_name\": \"\\\"NORMAL\\\"\", \"tumor\": \"null\", \"mapq\": \"\\\"0\\\"\", \"__rerun_remap_job_id__\": null, \"dis_priors\": \"\\\"False\\\"\", \"use_priorp\": \"\\\"False\\\"\", \"prior_p\": \"\\\"0.01\\\"\", \"gor\": \"\\\"False\\\"\"}", 
+            "tool_version": "1.0.4", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "6f360864-bd23-448d-8a63-877d48500ece"
+        }, 
+        "6": {
+            "annotation": "", 
+            "id": 6, 
+            "input_connections": {
+                "refOrHistory|input1": {
+                    "id": 0, 
+                    "output_name": "output"
+                }, 
+                "refOrHistory|ownFile": {
+                    "id": 2, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Generate pileup", 
+            "outputs": [
+                {
+                    "name": "output1", 
+                    "type": "pileup"
+                }
+            ], 
+            "position": {
+                "left": 496.5, 
+                "top": 714
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "sam_pileup", 
+            "tool_state": "{\"__page__\": 0, \"c\": \"{\\\"consensus\\\": \\\"no\\\", \\\"__current_case__\\\": 0}\", \"indels\": \"\\\"no\\\"\", \"refOrHistory\": \"{\\\"input1\\\": null, \\\"reference\\\": \\\"history\\\", \\\"__current_case__\\\": 0, \\\"ownFile\\\": null}\", \"__rerun_remap_job_id__\": null, \"lastCol\": \"\\\"yes\\\"\", \"mapCap\": \"\\\"60\\\"\"}", 
+            "tool_version": "1.1.2", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "5c75140d-2bd5-421f-b012-95065f7c2c26"
+        }, 
+        "7": {
+            "annotation": "", 
+            "id": 7, 
+            "input_connections": {
+                "refOrHistory|input1": {
+                    "id": 1, 
+                    "output_name": "output"
+                }, 
+                "refOrHistory|ownFile": {
+                    "id": 2, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Generate pileup", 
+            "outputs": [
+                {
+                    "name": "output1", 
+                    "type": "pileup"
+                }
+            ], 
+            "position": {
+                "left": 471.5, 
+                "top": 891
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "sam_pileup", 
+            "tool_state": "{\"__page__\": 0, \"c\": \"{\\\"consensus\\\": \\\"no\\\", \\\"__current_case__\\\": 0}\", \"indels\": \"\\\"no\\\"\", \"refOrHistory\": \"{\\\"input1\\\": null, \\\"reference\\\": \\\"history\\\", \\\"__current_case__\\\": 0, \\\"ownFile\\\": null}\", \"__rerun_remap_job_id__\": null, \"lastCol\": \"\\\"yes\\\"\", \"mapCap\": \"\\\"60\\\"\"}", 
+            "tool_version": "1.1.2", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "b10ee50b-3b43-4d2a-8db5-60433d0392cb"
+        }, 
+        "8": {
+            "annotation": "", 
+            "id": 8, 
+            "input_connections": {
+                "dbsnp": {
+                    "id": 3, 
+                    "output_name": "output"
+                }, 
+                "normal": {
+                    "id": 1, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "tumor": {
+                    "id": 0, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "MuSE", 
+            "outputs": [
+                {
+                    "name": "mutations", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 772.5, 
+                "top": 182
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "MuSE", 
+            "tool_state": "{\"__page__\": 0, \"reference\": \"null\", \"normal\": \"null\", \"__rerun_remap_job_id__\": null, \"muse\": \"{\\\"version\\\": \\\"MuSEv0.9.9.5\\\", \\\"__current_case__\\\": 0, \\\"contamination\\\": \\\"0.05\\\"}\", \"tumor\": \"null\", \"dbsnp\": \"null\"}", 
+            "tool_version": "0.9.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "636e21f5-f10c-4f85-b234-ca1493f26598"
+        }, 
+        "9": {
+            "annotation": "", 
+            "id": 9, 
+            "input_connections": {
+                "inputReferenceFile": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "inputs_0|inputBamFile": {
+                    "id": 0, 
+                    "output_name": "output"
+                }, 
+                "inputs_1|inputBamFile": {
+                    "id": 1, 
+                    "output_name": "output"
+                }, 
+                "options_miscellaneous|exclude_list": {
+                    "id": 4, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "pindel", 
+            "outputs": [
+                {
+                    "name": "outputRawFile", 
+                    "type": "tabular"
+                }, 
+                {
+                    "name": "outputVcfFile", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 840.5, 
+                "top": 563
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "pindel", 
+            "tool_state": "{\"inputs\": \"[{\\\"__index__\\\": 0, \\\"inputBamFile\\\": null, \\\"defineInsertSize\\\": {\\\"manual_define\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"sampleTag\\\": \\\"TUMOR\\\"}, {\\\"__index__\\\": 1, \\\"inputBamFile\\\": null, \\\"defineInsertSize\\\": {\\\"manual_define\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"sampleTag\\\": \\\"NORMAL\\\"}]\", \"options_miscellaneous\": \"{\\\"exclude_list\\\": null, \\\"options_miscellaneous_selector\\\": \\\"yes\\\", \\\"breakdancer\\\": {\\\"checking\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"__current_case__\\\": 0, \\\"input_SV_Calls_for_assembly\\\": {\\\"checking\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"IndelCorrection\\\": \\\"False\\\"}\", \"inputReferenceFile\": \"null\", \"__page__\": 0, \"options_which\": \"{\\\"__current_case__\\\": 0, \\\"reportLongInsertions\\\": \\\"False\\\", \\\"report_interchromosomal_events\\\": \\\"False\\\", \\\"options_DD\\\": {\\\"options_DD_selector\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"min_inversion_size\\\": \\\"50\\\", \\\"reportInversions\\\": \\\"True\\\", \\\"options_which_selector\\\": \\\"yes\\\", \\\"report_only_close_mapped_reads\\\": \\\"False\\\", \\\"reportDuplications\\\": \\\"True\\\", \\\"reportBreakpoints\\\": \\\"False\\\"}\", \"__rerun_remap_job_id__\": null, \"referenceName\": \"\\\"HG19\\\"\", \"options_runtime\": \"{\\\"options_runtime_selector\\\": \\\"yes\\\", \\\"window_size\\\": \\\"1\\\", \\\"__current_case__\\\": 0}\", \"options_sensel\": \"{\\\"min_perfect_match_around_BP\\\": \\\"3\\\", \\\"maximum_allowed_mismatch_rate\\\": \\\"0.02\\\", \\\"NM\\\": \\\"2\\\", \\\"max_range_index\\\": \\\"4\\\", \\\"NormalSamples\\\": \\\"False\\\", \\\"options_sensel_selector\\\": \\\"yes\\\", \\\"additional_mismatch\\\": \\\"1\\\", \\\"balance_cutoff\\\": \\\"0\\\", \\\"anchor_quality\\\": \\\"0\\\", \\\"min_num_matched_bases\\\": \\\"20\\\", \\\"__current_case__\\\": 0, \\\"sequencing_error_rate\\\": \\\"0.01\\\", \\\"minimum_support_for_event\\\": \\\"2\\\", \\\"sensitivity\\\": \\\"0.95\\\"}\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "b8a3419c-67c2-4b39-af65-1eb770f4b0f2"
+        }, 
+        "10": {
+            "annotation": "", 
+            "id": 10, 
+            "input_connections": {
+                "bam": {
+                    "id": 0, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "vcf": {
+                    "id": 5, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "fpfilter", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1127.5, 
+                "top": 403
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "fpfilter", 
+            "tool_state": "{\"min_strandness\": \"\\\"0.01\\\"\", \"max_mapqual_diff\": \"\\\"30\\\"\", \"bam\": \"null\", \"min_var_dist_3\": \"\\\"0.2\\\"\", \"reference\": \"null\", \"min_var_count\": \"\\\"4\\\"\", \"max_readlen_diff\": \"\\\"25\\\"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"max_mm_qualsum_diff\": \"\\\"50\\\"\", \"min_var_dist_3 \": \"\\\"\\\"\", \"vcf\": \"null\", \"sample\": \"\\\"TUMOR\\\"\", \"min_read_pos\": \"\\\"0.1\\\"\", \"min_var_freq\": \"\\\"0.05\\\"\", \"max_var_mm_qualsum\": \"\\\"100\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "c9729852-a33b-4950-a346-5345b3f0bf4e"
+        }, 
+        "11": {
+            "annotation": "", 
+            "id": 11, 
+            "input_connections": {
+                "normal_pileup": {
+                    "id": 7, 
+                    "output_name": "output1"
+                }, 
+                "tumor_pileup": {
+                    "id": 6, 
+                    "output_name": "output1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "VarScan Somatic (VCF Output)", 
+            "outputs": [
+                {
+                    "name": "snp_vcf", 
+                    "type": "vcf"
+                }, 
+                {
+                    "name": "indel_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 855.5, 
+                "top": 955.5
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "varscan_somatic_vcf", 
+            "tool_state": "{\"strand_filter\": \"\\\"0\\\"\", \"min_coverage\": \"\\\"8\\\"\", \"normal_purity\": \"\\\"1.0\\\"\", \"p_value\": \"\\\"0.99\\\"\", \"__page__\": 0, \"min_coverage_normal\": \"\\\"8\\\"\", \"min_freq_for_hom\": \"\\\"0.75\\\"\", \"normal_pileup\": \"null\", \"min_coverage_tumor\": \"\\\"6\\\"\", \"min_var_freq\": \"\\\"0.1\\\"\", \"tumor_pileup\": \"null\", \"somatic_p_value\": \"\\\"0.05\\\"\", \"validation\": \"\\\"0\\\"\", \"__rerun_remap_job_id__\": null, \"tumor_purity\": \"\\\"1.0\\\"\"}", 
+            "tool_version": "2.3.9", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "816ba9d1-1db4-4e51-bbe1-e0de69ec3f09"
+        }, 
+        "12": {
+            "annotation": "", 
+            "id": 12, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 8, 
+                    "output_name": "mutations"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA VCF ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1339.5, 
+                "top": 304
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "tcga-vcf-reheader", 
+            "tool_state": "{\"normal_aliquot_name\": \"\\\"\\\"\", \"tumor_aliquot_uuid\": \"\\\"\\\"\", \"software_name\": \"\\\"\\\"\", \"software_params\": \"\\\"\\\"\", \"center\": \"\\\"\\\"\", \"software_version\": \"\\\"\\\"\", \"__page__\": 0, \"normal_bam_name\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"normal_analysis_uuid\": \"\\\"\\\"\", \"platform\": \"\\\"\\\"\", \"normal_aliquot_uuid}\": \"\\\"\\\"\", \"tumor_aliquot_name\": \"\\\"\\\"\", \"tumor_analysis_uuid\": \"\\\"\\\"\", \"tumor_bam_name\": \"\\\"\\\"\", \"input_vcf\": \"null\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "1b8c3c6f-21c8-4554-8e73-6dc9e4399172"
+        }, 
+        "13": {
+            "annotation": "", 
+            "id": 13, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 9, 
+                    "output_name": "outputVcfFile"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA VCF ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1348.5, 
+                "top": 658
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "tcga-vcf-reheader", 
+            "tool_state": "{\"normal_aliquot_name\": \"\\\"\\\"\", \"tumor_aliquot_uuid\": \"\\\"\\\"\", \"software_name\": \"\\\"\\\"\", \"software_params\": \"\\\"\\\"\", \"center\": \"\\\"\\\"\", \"software_version\": \"\\\"\\\"\", \"__page__\": 0, \"normal_bam_name\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"normal_analysis_uuid\": \"\\\"\\\"\", \"platform\": \"\\\"\\\"\", \"normal_aliquot_uuid}\": \"\\\"\\\"\", \"tumor_aliquot_name\": \"\\\"\\\"\", \"tumor_analysis_uuid\": \"\\\"\\\"\", \"tumor_bam_name\": \"\\\"\\\"\", \"input_vcf\": \"null\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "2c8831e2-7a7b-47ed-85da-32f10a29eb6c"
+        }, 
+        "14": {
+            "annotation": "", 
+            "id": 14, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 10, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA VCF ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1351.5, 
+                "top": 492
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "tcga-vcf-reheader", 
+            "tool_state": "{\"normal_aliquot_name\": \"\\\"\\\"\", \"tumor_aliquot_uuid\": \"\\\"\\\"\", \"software_name\": \"\\\"\\\"\", \"software_params\": \"\\\"\\\"\", \"center\": \"\\\"\\\"\", \"software_version\": \"\\\"\\\"\", \"__page__\": 0, \"normal_bam_name\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"normal_analysis_uuid\": \"\\\"\\\"\", \"platform\": \"\\\"\\\"\", \"normal_aliquot_uuid}\": \"\\\"\\\"\", \"tumor_aliquot_name\": \"\\\"\\\"\", \"tumor_analysis_uuid\": \"\\\"\\\"\", \"tumor_bam_name\": \"\\\"\\\"\", \"input_vcf\": \"null\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "d7e4bdee-eae1-4796-8cb4-a49a2d880c8f"
+        }, 
+        "15": {
+            "annotation": "", 
+            "id": 15, 
+            "input_connections": {
+                "bam": {
+                    "id": 0, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "vcf": {
+                    "id": 11, 
+                    "output_name": "snp_vcf"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "fpfilter", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1149.5, 
+                "top": 810
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "fpfilter", 
+            "tool_state": "{\"min_strandness\": \"\\\"0.01\\\"\", \"max_mapqual_diff\": \"\\\"30\\\"\", \"bam\": \"null\", \"min_var_dist_3\": \"\\\"0.2\\\"\", \"reference\": \"null\", \"min_var_count\": \"\\\"4\\\"\", \"max_readlen_diff\": \"\\\"25\\\"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"max_mm_qualsum_diff\": \"\\\"50\\\"\", \"min_var_dist_3 \": \"\\\"\\\"\", \"vcf\": \"null\", \"sample\": \"\\\"TUMOR\\\"\", \"min_read_pos\": \"\\\"0.1\\\"\", \"min_var_freq\": \"\\\"0.05\\\"\", \"max_var_mm_qualsum\": \"\\\"100\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "25151231-5be0-4b98-b914-1881021056a6"
+        }, 
+        "16": {
+            "annotation": "", 
+            "id": 16, 
+            "input_connections": {
+                "in_vcf": {
+                    "id": 12, 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "mageTab", 
+            "outputs": [
+                {
+                    "name": "out_magetab", 
+                    "type": "txt"
+                }
+            ], 
+            "position": {
+                "left": 1617.5, 
+                "top": 317
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "mageTab", 
+            "tool_state": "{\"logLevel\": \"\\\"WARNING\\\"\", \"ontologyVersion\": \"\\\"1.3.1.1\\\"\", \"disease\": \"\\\"\\\"\", \"personEmail\": \"\\\"aradenba@soe.ucsc.edu\\\"\", \"protocolOntologies\": \"\\\"MGED Ontology,MGED Ontology\\\"\", \"pubStatus\": \"\\\"published\\\"\", \"expDesignFactorType\": \"\\\"disease_state\\\"\", \"__rerun_remap_job_id__\": null, \"pubMedId\": \"\\\"25405470\\\"\", \"personMidInitial\": \"\\\"J\\\"\", \"protocolTypes\": \"\\\"Variant Calling,MAF Generation\\\"\", \"expDesignOntology\": \"\\\"MGED Ontology\\\"\", \"personAddress\": \"\\\"University of California Santa Cruz, 1156 High St, Mail Stop CBSE, Santa Cruz, CA 95064, USA\\\"\", \"__page__\": 0, \"in_vcf\": \"null\", \"expDesign\": \"\\\"individual_genetic_characteristics_design\\\"\", \"protocolNames\": \"\\\"ucsc.edu:variant_calling:Illumina_DNASeq:01,ucsc.edu:vcf2maf:Illumina_DNASeq:01\\\"\", \"ontologyName\": \"\\\"MGED Ontology\\\"\", \"expDescription\": \"\\\"Detection of somatic variants from the TCGA Whole-Exome Sequencing (WES) and RNA-Seq data using RADIA\\\"\", \"logFilename\": \"\\\"\\\"\", \"ontologyFile\": \"\\\"http://mged.sourceforge.net/ontologies/MGEDontology.php\\\"\", \"personFirstName\": \"\\\"Amie\\\"\", \"personAffiliation\": \"\\\"University of California Santa Cruz Genome Institute\\\"\", \"protocolDescriptions\": \"\\\"Somatic Variant Calling Pipeline: RADIA v1.1.1 (https://github.com/aradenbaugh/radia/),Annotation: SnpEff v3.3_GRCh37.69 (http://snpeff.sourceforge.net/)\\\"\", \"pubTitle\": \"\\\"RADIA: RNA and DNA Integrated Analysis for Somatic Mutation Detection\\\"\", \"pubAuthors\": \"\\\"Radenbaugh AJ, Ma S, Ewing A, Stuart JM, Collisson EA, Zhu J, Haussler D\\\"\", \"personLastName\": \"\\\"Radenbaugh\\\"\", \"personRole\": \"\\\"submitter\\\"\", \"protocolParameters\": \"\\\"\\\"\", \"expDesignFactorName\": \"\\\"somatic_variant\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "00a6d5c5-1db6-4bd2-b427-6623ef11f8a4"
+        }, 
+        "17": {
+            "annotation": "", 
+            "id": 17, 
+            "input_connections": {
+                "in_vcf": {
+                    "id": 13, 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "mageTab", 
+            "outputs": [
+                {
+                    "name": "out_magetab", 
+                    "type": "txt"
+                }
+            ], 
+            "position": {
+                "left": 1631.5, 
+                "top": 680
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "mageTab", 
+            "tool_state": "{\"logLevel\": \"\\\"WARNING\\\"\", \"ontologyVersion\": \"\\\"1.3.1.1\\\"\", \"disease\": \"\\\"\\\"\", \"personEmail\": \"\\\"aradenba@soe.ucsc.edu\\\"\", \"protocolOntologies\": \"\\\"MGED Ontology,MGED Ontology\\\"\", \"pubStatus\": \"\\\"published\\\"\", \"expDesignFactorType\": \"\\\"disease_state\\\"\", \"__rerun_remap_job_id__\": null, \"pubMedId\": \"\\\"25405470\\\"\", \"personMidInitial\": \"\\\"J\\\"\", \"protocolTypes\": \"\\\"Variant Calling,MAF Generation\\\"\", \"expDesignOntology\": \"\\\"MGED Ontology\\\"\", \"personAddress\": \"\\\"University of California Santa Cruz, 1156 High St, Mail Stop CBSE, Santa Cruz, CA 95064, USA\\\"\", \"__page__\": 0, \"in_vcf\": \"null\", \"expDesign\": \"\\\"individual_genetic_characteristics_design\\\"\", \"protocolNames\": \"\\\"ucsc.edu:variant_calling:Illumina_DNASeq:01,ucsc.edu:vcf2maf:Illumina_DNASeq:01\\\"\", \"ontologyName\": \"\\\"MGED Ontology\\\"\", \"expDescription\": \"\\\"Detection of somatic variants from the TCGA Whole-Exome Sequencing (WES) and RNA-Seq data using RADIA\\\"\", \"logFilename\": \"\\\"\\\"\", \"ontologyFile\": \"\\\"http://mged.sourceforge.net/ontologies/MGEDontology.php\\\"\", \"personFirstName\": \"\\\"Amie\\\"\", \"personAffiliation\": \"\\\"University of California Santa Cruz Genome Institute\\\"\", \"protocolDescriptions\": \"\\\"Somatic Variant Calling Pipeline: RADIA v1.1.1 (https://github.com/aradenbaugh/radia/),Annotation: SnpEff v3.3_GRCh37.69 (http://snpeff.sourceforge.net/)\\\"\", \"pubTitle\": \"\\\"RADIA: RNA and DNA Integrated Analysis for Somatic Mutation Detection\\\"\", \"pubAuthors\": \"\\\"Radenbaugh AJ, Ma S, Ewing A, Stuart JM, Collisson EA, Zhu J, Haussler D\\\"\", \"personLastName\": \"\\\"Radenbaugh\\\"\", \"personRole\": \"\\\"submitter\\\"\", \"protocolParameters\": \"\\\"\\\"\", \"expDesignFactorName\": \"\\\"somatic_variant\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "309ab519-f412-419f-b70b-a4c8d7dd9efe"
+        }, 
+        "18": {
+            "annotation": "", 
+            "id": 18, 
+            "input_connections": {
+                "in_vcf": {
+                    "id": 14, 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "mageTab", 
+            "outputs": [
+                {
+                    "name": "out_magetab", 
+                    "type": "txt"
+                }
+            ], 
+            "position": {
+                "left": 1628.5, 
+                "top": 512
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "mageTab", 
+            "tool_state": "{\"logLevel\": \"\\\"WARNING\\\"\", \"ontologyVersion\": \"\\\"1.3.1.1\\\"\", \"disease\": \"\\\"\\\"\", \"personEmail\": \"\\\"aradenba@soe.ucsc.edu\\\"\", \"protocolOntologies\": \"\\\"MGED Ontology,MGED Ontology\\\"\", \"pubStatus\": \"\\\"published\\\"\", \"expDesignFactorType\": \"\\\"disease_state\\\"\", \"__rerun_remap_job_id__\": null, \"pubMedId\": \"\\\"25405470\\\"\", \"personMidInitial\": \"\\\"J\\\"\", \"protocolTypes\": \"\\\"Variant Calling,MAF Generation\\\"\", \"expDesignOntology\": \"\\\"MGED Ontology\\\"\", \"personAddress\": \"\\\"University of California Santa Cruz, 1156 High St, Mail Stop CBSE, Santa Cruz, CA 95064, USA\\\"\", \"__page__\": 0, \"in_vcf\": \"null\", \"expDesign\": \"\\\"individual_genetic_characteristics_design\\\"\", \"protocolNames\": \"\\\"ucsc.edu:variant_calling:Illumina_DNASeq:01,ucsc.edu:vcf2maf:Illumina_DNASeq:01\\\"\", \"ontologyName\": \"\\\"MGED Ontology\\\"\", \"expDescription\": \"\\\"Detection of somatic variants from the TCGA Whole-Exome Sequencing (WES) and RNA-Seq data using RADIA\\\"\", \"logFilename\": \"\\\"\\\"\", \"ontologyFile\": \"\\\"http://mged.sourceforge.net/ontologies/MGEDontology.php\\\"\", \"personFirstName\": \"\\\"Amie\\\"\", \"personAffiliation\": \"\\\"University of California Santa Cruz Genome Institute\\\"\", \"protocolDescriptions\": \"\\\"Somatic Variant Calling Pipeline: RADIA v1.1.1 (https://github.com/aradenbaugh/radia/),Annotation: SnpEff v3.3_GRCh37.69 (http://snpeff.sourceforge.net/)\\\"\", \"pubTitle\": \"\\\"RADIA: RNA and DNA Integrated Analysis for Somatic Mutation Detection\\\"\", \"pubAuthors\": \"\\\"Radenbaugh AJ, Ma S, Ewing A, Stuart JM, Collisson EA, Zhu J, Haussler D\\\"\", \"personLastName\": \"\\\"Radenbaugh\\\"\", \"personRole\": \"\\\"submitter\\\"\", \"protocolParameters\": \"\\\"\\\"\", \"expDesignFactorName\": \"\\\"somatic_variant\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "3d209885-1a16-4843-8558-81446a457c1f"
+        }, 
+        "19": {
+            "annotation": "", 
+            "id": 19, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 15, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA VCF ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1356.5, 
+                "top": 869
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "tcga-vcf-reheader", 
+            "tool_state": "{\"normal_aliquot_name\": \"\\\"\\\"\", \"tumor_aliquot_uuid\": \"\\\"\\\"\", \"software_name\": \"\\\"\\\"\", \"software_params\": \"\\\"\\\"\", \"center\": \"\\\"\\\"\", \"software_version\": \"\\\"\\\"\", \"__page__\": 0, \"normal_bam_name\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"normal_analysis_uuid\": \"\\\"\\\"\", \"platform\": \"\\\"\\\"\", \"normal_aliquot_uuid}\": \"\\\"\\\"\", \"tumor_aliquot_name\": \"\\\"\\\"\", \"tumor_analysis_uuid\": \"\\\"\\\"\", \"tumor_bam_name\": \"\\\"\\\"\", \"input_vcf\": \"null\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "a68c1ba3-588b-4f51-ad00-64da31e14478"
+        }, 
+        "20": {
+            "annotation": "", 
+            "id": 20, 
+            "input_connections": {
+                "in_vcf": {
+                    "id": 19, 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "mageTab", 
+            "outputs": [
+                {
+                    "name": "out_magetab", 
+                    "type": "txt"
+                }
+            ], 
+            "position": {
+                "left": 1619.5, 
+                "top": 861
+            }, 
+            "post_job_actions": {}, 
+            "tool_errors": null, 
+            "tool_id": "mageTab", 
+            "tool_state": "{\"logLevel\": \"\\\"WARNING\\\"\", \"ontologyVersion\": \"\\\"1.3.1.1\\\"\", \"disease\": \"\\\"\\\"\", \"personEmail\": \"\\\"aradenba@soe.ucsc.edu\\\"\", \"protocolOntologies\": \"\\\"MGED Ontology,MGED Ontology\\\"\", \"pubStatus\": \"\\\"published\\\"\", \"expDesignFactorType\": \"\\\"disease_state\\\"\", \"__rerun_remap_job_id__\": null, \"pubMedId\": \"\\\"25405470\\\"\", \"personMidInitial\": \"\\\"J\\\"\", \"protocolTypes\": \"\\\"Variant Calling,MAF Generation\\\"\", \"expDesignOntology\": \"\\\"MGED Ontology\\\"\", \"personAddress\": \"\\\"University of California Santa Cruz, 1156 High St, Mail Stop CBSE, Santa Cruz, CA 95064, USA\\\"\", \"__page__\": 0, \"in_vcf\": \"null\", \"expDesign\": \"\\\"individual_genetic_characteristics_design\\\"\", \"protocolNames\": \"\\\"ucsc.edu:variant_calling:Illumina_DNASeq:01,ucsc.edu:vcf2maf:Illumina_DNASeq:01\\\"\", \"ontologyName\": \"\\\"MGED Ontology\\\"\", \"expDescription\": \"\\\"Detection of somatic variants from the TCGA Whole-Exome Sequencing (WES) and RNA-Seq data using RADIA\\\"\", \"logFilename\": \"\\\"\\\"\", \"ontologyFile\": \"\\\"http://mged.sourceforge.net/ontologies/MGEDontology.php\\\"\", \"personFirstName\": \"\\\"Amie\\\"\", \"personAffiliation\": \"\\\"University of California Santa Cruz Genome Institute\\\"\", \"protocolDescriptions\": \"\\\"Somatic Variant Calling Pipeline: RADIA v1.1.1 (https://github.com/aradenbaugh/radia/),Annotation: SnpEff v3.3_GRCh37.69 (http://snpeff.sourceforge.net/)\\\"\", \"pubTitle\": \"\\\"RADIA: RNA and DNA Integrated Analysis for Somatic Mutation Detection\\\"\", \"pubAuthors\": \"\\\"Radenbaugh AJ, Ma S, Ewing A, Stuart JM, Collisson EA, Zhu J, Haussler D\\\"\", \"personLastName\": \"\\\"Radenbaugh\\\"\", \"personRole\": \"\\\"submitter\\\"\", \"protocolParameters\": \"\\\"\\\"\", \"expDesignFactorName\": \"\\\"somatic_variant\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "dcbce3dc-c431-47d0-a4cf-8ac297bdf9c5"
+        }
+    }, 
+    "uuid": "47dc415b-6581-474d-8b18-cb91fbcdadf7"
+}

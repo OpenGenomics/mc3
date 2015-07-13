@@ -1,0 +1,327 @@
+#!/usr/bin/env python
+#dump all metadata with given state to individual uuid names directories
+#and then updates analysis.xml with MC3 BI preprocessed fields
+
+import ConfigParser
+from optparse import OptionParser
+import os
+import sys
+import re
+import lxml.etree as xp
+import datetime
+import subprocess
+from subprocess import Popen
+import uuid
+import logging
+import shutil
+import CGHWSI
+
+basedir = os.path.abspath(os.path.dirname( __file__ ))
+default_logger = logging.getLogger(name='create_pawg_metadata')
+
+parser=OptionParser()
+parser.add_option("-u", action="store",type='string',dest="analysis_id",help="REQUIRED: original analysis_id (uuid) of the BAM to be submitted")
+parser.add_option("-c", action="store",type='string',dest="checksum",help="REQUIRED: MD5 checksum of BAM to be submitted")
+parser.add_option("-f", action="store",type='string',dest="path_to_file",help="REQUIRED: full path of BAM to be submitted, this will be prefixed with \"TCGA_MC3.\" when the symlink is created")
+parser.add_option("-p", action="store",type='string',dest="path_to_working_dir",default="./",help="OPTIONAL: path to working dir where the updated metadata subdirectories will be placed")
+parser.add_option("-n", action="store",type='string',dest="new_uuid",default=None,help="OPTIONAL: new analysis uuid of this realigned bam")
+parser.add_option("-i", action="store",type='string',dest="center",default="UCSC",help="OPTIONAL (defaults to \"ucsc\"): new analysis center (wont change experiment or run centers)")
+parser.add_option("-s", action="store",type='string',dest="study",default="PCAWG_TEST",help="OPTIONAL (defaults to \"PCAWG_TEST\": study to upload to")
+
+(options,args) = parser.parse_args()
+ANALYSIS_ID=options.analysis_id
+CHECKSUM=options.checksum
+PATH_TO_FILE=options.path_to_file
+paths=PATH_TO_FILE.split('/')
+FILENAME="TCGA_MC3.%s" % (paths[-1])
+NEW_UUID=options.new_uuid
+
+ANALYSIS_CENTER=options.center
+STUDY=options.study
+TITLE='WARNING: VOLATILE DATA, these data are temporarily available for support of the MC3 effort and will be removed in the near future.  TCGA Variant Multi-Center Calling 3 (MC3) reprocessed BAM (by Broad): full realignment with BWA, MarkDuplicates, and indel realigned.'
+PIPELINE_INFO_HEADER_BY_RG='participant_id|sample_id|target_sample_refname|aliquot_id|library|platform_unit|read_group_id|analysis_id|bam_file'
+
+
+generic_pipeline_info = [{"PROGRAM":"GATK RealignerTargetCreator","section_name":"MC3 INDEL Realignment-1","PREV_STEP_INDEX":"NULL","STEP_INDEX":"NULL","VERSION":"","NOTES":"java -Xmx12 -XX:ParallelGCThreads=2 -jar GenomeAnalysisTK.jar -T RealignerTargetCreator -nt 8 -R reference.fasta -I input.bam -knownSites known_sites.vcf --downsampling_type NONE -o output.bam"},
+            {"PROGRAM":"GATK IndelRealigner","section_name":"MC3 INDEL Realignment-2","PREV_STEP_INDEX":"NULL","STEP_INDEX":"NULL","VERSION":"","NOTES":"java -Xmx12 -XX:ParallelGCThreads=2 .jar -T IndelRealigner -R reference.fasta -I input.bam -L ${INTERVAL} .targetIntervals ${TARGET_INTERVALS} --downsampling_type NONE -knownSites known_sites.vcf -maxReads 720000 -maxInMemory 5400000 -nWayOut ${OUTPUT_MAP}"},
+            {"PROGRAM":"GATK BaseRecalibrator","section_name":"MC3 Base Recalibration-1","PREV_STEP_INDEX":"NULL","STEP_INDEX":"NULL","VERSION":"","NOTES":"java -jar GenomeAnalysisTK.jar -T BaseRecalibrator -R reference.fasta -I input.bam -knownSites known_sites.vcf -nct 4 -o recal_data.table"},
+            {"PROGRAM":"GATK PrintReads","section_name":"MC3 Base Recalibration-2","PREV_STEP_INDEX":"NULL","STEP_INDEX":"NULL","VERSION":"","NOTES":"java -jar GenomeAnalysisTK.jar -T PrintReads -R reference.fasta --emit_original_quals  -I input.bam -nct 4 -BQSR recal_data.table -o output.bam"}]
+
+bi_pipeline_info = [{"PROGRAM":"bwa aln","section_name":"MC3 Realignment","PREV_STEP_INDEX":"NULL","STEP_INDEX":"NULL","VERSION":"0.5.9-tpx","NOTES":"[one run per read group X] bwa aln Homo_sapiens_assembly19.fasta -q 5 -l 32 -k 2 -t $NSLOTS -o 1 -f Homo_sapiens_assembly19.X.sai input_read_group.X.fastq"},
+            {"PROGRAM":"Picard MarkDuplicates","section_name":"MC3 Mark Duplicates","PREV_STEP_INDEX":"NULL","STEP_INDEX":"NULL","VERSION":"1.716(1956)","NOTES":"net.sf.picard.sam.MarkDuplicates INPUT=[input.bam] OUTPUT=output.aligned.duplicates_marked.bam METRICS_FILE=input.bam.duplicate_metrics TMP_DIR=[/local/scratch, /seq/picardtemp3, /seq/picardtemp4] VALIDATION_STRINGENCY=SILENT CREATE_INDEX=true CREATE_MD5_FILE=true    PROGRAM_RECORD_ID=MarkDuplicates PROGRAM_GROUP_NAME=MarkDuplicates REMOVE_DUPLICATES=false ASSUME_SORTED=false MAX_SEQUENCES_FOR_DISK_READ_ENDS_MAP=50000 MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=8000 SORTING_COLLECTION_SIZE_RATIO=0.25 READ_NAME_REGEX=[a-zA-Z0-9]+:[0-9]:([0-9]+):([0-9]+):([0-9]+).* OPTICAL_DUPLICATE_PIXEL_DISTANCE=100 VERBOSITY=INFO QUIET=false COMPRESSION_LEVEL=1 MAX_RECORDS_IN_RAM=500000"},
+            {"PROGRAM":"GATK IndelRealigner","section_name":"MC3 INDEL Realignment","PREV_STEP_INDEX":"NULL","STEP_INDEX":"NULL","VERSION":"2.6-18-gef514d7-picard_2013_12_10","NOTES":"[one run per read group X] knownAlleles=[(RodBinding name=knownAlleles source=Homo_sapiens_assembly19.dbsnp.vcf), (RodBinding name=knownAlleles2 source=Homo_sapiens_assembly19.known_indels.vcf), (RodBinding name=knownAlleles3 source=Homo_sapiens_assembly19.variantEvalGoldStandard.vcf)] targetIntervals=X.merged.intervals LODThresholdForCleaning=5.0 out=null bam_compression=null disable_bam_indexing=null generate_md5=null simplifyBAM=null consensusDeterminationModel=USE_READS entropyThreshold=0.15 maxReadsInMemory=150000 maxIsizeForMovement=3000 maxPositionalMoveAllowed=200 maxConsensuses=30 maxReadsForConsensuses=120 maxReadsForRealignment=20000 noOriginalAlignmentTags=false nWayOut=X.final_input_bams.map generate_nWayOut_md5s=false check_early=false noPGTag=false keepPGTags=false indelsFileForDebugging=null statisticsFileForDebugging=X.indel.stats SNPsFileForDebugging=null"},
+            {"PROGRAM":"GATK PrintReads","section_name":"MC3 PrintReads","PREV_STEP_INDEX":"NULL","STEP_INDEX":"NULL","VERSION":"2.6-18-gef514d7-picard_2013_12_10","NOTES":"readGroup=null platform=null number=-1 sample_file=[] sample_name=[] simplify=false no_pg_tag=false"}]
+
+if ANALYSIS_ID is None or CHECKSUM is None or PATH_TO_FILE is None:
+    sys.stderr.write("MUST submit: the original TCGA source BAM's analysis_id(uuid), MD5 checksum, and the full path to the file\n")
+    sys.exit(-1)
+
+PATH_TO_WORKING=options.path_to_working_dir
+#if options.path_to_working_dir=="./":
+    #PATH_TO_WORKING="%s/%s" % (options.path_to_bam_file,ANALYSIS_ID)
+
+def run_command(command=str):
+    print "Running: %s" % (command)
+    run=Popen(["-c",command],stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
+    (stdout,stderr)=run.communicate()
+    if run.returncode != 0:
+        for line in stderr.split("\n"):
+            print "ERROR:\t"+line.rstrip()
+        sys.exit(-1)
+    return (stdout,stderr)
+
+#new json way of creating info
+def create_pipeline_info_hash(info_hash,bam_filename,rg):
+    pinfo = {}
+    pinfo['donor_id']=info_hash['submitter_donor_id']
+    pinfo['specimen_id']=info_hash['submitter_specimen_id']
+    pinfo['target_sample_refname']=info_hash['submitter_sample_id']
+ #       $pi->{'input_info'}{'analyzed_sample'} = $aliquot_id;
+    pinfo['analyzed_sample']=info_hash['submitter_sample_id']
+    pinfo['analysis_id']=info_hash['original_analysis_id']
+    pinfo['bam_file']=bam_filename
+    
+    pinfo['library']=rg['library']
+    pinfo['platform_unit']=rg['platform_unit']
+    
+    #pinfo['read_group_id']=rg['read_group_id']
+    
+    return {'read_group_id':rg['read_group_id'],"input_info":pinfo}
+
+#old pipes way of creating info
+def create_pipeline_info_pipes(info_hash,bam_filename,rg):
+    pinfo = []
+    
+    pinfo.append(info_hash['submitter_donor_id'])
+    pinfo.append(info_hash['submitter_specimen_id'])
+    pinfo.append(info_hash['submitter_sample_id'])
+    pinfo.append(info_hash['submitter_sample_id'])
+    pinfo.append(rg['library'])
+    pinfo.append(rg['platform_unit'])
+    pinfo.append(rg['read_group_id'])
+    pinfo.append(info_hash['original_analysis_id'])
+    pinfo.append(bam_filename)
+    
+    return '|'.join(pinfo)
+
+def extract_read_groups_from_bam_header(filename):
+    #@RG     ID:5a543e4e-ce20-11e3-98bb-205ab09f1d05 PM:Illumina HiSeq 2000  CN:BCM  PU:BCM:120725_SN580_0236_BD13P0ACXX_2   DT:2012-08-14T17:00:00Z SM:9b6cd038-dee8-47b3-bd30-9a361a1f39ae PI:     LB:WGS:BCM:IWG_TREN.B2-4102-11A-N_2pB   PL:ILLUMINA
+    read_group_id_matcher = re.compile("ID:([^\s]+)")
+    #pm_matcher = re.compile("PM:([^\t]+)")
+    platform_unit_matcher = re.compile("PU:([^\t]+)")
+    lib_matcher = re.compile("LB:([^\t]+)")
+    #pl_matcher = re.compile("PL:([^\t]+)")
+    matchers = [["read_group_id",read_group_id_matcher],["platform_unit",platform_unit_matcher],["library",lib_matcher]]
+    
+    (stdout,stderr)=run_command("samtools view -H %s | grep \"^@RG\"" % (filename))
+    print stdout
+    rgs={}
+    for line in stdout.split("\n"):
+        if len(line) < 1:
+            continue
+        line=line.rstrip()
+        rg={}
+        for (tag,matcher) in matchers:
+            m=matcher.search(line)
+            if m != None:
+                rg[tag]=m.group(1)
+        rgs[rg["read_group_id"]]=rg
+
+    return rgs
+
+    
+
+#NEED TO ALSO GET RGs from the bam header and do the proper mapping to get correct PIPELINE LABELS
+def extract_pipeline_sections_from_bam_header(filename):
+    #@PG ID:bwa  PN:bwa  VN:0.7.7-r441   CL:/opt/ICGC/bin/bwa mem -p -T 0 -R @RG\tID:BI:H12TD_1\tCN:BI\tPL:ILLUMINA\tPM:Illumina HiSeq 2000\tLB:WGS:BI:Solexa-173202\tPI:0\tSM:d8d5585d-32cd-4ac4-b410-a4122a17a558\tPU:BI:H12TDADXX130815_1_AATGTTCT\tDT:2013-08-15T04:00:00Z -t 1 /pancanfs/reference/genome.fa.gz -
+    #(stdout,stderr)=run_command(["samtools","view","-H",filename])
+    id_matcher = re.compile("ID:([^\s]+)")
+    pn_matcher = re.compile("PN:([^\t]+)")
+    #cl_matcher = re.compile("CL:[\w\/]+\/([^\t]+)")
+    cl_matcher = re.compile("CL:([^\t]+)")
+    version_matcher = re.compile("VN:([^\t]+)")
+    matchers = [["STEP_INDEX",id_matcher],["PROGRAM",pn_matcher],["VERSION",version_matcher],["NOTES",cl_matcher]]
+    bad_tab_matcher = re.compile("\\t")
+    bwa_matcher = re.compile("CL:[^\t]*bwa")
+    markdups_matcher = re.compile("ID:bammarkduplicates")
+    bamsort_matcher = re.compile("ID:bamsort")
+
+    (stdout,stderr)=run_command("samtools view -H %s | grep @PG" % (filename))
+    print stdout
+    #report=stdout.split("\n")
+    previous_step_idx="NIL"
+    pipe_sections=[]
+    #add in bam2fastq step, not in bam headers
+    e=xp.Element("PIPE_SECTION")
+    e.set("section_name","fastq_extract")
+    sube=xp.SubElement(e,"STEP_INDEX")
+    sube.text=("bamtofastq")
+    sube=xp.SubElement(e,"PREV_STEP_INDEX")
+    sube.text=("NIL")
+    sube=xp.SubElement(e,"PROGRAM")
+    sube.text=("bamtofastq")
+    sube=xp.SubElement(e,"VERSION")
+    sube.text=("0.0.148")
+    sube=xp.SubElement(e,"NOTES")
+    sube.text=("[NOTE: this is a single generic example command, bamtofasq was actually run for all individual read group bams] bamtofastq T=bamtofastq_tmp S=single.fq O=unmatched_1.fq O2=unmatched_2.fq exclude=QCFAIL,SECONDARY,SUPPLEMENTARY collate=1 tryoq=1 filename=single_read_group.bam")
+    pipe_sections.append(e)
+
+    for line in stdout.split("\n"):
+        if len(line) < 1:
+            continue
+        line=line.rstrip()
+        #convert what are supposed to be tabs to spaces (inside commands)
+        BAD_TABS=False
+        if bad_tab_matcher.search(line):
+            line=line.replace("\\t","    ")
+            BAD_TABS=True
+        # abit hacky because we assume bwa but we need to know if this is an alignment section
+        e=xp.Element("PIPE_SECTION")
+        if bwa_matcher.search(line) != None:
+            previous_step_idx="bamtofastq"
+            e.set("section_name","mapping")
+        if markdups_matcher.search(line) != None:
+            e.set("section_name","mark_duplicates")
+            previous_step_idx="bamsort"
+        if bamsort_matcher.search(line) != None:
+            e.set("section_name","bam_sort")
+        index=0
+        for matcher_ in matchers:
+            (tag,matcher)=matcher_
+            m=matcher.search(line)
+            if(m != None):
+                t=xp.SubElement(e,tag)
+                info = m.group(1)
+                #put back bad tabs
+                if BAD_TABS:
+                    info=info.replace("    ","\\t")
+                if tag == 'STEP_INDEX' and previous_step_idx == "bamsort":
+                    info = 'markduplicates'
+                if tag == 'NOTES' and previous_step_idx == "markduplicates":
+                    info_ = "[NOTE: bammarkduplicates is one of the programs in the biobambam BAM processing package and in addition to marking duplicates it merges all individual read group bams into one final bam] %s" % info
+                    info = info_
+                t.text=(info)
+                #put in the previous pointer tag if this is the first (STEP_INDEX) tag for this PIPE_SECTION
+                if index == 0:
+                    t2=xp.SubElement(e,"PREV_STEP_INDEX")
+                    t2.text=(previous_step_idx)
+                    previous_step_idx=t.text
+                index = index + 1
+        pipe_sections.append(e)
+    #foreach ps in pipe_sections
+    return pipe_sections
+                     
+def create_process_indel_realignment_and_base_quality_recal_sections(info):
+    section_names = ["STEP_INDEX","PREV_STEP_INDEX","PROGRAM","VERSION","NOTES"]
+    pipe_sections=[]
+    for map_ in info:
+        e=xp.Element("PIPE_SECTION")
+        e.set("section_name",map_["section_name"])
+        for section in section_names:
+           sube = xp.SubElement(e,section) 
+           sube.text = map_[section]
+        pipe_sections.append(e)
+    return pipe_sections
+
+
+def process_analysis_xml(original_uuid,filename,checksum,path):
+    #f=filename.split(r'.')
+    #readgroups=extract_read_groups_from_bam_header("%s/%s" % (path,filename))
+    
+    parser = xp.XMLParser(remove_blank_text=True)
+    tree_orig=xp.parse("./%s/analysis.xml" % (original_uuid),parser)
+    root_orig=tree_orig.getroot()
+    
+    now=datetime.datetime.today().isoformat() 
+    
+    #update analsyis center_name and date
+    analysis_ = root_orig.find("ANALYSIS")
+    analysis_.set('center_name',ANALYSIS_CENTER)
+    analysis_.set('analysis_center',ANALYSIS_CENTER)
+    analysis_.set('analysis_date',now)
+
+    #update title and description with sample and participant 
+    title=root_orig.find("ANALYSIS/TITLE")
+    title.text = "%s %s" % (TITLE,title.text)
+    #desc=root_orig.find("ANALYSIS/DESCRIPTION")
+    #desc.text = desc.text.replace("PARTICIPANT1",participant_id)
+    study=root_orig.find("ANALYSIS/STUDY_REF")
+    study.set('refname',STUDY)
+
+    #4) update FILES block with specific file info
+    file = root_orig.find('ANALYSIS/DATA_BLOCK/FILES/FILE')
+    file.set('checksum',checksum)
+    file.set('filename',filename)
+
+    #5) update PIPELINE section:
+    #pipe_sections=extract_pipeline_sections_from_bam_header("%s/%s" % (path,filename))
+    pipeline=root_orig.find("ANALYSIS/ANALYSIS_TYPE/REFERENCE_ALIGNMENT/PROCESSING/PIPELINE")
+    #only for Broad, clear the whole pipeline section
+    #pipeline.clear()
+    pipe_sections = create_process_indel_realignment_and_base_quality_recal_sections(generic_pipeline_info)
+    for pipe_section in pipe_sections:
+       pipeline.append(pipe_section)
+     
+    attributes=root_orig.find("ANALYSIS/ANALYSIS_ATTRIBUTES")
+    if not attributes:
+        attributes=xp.Element("ANALYSIS_ATTRIBUTES")
+        aroot = root_orig.find('ANALYSIS')
+        aroot.append(attributes)
+    e=xp.Element("ANALYSIS_ATTRIBUTE")
+    k=xp.SubElement(e,"TAG")
+    k.text="TCGA_MC3"
+    k=xp.SubElement(e,"VALUE")
+    k.text="TCGA_MC3"
+    attributes.append(e)
+    
+    #final: write out new analysis.xml
+    st=xp.tostring(root_orig,pretty_print=True)
+    
+    afout=open("./%s/analysis.new.xml" % (original_uuid),"w")
+    afout.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+    afout.write(st+"\n") 
+    afout.close()
+
+def main():
+    sys.stdout.write("Processing uuid: %s\n" % ANALYSIS_ID)
+
+    if os.path.exists( ANALYSIS_ID ):
+        shutil.rmtree( ANALYSIS_ID )
+    data=CGHWSI.retrieve_analysis_attributes_for_uuid(ANALYSIS_ID)
+    error=CGHWSI.split_analysis_attributes(data,ANALYSIS_ID)
+    
+    run_command("rsync -av %s/analysis.xml %s/analysis.xml.orig" % (ANALYSIS_ID,ANALYSIS_ID))
+    process_analysis_xml(ANALYSIS_ID,FILENAME,CHECKSUM,PATH_TO_WORKING)
+    run_command("cat %s/analysis.new.xml | egrep -v -e '<!--' > %s/analysis.xml" % (ANALYSIS_ID,ANALYSIS_ID))
+    
+    #if this analysis id dir is already present under the working path, then delete it and move the latest one
+    #the assumption is that if we're running this script and these dirs still exist, they should be deleted and recreated
+    if os.path.exists( os.path.join(PATH_TO_WORKING,ANALYSIS_ID) ):
+        shutil.rmtree( os.path.join(PATH_TO_WORKING,ANALYSIS_ID) )
+
+    os.rename(ANALYSIS_ID,os.path.join(PATH_TO_WORKING,ANALYSIS_ID))
+
+    #create new uuid and dir:
+    if NEW_UUID is not None:
+        nuuid = str(uuid.UUID(NEW_UUID))
+    else:
+        nuuid = str(uuid.uuid4())
+   
+    #get rid of this dir if it already exists 
+    if os.path.exists( os.path.join(PATH_TO_WORKING,nuuid) ):
+        shutil.rmtree( os.path.join(PATH_TO_WORKING,nuuid) )
+
+    #run_command("mkdir -p %s/%s" % (PATH_TO_WORKING,nuuid))
+    os.mkdir(os.path.join(PATH_TO_WORKING,nuuid))
+    run_command("rsync -av %s/%s/*.xml %s/%s/" % (PATH_TO_WORKING,ANALYSIS_ID,PATH_TO_WORKING,nuuid))
+    #run_command("ln -f -s %s/%s %s/%s/" % (PATH_TO_WORKING,FILENAME,PATH_TO_WORKING,nuuid))
+    os.symlink(PATH_TO_FILE, os.path.join(PATH_TO_WORKING,str(nuuid),FILENAME))
+    #outf = open("%s/%s/trans.map"%(PATH_TO_WORKING,nuuid),"w")
+    outf = open( os.path.join(PATH_TO_WORKING,nuuid,"trans.map"), "w")
+    outf.write("%s\t%s\n"%(ANALYSIS_ID,nuuid))
+    outf.close()
+	
+    sys.stdout.write("ID_MAP_OLD2NEW\t%s\t%s\t%s" % (ANALYSIS_ID,nuuid,FILENAME))
+
+if __name__ == '__main__':
+    main()

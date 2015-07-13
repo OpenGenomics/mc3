@@ -22,3 +22,6 @@
 [submodule "tools/pindel-tool"]
 	path = tools/pindel-tool
 	url = https://github.com/ucscCancer/pindel-tool.git
+[submodule "tools/genetorrent-tool"]
+	path = tools/genetorrent-tool
+	url = https://github.com/ucscCancer/genetorrent-tool.git

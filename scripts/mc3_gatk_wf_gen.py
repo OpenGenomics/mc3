@@ -216,6 +216,28 @@ def run_upload(args):
     print donor_map
     print bam_map
 
+
+def run_list(args):
+    syn = synapseclient.Synapse()
+    syn.login()
+    if args.alt_table is not None:
+        config['table_id'] = args.alt_table
+    synqueue.listAssignments(syn, display=True, **config)
+    
+def run_set(args):
+    syn = synapseclient.Synapse()
+    syn.login()
+    if args.alt_table is not None:
+        config['table_id'] = args.alt_table
+    synqueue.setStates(syn, args.state, args.ids, **config)
+    
+def run_register(args):
+    syn = synapseclient.Synapse()
+    syn.login()
+    if args.alt_table is not None:
+        config['table_id'] = args.alt_table
+    synqueue.registerAssignments(syn, args.count, **config)    
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
@@ -235,6 +257,22 @@ if __name__ == "__main__":
     parser_upload = subparsers.add_parser('upload-prep')
     parser_upload.add_argument("--out-base", default="mc3_gatk")
     parser_upload.set_defaults(func=run_upload)
+
+    parser_list = subparsers.add_parser('list')
+    parser_list.add_argument("--alt-table", default=None)
+    parser_list.set_defaults(func=run_list)
+    
+    parser_set = subparsers.add_parser('set')
+    parser_set.add_argument("--alt-table", default=None)
+    parser_set.add_argument("state")
+    parser_set.add_argument("ids", nargs="+")
+    parser_set.set_defaults(func=run_set)
+
+    parser_register = subparsers.add_parser('register')
+    parser_register.add_argument("--alt-table", default=None)
+    parser_register.add_argument("--count", type=int, default=1)
+    parser_register.set_defaults(func=run_register)
+
 
     args = parser.parse_args()
 

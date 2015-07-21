@@ -26,6 +26,9 @@ config = {
 def run_gen(args):
     syn = synapseclient.Synapse()
     syn.login()
+    
+    if args.alt_table is not None:
+        config['table_id'] = args.alt_table
 
     docstore = from_url(args.out_base)
 
@@ -226,10 +229,8 @@ if __name__ == "__main__":
     parser_gen.add_argument("--work-dir", default=None)
     parser_gen.add_argument("--tool-data", default=os.path.abspath("tool_data"))
     parser_gen.add_argument("--tool-dir", default=os.path.abspath("tools"))
-    
+    parser_gen.add_argument("--alt-table", default=None)
     parser_gen.set_defaults(func=run_gen)
-
-
 
     parser_upload = subparsers.add_parser('upload-prep')
     parser_upload.add_argument("--out-base", default="mc3_gatk")

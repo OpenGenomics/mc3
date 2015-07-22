@@ -28,3 +28,6 @@
 [submodule "tools/tcgavcf-tool"]
 	path = tools/tcgavcf-tool
 	url = https://github.com/ucscCancer/tcgavcf-tool.git
+[submodule "tools/icgc-pcap-tools"]
+	path = tools/icgc-pcap-tools
+	url = https://github.com/ucscCancer/icgc-pcap-tools.git

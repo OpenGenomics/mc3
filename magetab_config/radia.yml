@@ -1,0 +1,30 @@
+---
+
+expDesign: individual_genetic_characteristics_design
+expDesignOntology: MGED Ontology
+expDesignFactorName: somatic_variant
+expDesignFactorType: disease_state
+
+personLastName: Radenbaugh
+personFirstName: Amie
+personMidInitial: J
+personEmail: aradenba@soe.ucsc.edu
+personAddress: University of California Santa Cruz, 1156 High St, Mail Stop CBSE, Santa Cruz, CA 95064, USA
+personAffiliation: University of California Santa Cruz Genome Institute
+personRole: software_manufacturer
+
+pubMedId: 25405470
+pubAuthors: Radenbaugh AJ, Ma S, Ewing A, Stuart JM, Collisson EA, Zhu J, Haussler D
+pubTitle: "RADIA: RNA and DNA Integrated Analysis for Somatic Mutation Detection"
+pubStatus: published
+expDescription: Detection of somatic variants from the TCGA Whole-Exome Sequencing (WES) and RNA-Seq data using RADIA
+
+protocolNames: "ucsc.edu:variant_calling:Illumina_DNASeq:01"
+protocolTypes: Variant Calling
+protocolDescriptions: Somatic Variant Calling Pipeline: RADIA v1.1.1 (https://github.com/aradenbaugh/radia/),Annotation: SnpEff v3.3_GRCh37.69 (http://snpeff.sourceforge.net/)
+protocolOntologies: MGED Ontology,MGED Ontology
+protocolParameters:
+
+ontologyName: MGED Ontology
+ontologyFile: http://mged.sourceforge.net/ontologies/MGEDontology.php
+ontologyVersion: 1.3.1.1

@@ -1,0 +1,30 @@
+---
+
+expDesign: individual_genetic_characteristics_design
+expDesignOntology: MGED Ontology
+expDesignFactorName: somatic_variant
+expDesignFactorType: disease_state
+
+personLastName: Wang
+personFirstName: Wenyi
+personMidInitial:
+
+personEmail: WWang7@mdanderson.org
+personAddress: Department of Bioinformatics and Computational Biology - Unit 1410, The University of Texas MD Anderson Cancer Center, P. O. Box 301402, Houston TX 77230-1402
+personAffiliation: The University of Texas MD Anderson Cancer Center
+personRole: software_manufacturer
+
+pubMedId:
+pubAuthors: Fan Y, Xi L, Wheeler DA, Wang W.
+pubTitle: "MuSE: somatic evolution estimation for mutation calling in sequencing data of matched tumor-normal samples"
+pubStatus: in preparation
+expDescription: 
+
+protocolNames: "mdanderson.org:variant_calling:illumina:01"
+protocolTypes: Variant Calling
+protocolDescriptions: protocolOntologies: MGED Ontology,MGED Ontology
+protocolParameters:
+
+ontologyName: MGED Ontology
+ontologyFile: http://mged.sourceforge.net/ontologies/MGEDontology.php
+ontologyVersion: 1.3.1.1

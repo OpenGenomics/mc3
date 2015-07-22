@@ -1,0 +1,30 @@
+---
+
+expDesign: individual_genetic_characteristics_design
+expDesignOntology: MGED Ontology
+expDesignFactorName: somatic_variant
+expDesignFactorType: disease_state
+
+personLastName: Ye
+personFirstName: Kai
+personMidInitial: 
+
+personEmail: kye@genome.wustl.edu
+personAddress: "Washington University in St. Louis, Washington University School of Medicine, Campus Box 8501, 4444 Forest Park Ave, St. Louis, MO 63108"
+personAffiliation: McDonnell Genome Institute
+personRole: software_manufacturer
+
+pubMedId: 19561018
+pubAuthors: Ye K, Schulz MH, Long Q, Apweiler R, Ning Z.
+pubTitle: "Pindel: a pattern growth approach to detect break points of large deletions and medium sized insertions from paired-end short reads."
+pubStatus: published
+expDescription: Detection of somatic variants from TCGA Whole-Exome Sequencing data using Pindel
+
+protocolNames: "genome.wustl.edu:variant_calling:illumina:01"
+protocolTypes: Variant Calling
+protocolDescriptions: protocolOntologies: MGED Ontology,MGED Ontology
+protocolParameters:
+
+ontologyName: MGED Ontology
+ontologyFile: http://mged.sourceforge.net/ontologies/MGEDontology.php
+ontologyVersion: 1.3.1.1

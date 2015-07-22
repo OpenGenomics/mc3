@@ -1,0 +1,30 @@
+---
+
+expDesign: individual_genetic_characteristics_design
+expDesignOntology: MGED Ontology
+expDesignFactorName: somatic_variant
+expDesignFactorType: disease_state
+
+personLastName: Larson
+personFirstName: David
+personMidInitial: E
+
+personEmail: dlarson@genome.wustl.edu
+personAddress: "Washington University in St. Louis, Washington University School of Medicine, Campus Box 8501, 4444 Forest Park Ave, St. Louis, MO 63108"
+personAffiliation: McDonnell Genome Institute
+personRole: software_manufacturer
+
+pubMedId: 22155872
+pubAuthors: Larson DE, Harris CC, Chen K, Koboldt DC, Abbott TE, Dooling DJ, Ley TJ, Mardis ER, Wilson RK, Ding L.
+pubTitle: "SomaticSniper: identification of somatic point mutations in whole genome sequencing data."
+pubStatus: published
+expDescription: Detection of somatic variants from TCGA Whole-Exome Sequencing data using SomaticSniper
+
+protocolNames: "genome.wustl.edu:variant_calling:illumina:01"
+protocolTypes: Variant Calling
+protocolDescriptions: protocolOntologies: MGED Ontology,MGED Ontology
+protocolParameters:
+
+ontologyName: MGED Ontology
+ontologyFile: http://mged.sourceforge.net/ontologies/MGEDontology.php
+ontologyVersion: 1.3.1.1

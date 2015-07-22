@@ -47,6 +47,7 @@ import itertools
 import collections
 import uuid
 import csv
+from math import isnan
 
 #HACK: fixing weirdness on older installs
 import requests.packages.urllib3
@@ -100,6 +101,27 @@ def registerAssignments(syn, count, table_id, primary_col, assignee_col, state_c
             df.loc[row,assignee_col] = username
         syn.store(synapseclient.Table(table, df, etag=results.etag))
 
+def getValues(syn, value_col, table_id, primary_col, orSet=None, **kwds):
+    table = syn.get(table_id)
+    if table.entityType != "org.sagebionetworks.repo.model.table.TableEntity":
+        return
+    results = syn.tableQuery('select * from %s' % (table.id))
+    df = results.asDataFrame()
+    changed = False
+    out = {}
+    for row_name in df.index:
+        row = df.loc[row_name]
+        key = row[primary_col]
+        value = row[value_col]
+        if orSet is not None:
+            if isinstance(value, float) and isnan(value):
+                value = orSet(key)
+                df.loc[row_name,value_col] = value
+                changed = True
+        out[key] = value
+    if changed:
+        syn.store(synapseclient.Table(table, df, etag=results.etag))
+    return out
 
 
 def setStates(syn, state, ids, table_id, primary_col, assignee_col, state_col, debug=False, display=False):

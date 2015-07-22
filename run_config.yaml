@@ -1,0 +1,10 @@
+smp:
+    - [MuSE, 8]
+    - [pindel, 8]
+    - [muTect, 8]
+    - [radia, 8]
+    - [delly, 4]
+    - [gatk_bqsr, 12]
+    - [gatk_indel, 12]
+    - [bwa_mem, 12]
+    - [broad_variant_pipline, 24]

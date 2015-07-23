@@ -5,6 +5,8 @@ expDesignOntology: MGED Ontology
 expDesignFactorName: somatic_variant
 expDesignFactorType: disease_state
 
+investigationTitle: MC3
+
 personLastName: Ye
 personFirstName: Kai
 personMidInitial: 
@@ -22,9 +24,10 @@ expDescription: Detection of somatic variants from TCGA Whole-Exome Sequencing d
 
 protocolNames: "genome.wustl.edu:variant_calling:illumina:01"
 protocolTypes: Variant Calling
-protocolDescriptions: protocolOntologies: MGED Ontology,MGED Ontology
+protocolDescriptions: 
+protocolOntologies: MGED Ontology,MGED Ontology
 protocolParameters:
 
 ontologyName: MGED Ontology
-ontologyFile: http://mged.sourceforge.net/ontologies/MGEDontology.php
+ontologyFile: "http://mged.sourceforge.net/ontologies/MGEDontology.php"
 ontologyVersion: 1.3.1.1

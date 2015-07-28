@@ -136,10 +136,6 @@
             "inputs": [
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
-                    "name": "normal_aliquot_name"
-                }, 
-                {
-                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
                     "name": "tumor_aliquot_uuid"
                 }, 
                 {
@@ -148,7 +144,7 @@
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
-                    "name": "normal_analysis_uuid"
+                    "name": "normal_aliquot_uuid"
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
@@ -156,15 +152,11 @@
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
-                    "name": "normal_aliquot_uuid"
+                    "name": "normal_analysis_uuid"
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
                     "name": "platform"
-                }, 
-                {
-                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
-                    "name": "tumor_aliquot_name"
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
@@ -192,7 +184,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "tcga-vcf-reheader-config", 
-            "tool_state": "{\"normal_aliquot_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0, \"normal_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"normal_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"platform\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_state": "{\"normal_aliquot_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0, \"normal_aliquot_barcode\": \"\\\"\\\"\", \"normal_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"normal_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"platform\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_barcode\": \"\\\"\\\"\"}", 
             "tool_version": "0.1", 
             "type": "tool", 
             "user_outputs": [], 
@@ -408,7 +400,7 @@
             "tool_errors": null, 
             "tool_id": "somatic_sniper", 
             "tool_state": "{\"somaticq\": \"\\\"15\\\"\", \"reference\": \"null\", \"normal\": \"null\", \"__page__\": 0, \"loh\": \"\\\"False\\\"\", \"tumor_name\": \"\\\"TUMOR\\\"\", \"normal_name\": \"\\\"NORMAL\\\"\", \"tumor\": \"null\", \"mapq\": \"\\\"0\\\"\", \"__rerun_remap_job_id__\": null, \"dis_priors\": \"\\\"False\\\"\", \"use_priorp\": \"\\\"False\\\"\", \"prior_p\": \"\\\"0.01\\\"\", \"gor\": \"\\\"False\\\"\"}", 
-            "tool_version": "1.0.4", 
+            "tool_version": "1.0.5", 
             "type": "tool", 
             "user_outputs": [], 
             "uuid": "6f360864-bd23-448d-8a63-877d48500ece"
@@ -548,20 +540,20 @@
             "annotation": "", 
             "id": 16, 
             "input_connections": {
+                "exclude_list": {
+                    "id": 4, 
+                    "output_name": "output"
+                }, 
                 "inputReferenceFile": {
                     "id": 2, 
                     "output_name": "output"
                 }, 
-                "inputs_0|inputBamFile": {
-                    "id": 0, 
-                    "output_name": "output"
-                }, 
-                "inputs_1|inputBamFile": {
+                "inputs|normalInputBamFile": {
                     "id": 1, 
                     "output_name": "output"
                 }, 
-                "options_miscellaneous|exclude_list": {
-                    "id": 4, 
+                "inputs|tumorInputBamFile": {
+                    "id": 0, 
                     "output_name": "output"
                 }
             }, 
@@ -576,11 +568,15 @@
                 {
                     "name": "outputVcfFile", 
                     "type": "vcf"
+                }, 
+                {
+                    "name": "outputSomaticVcfFile", 
+                    "type": "vcf"
                 }
             ], 
             "position": {
-                "left": 906.03125, 
-                "top": 782.625
+                "left": 914.03125, 
+                "top": 777.625
             }, 
             "post_job_actions": {
                 "HideDatasetActionoutputRawFile": {
@@ -596,7 +592,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "pindel", 
-            "tool_state": "{\"inputs\": \"[{\\\"__index__\\\": 0, \\\"inputBamFile\\\": null, \\\"defineInsertSize\\\": {\\\"manual_define\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"sampleTag\\\": \\\"TUMOR\\\"}, {\\\"__index__\\\": 1, \\\"inputBamFile\\\": null, \\\"defineInsertSize\\\": {\\\"manual_define\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"sampleTag\\\": \\\"NORMAL\\\"}]\", \"options_miscellaneous\": \"{\\\"exclude_list\\\": null, \\\"options_miscellaneous_selector\\\": \\\"yes\\\", \\\"breakdancer\\\": {\\\"checking\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"__current_case__\\\": 0, \\\"input_SV_Calls_for_assembly\\\": {\\\"checking\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"IndelCorrection\\\": \\\"False\\\"}\", \"inputReferenceFile\": \"null\", \"__page__\": 0, \"options_which\": \"{\\\"__current_case__\\\": 0, \\\"reportLongInsertions\\\": \\\"False\\\", \\\"report_interchromosomal_events\\\": \\\"False\\\", \\\"options_DD\\\": {\\\"options_DD_selector\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"min_inversion_size\\\": \\\"50\\\", \\\"reportInversions\\\": \\\"True\\\", \\\"options_which_selector\\\": \\\"yes\\\", \\\"report_only_close_mapped_reads\\\": \\\"False\\\", \\\"reportDuplications\\\": \\\"True\\\", \\\"reportBreakpoints\\\": \\\"False\\\"}\", \"__rerun_remap_job_id__\": null, \"referenceName\": \"\\\"HG19\\\"\", \"options_runtime\": \"{\\\"options_runtime_selector\\\": \\\"yes\\\", \\\"window_size\\\": \\\"1\\\", \\\"__current_case__\\\": 0}\", \"options_sensel\": \"{\\\"min_perfect_match_around_BP\\\": \\\"3\\\", \\\"maximum_allowed_mismatch_rate\\\": \\\"0.02\\\", \\\"NM\\\": \\\"2\\\", \\\"max_range_index\\\": \\\"4\\\", \\\"NormalSamples\\\": \\\"False\\\", \\\"options_sensel_selector\\\": \\\"yes\\\", \\\"additional_mismatch\\\": \\\"1\\\", \\\"balance_cutoff\\\": \\\"0\\\", \\\"anchor_quality\\\": \\\"0\\\", \\\"min_num_matched_bases\\\": \\\"20\\\", \\\"__current_case__\\\": 0, \\\"sequencing_error_rate\\\": \\\"0.01\\\", \\\"minimum_support_for_event\\\": \\\"2\\\", \\\"sensitivity\\\": \\\"0.95\\\"}\"}", 
+            "tool_state": "{\"sensitivity\": \"\\\"0.95\\\"\", \"balance_cutoff\": \"\\\"0\\\"\", \"anchor_quality\": \"\\\"0\\\"\", \"reportInversions\": \"\\\"True\\\"\", \"report_only_close_mapped_reads\": \"\\\"False\\\"\", \"exclude_list\": \"null\", \"window_size\": \"\\\"5\\\"\", \"NM\": \"\\\"2\\\"\", \"reportLongInsertions\": \"\\\"True\\\"\", \"inputReferenceFile\": \"null\", \"__rerun_remap_job_id__\": null, \"breakdancer\": \"{\\\"checking\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"referenceName\": \"\\\"HG19\\\"\", \"minimum_support_for_event\": \"\\\"3\\\"\", \"additional_mismatch\": \"\\\"1\\\"\", \"reportBreakpoints\": \"\\\"True\\\"\", \"inputs\": \"{\\\"defineInsertSize\\\": {\\\"manual_define\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"__current_case__\\\": 1, \\\"normalInputBamFile\\\": null, \\\"somatic_hom\\\": \\\"6\\\", \\\"mode\\\": \\\"pair\\\", \\\"tumorInputBamFile\\\": null, \\\"somatic_cov\\\": \\\"20\\\", \\\"somatic_vaf\\\": \\\"0.08\\\"}\", \"__page__\": 0, \"options_DD\": \"{\\\"options_DD_selector\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"reportDuplications\": \"\\\"True\\\"\", \"IndelCorrection\": \"\\\"False\\\"\", \"maximum_allowed_mismatch_rate\": \"\\\"0.02\\\"\", \"min_num_matched_bases\": \"\\\"30\\\"\", \"max_range_index\": \"\\\"4\\\"\", \"NormalSamples\": \"\\\"False\\\"\", \"min_perfect_match_around_BP\": \"\\\"3\\\"\", \"report_interchromosomal_events\": \"\\\"False\\\"\", \"min_inversion_size\": \"\\\"50\\\"\", \"sequencing_error_rate\": \"\\\"0.01\\\"\", \"input_SV_Calls_for_assembly\": \"{\\\"checking\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\"}", 
             "tool_version": "0.0.1", 
             "type": "tool", 
             "user_outputs": [], 
@@ -800,7 +796,7 @@
             "input_connections": {
                 "input_vcf": {
                     "id": 16, 
-                    "output_name": "outputVcfFile"
+                    "output_name": "outputSomaticVcfFile"
                 }, 
                 "sample|info_file": {
                     "id": 5, 
@@ -1454,5 +1450,5 @@
             "uuid": "dcbce3dc-c431-47d0-a4cf-8ac297bdf9c5"
         }
     }, 
-    "uuid": "33923bdb-3bf0-4be5-8b50-81f58023e856"
+    "uuid": "e75c64eb-ce38-4711-9a2a-d8f48b97a2a5"
 }

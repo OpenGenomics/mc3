@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from optparse import OptionParser  
-import gzip, yaml, re, sys, os, shutil
+import gzip, yaml, re, sys, os, shutil, subprocess
 
 # based on vcfToMageTab.py
 
@@ -214,6 +214,33 @@ def sdrfFromVcf(vcfFile, archive):
     vcfFileHandler.close()
     return sdrfList
 
+
+def get_manifest(md5Dir):
+    """create MANIFEST.txt file with md5sum on files in input dir. Could also use module hash.md5sum but that has issues with larger files"""
+    manifest = open(os.path.join(md5Dir, 'MANIFEST.txt'),'w')
+
+    onlyfiles = [ f for f in os.listdir(md5Dir) if os.path.isfile(os.path.join(md5Dir,f)) ]
+    for file in onlyfiles:
+        if file != 'MANIFEST.txt':
+            md5sum = subprocess.check_output(['md5sum', os.path.join(md5Dir, file)])
+            manifest.write("%s  %s\n" % (md5sum.split(' ')[0], file))  # only use filename, not path
+    manifest.close()
+    return True
+
+def make_archive(inputDir):
+    """Create tar.gz file from inputDir and md5sum on that tar file"""
+    # FIXME: The md5sum adds the inputDir name to the output. This does not seem to affect validation, but
+    # might still be illegal
+    tarfile = '.'.join([inputDir, 'tar.gz'])
+    # This will die on the command line when it fails. That's a good thing - it will alert the user.
+    subprocess.check_call(['tar', '-zcvf', tarfile, inputDir])
+    # create md5sum of archive
+    md5File = open(tarfile + '.md5', 'w')
+    subprocess.check_call(['md5sum', tarfile], stdout = md5File)
+    md5File.close()
+    return True
+
+
 def noneClean(v):
     if v is None:
         return ""
@@ -256,7 +283,6 @@ def createIDFfile(idfFilename, sdrfFilename, idfObjects):
     idfFileHandler.write("".join(["Experiment Description", concatIDF(idfObjects, "expDescription")]) + "\n")
     idfFileHandler.write("\n")
 
-# FIXME?
     # output the protocol lines
     idfFileHandler.write("".join(["Protocol Name", concatIDF(idfObjects, "protocolNames")]) + "\n")
     idfFileHandler.write("".join(["Protocol Type", concatIDF(idfObjects, "protocolTypes")]) + "\n")
@@ -299,8 +325,8 @@ def main():
     # create the usage statement
     usage = """usage: python %prog <vcf dir> <idf.yaml dir> disease
 
-From an input dir with VCF files, a dir with .yml format IDF input and a disease code (e.g. BRCA), 
-create TCGA formatted Level_2 data and mage-tab archives.
+From an input dir with (subdirs with) VCF files, a dir with .yml format IDF input and a disease code (e.g. BRCA), 
+create TCGA formatted Level_2 data and mage-tab archives in a directory named <disease>.
 
 NOTE: The correct IDF protocol for each input VCF is based on its name. This program expects inputs to be named
 pindel.vcf, varscan.snp.vcf, etc. It may be better to parse this info from the VCF header.
@@ -353,28 +379,46 @@ pindel.vcf, varscan.snp.vcf, etc. It may be better to parse this info from the V
     header = SDRF(fromSample=False)
     sdrfOutput.append(header)
 
-    for vcfFile in os.listdir(inputDir):
-        if vcfFile.endswith('vcf'):
-            
-            sdrfObjectList = sdrfFromVcf(os.path.join(inputDir, vcfFile), outData)
-	    # copy and rename with center name and patient barcode
-            # Note that there are two varscan outputs that have to be kept separate but point to the same IDF entry
-            idfName = vcfFile.split(".")[0]	# radia, pindel...
-            # find the correct protocol REF
-            protocolRef, centerId = getProtocolRef(idfObjects, idfName)
-
-            patient = sdrfObjectList[0].individual
-            rename = ('.').join([vcfFile[:-4], centerId, sdrfObjectList[0].individual, 'vcf'])
-            shutil.copyfile(os.path.join(inputDir, vcfFile), os.path.join(dataDir, rename))
-
-	    # add info to SDRF objects
-            for obj in sdrfObjectList:
-                obj.addExternal(protocolRef, rename)
-
-            # finally, add completed objects to output
-            sdrfOutput.extend(sdrfObjectList)
+    # get patient directories in input dir. 
+    # FIXME: This assumes all patients have the same (input) disease!
+    pdirs = [ os.path.join(inputDir, d) for d in os.listdir(inputDir) if os.path.isdir(os.path.join(inputDir,d)) ]
+    for patient in pdirs:
+        for vcfFile in os.listdir(patient):
+            if vcfFile.endswith('vcf'):
+                sdrfObjectList = sdrfFromVcf(os.path.join(patient, vcfFile), outData)
+    	        # copy and rename with center name and patient barcode
+                # Note that there are two varscan outputs that have to be kept separate but point to the same IDF entry
+                idfName = vcfFile.split(".")[0]	# radia, pindel...
+    
+                # get the protocol reference and center ID from the idf object
+                protocolRef, centerId = getProtocolRef(idfObjects, idfName)
+                # then use the center ID to create the output filename
+                rename = ('.').join([vcfFile[:-4], centerId, sdrfObjectList[0].individual, 'vcf'])
+                shutil.copyfile(os.path.join(patient, vcfFile), os.path.join(dataDir, rename))
+    
+                # insert protocol REF vcf filename into the SDRF objects
+                for obj in sdrfObjectList:
+                    obj.addExternal(protocolRef, rename)
+    
+                # finally, add completed objects to output
+                sdrfOutput.extend(sdrfObjectList)
 
     createSDRFfile(os.path.join(mageTabDir, sdrfFilename), sdrfOutput)
+
+
+    #FIXME: Must add DESCRIPTION.txt to mageTabDir. This is a free form text that describes the experiments
+
+    # Create MANIFEST files in both input directories
+    get_manifest(mageTabDir)
+    get_manifest(dataDir)
+
+    # Make archives
+
+    make_archive(mageTabDir)
+    make_archive(dataDir)
+
+    # FIXME: for submission the untarred mageTabDir and dataDir should be removed. However, for running the TCGA
+    # client side validator it's easier to keep them around
 
 main()
 sys.exit(0)

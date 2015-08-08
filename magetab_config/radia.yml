@@ -21,10 +21,10 @@ pubTitle: "RADIA: RNA and DNA Integrated Analysis for Somatic Mutation Detection
 pubStatus: published
 expDescription: Detection of somatic variants from the TCGA Whole-Exome Sequencing (WES) and RNA-Seq data using RADIA
 
-protocolNames: "ucsc.edu:variant_calling:Illumina_DNASeq:01"
+protocolNames: "ucsc.edu:variant_calling:radia:01"
 protocolTypes: Variant Calling
 protocolDescriptions: "Somatic Variant Calling Pipeline: RADIA v1.1.1 (https://github.com/aradenbaugh/radia/),Annotation: SnpEff v3.3_GRCh37.69 (http://snpeff.sourceforge.net/)"
-protocolOntologies: MGED Ontology,MGED Ontology
+protocolOntologies: MGED Ontology
 protocolParameters:
 
 ontologyName: MGED Ontology

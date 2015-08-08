@@ -22,10 +22,10 @@ pubTitle: "MuSE: somatic evolution estimation for mutation calling in sequencing
 pubStatus: in preparation
 expDescription: 
 
-protocolNames: "mdanderson.org:variant_calling:illumina:01"
+protocolNames: "mdanderson.org:variant_calling:MuSE:01"
 protocolTypes: Variant Calling
 protocolDescriptions: 
-protocolOntologies: MGED Ontology,MGED Ontology
+protocolOntologies: MGED Ontology
 protocolParameters:
 
 ontologyName: MGED Ontology

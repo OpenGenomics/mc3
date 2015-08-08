@@ -22,12 +22,13 @@ pubTitle: "SomaticSniper: identification of somatic point mutations in whole gen
 pubStatus: published
 expDescription: Detection of somatic variants from TCGA Whole-Exome Sequencing data using SomaticSniper
 
-protocolNames: "genome.wustl.edu:variant_calling:illumina:01"
+protocolNames: "genome.wustl.edu:variant_calling:somatic_sniper:01"
 protocolTypes: Variant Calling
 protocolDescriptions: 
-protocolOntologies: MGED Ontology,MGED Ontology
+protocolOntologies: MGED Ontology
 protocolParameters:
 
 ontologyName: MGED Ontology
 ontologyFile: "http://mged.sourceforge.net/ontologies/MGEDontology.php"
 ontologyVersion: 1.3.1.1
+

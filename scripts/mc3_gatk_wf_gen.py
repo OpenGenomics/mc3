@@ -17,7 +17,7 @@ import tempfile
 REFDATA_PROJECT="syn3241088"
 
 config = {
-    "table_id" : "syn4214588",
+    "table_id" : "syn4897101",
     "primary_col" : "participant_id",
     "assignee_col" : "assignee",
     "state_col" : "state"
@@ -26,7 +26,7 @@ config = {
 def run_gen(args):
     syn = synapseclient.Synapse()
     syn.login()
-    
+
     if args.alt_table is not None:
         config['table_id'] = args.alt_table
 
@@ -173,7 +173,7 @@ def run_gen(args):
             handle.write(json.dumps(data.to_dict()))
 
     if args.create_service:
-        
+
         service = GalaxyService(
             docstore=docstore,
             galaxy="bgruening/galaxy-stable",
@@ -198,7 +198,7 @@ def run_upload(args):
     syn.login()
 
     docstore = from_url(args.out_base)
-    
+
     donor_map = {}
     bam_map = {}
 
@@ -223,20 +223,20 @@ def run_list(args):
     if args.alt_table is not None:
         config['table_id'] = args.alt_table
     synqueue.listAssignments(syn, display=True, **config)
-    
+
 def run_set(args):
     syn = synapseclient.Synapse()
     syn.login()
     if args.alt_table is not None:
         config['table_id'] = args.alt_table
     synqueue.setStates(syn, args.state, args.ids, **config)
-    
+
 def run_register(args):
     syn = synapseclient.Synapse()
     syn.login()
     if args.alt_table is not None:
         config['table_id'] = args.alt_table
-    synqueue.registerAssignments(syn, args.count, **config)    
+    synqueue.registerAssignments(syn, args.count, **config)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -261,7 +261,7 @@ if __name__ == "__main__":
     parser_list = subparsers.add_parser('list')
     parser_list.add_argument("--alt-table", default=None)
     parser_list.set_defaults(func=run_list)
-    
+
     parser_set = subparsers.add_parser('set')
     parser_set.add_argument("--alt-table", default=None)
     parser_set.add_argument("state")

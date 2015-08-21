@@ -17,7 +17,7 @@ import tempfile
 REFDATA_PROJECT="syn3241088"
 
 config = {
-    "table_id" : "syn4897101",
+    "table_id" : "syn4898104",
     "primary_col" : "participant_id",
     "assignee_col" : "assignee",
     "state_col" : "state"

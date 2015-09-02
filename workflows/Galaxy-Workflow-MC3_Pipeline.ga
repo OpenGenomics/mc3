@@ -18,7 +18,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 265.5625, 
+                "left": 200, 
                 "top": 418.625
             }, 
             "tool_errors": null, 
@@ -43,7 +43,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 266.53125, 
+                "left": 200.96875, 
                 "top": 511.625
             }, 
             "tool_errors": null, 
@@ -68,7 +68,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 267.53125, 
+                "left": 201.96875, 
                 "top": 647.625
             }, 
             "tool_errors": null, 
@@ -93,7 +93,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 271.53125, 
+                "left": 205.96875, 
                 "top": 773.625
             }, 
             "tool_errors": null, 
@@ -118,7 +118,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 266.03125, 
+                "left": 200.46875, 
                 "top": 898.625
             }, 
             "tool_errors": null, 
@@ -144,7 +144,11 @@
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
-                    "name": "normal_aliquot_uuid"
+                    "name": "normal_aliquot_barcode"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "normal_analysis_uuid"
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
@@ -152,7 +156,7 @@
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
-                    "name": "normal_analysis_uuid"
+                    "name": "normal_aliquot_uuid"
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
@@ -172,8 +176,8 @@
                 }
             ], 
             "position": {
-                "left": 1076.5, 
-                "top": 1420
+                "left": 204.9375, 
+                "top": 1327
             }, 
             "post_job_actions": {
                 "HideDatasetActionoutput_yaml": {
@@ -184,7 +188,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "tcga-vcf-reheader-config", 
-            "tool_state": "{\"normal_aliquot_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0, \"normal_aliquot_barcode\": \"\\\"\\\"\", \"normal_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"normal_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"platform\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_barcode\": \"\\\"\\\"\"}", 
+            "tool_state": "{\"tumor_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0, \"normal_aliquot_barcode\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"normal_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"platform\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_barcode\": \"\\\"\\\"\"}", 
             "tool_version": "0.1", 
             "type": "tool", 
             "user_outputs": [], 
@@ -193,131 +197,6 @@
         "6": {
             "annotation": "", 
             "id": 6, 
-            "input_connections": {}, 
-            "inputs": [
-                {
-                    "description": "", 
-                    "name": "radia_mage_yaml"
-                }
-            ], 
-            "label": null, 
-            "name": "Input dataset", 
-            "outputs": [], 
-            "position": {
-                "left": 1628.5, 
-                "top": 452
-            }, 
-            "tool_errors": null, 
-            "tool_id": null, 
-            "tool_state": "{\"name\": \"radia_mage_yaml\"}", 
-            "tool_version": null, 
-            "type": "data_input", 
-            "user_outputs": [], 
-            "uuid": "ddcec6b0-1a7a-4231-ab13-3121bb49a926"
-        }, 
-        "7": {
-            "annotation": "", 
-            "id": 7, 
-            "input_connections": {}, 
-            "inputs": [
-                {
-                    "description": "", 
-                    "name": "muse_mage_yaml"
-                }
-            ], 
-            "label": null, 
-            "name": "Input dataset", 
-            "outputs": [], 
-            "position": {
-                "left": 1623.5, 
-                "top": 640
-            }, 
-            "tool_errors": null, 
-            "tool_id": null, 
-            "tool_state": "{\"name\": \"muse_mage_yaml\"}", 
-            "tool_version": null, 
-            "type": "data_input", 
-            "user_outputs": [], 
-            "uuid": "2aaef915-ebad-41ef-9376-b7c88395e43f"
-        }, 
-        "8": {
-            "annotation": "", 
-            "id": 8, 
-            "input_connections": {}, 
-            "inputs": [
-                {
-                    "description": "", 
-                    "name": "somatic_sniper_mage_yaml"
-                }
-            ], 
-            "label": null, 
-            "name": "Input dataset", 
-            "outputs": [], 
-            "position": {
-                "left": 1618.5, 
-                "top": 831
-            }, 
-            "tool_errors": null, 
-            "tool_id": null, 
-            "tool_state": "{\"name\": \"somatic_sniper_mage_yaml\"}", 
-            "tool_version": null, 
-            "type": "data_input", 
-            "user_outputs": [], 
-            "uuid": "7a8f327c-aa0b-4e22-8307-d83454702092"
-        }, 
-        "9": {
-            "annotation": "", 
-            "id": 9, 
-            "input_connections": {}, 
-            "inputs": [
-                {
-                    "description": "", 
-                    "name": "pindel_mage_yaml"
-                }
-            ], 
-            "label": null, 
-            "name": "Input dataset", 
-            "outputs": [], 
-            "position": {
-                "left": 1619.5, 
-                "top": 1014
-            }, 
-            "tool_errors": null, 
-            "tool_id": null, 
-            "tool_state": "{\"name\": \"pindel_mage_yaml\"}", 
-            "tool_version": null, 
-            "type": "data_input", 
-            "user_outputs": [], 
-            "uuid": "2cdf495c-1d50-4d87-aa74-4ebb71549210"
-        }, 
-        "10": {
-            "annotation": "", 
-            "id": 10, 
-            "input_connections": {}, 
-            "inputs": [
-                {
-                    "description": "", 
-                    "name": "varscan_mage_yaml"
-                }
-            ], 
-            "label": null, 
-            "name": "Input dataset", 
-            "outputs": [], 
-            "position": {
-                "left": 1599.5, 
-                "top": 1226
-            }, 
-            "tool_errors": null, 
-            "tool_id": null, 
-            "tool_state": "{\"name\": \"varscan_mage_yaml\"}", 
-            "tool_version": null, 
-            "type": "data_input", 
-            "user_outputs": [], 
-            "uuid": "9cc52782-7ada-4109-8ed1-1f8d8bb67e90"
-        }, 
-        "11": {
-            "annotation": "", 
-            "id": 11, 
             "input_connections": {
                 "dnaNormal|inputbam": {
                     "id": 1, 
@@ -342,7 +221,7 @@
                 }
             ], 
             "position": {
-                "left": 819.96875, 
+                "left": 754.40625, 
                 "top": 233.09375
             }, 
             "post_job_actions": {
@@ -360,9 +239,9 @@
             "user_outputs": [], 
             "uuid": "adbcb7c2-ea85-4377-b38b-6f12c7f86078"
         }, 
-        "12": {
+        "7": {
             "annotation": "", 
-            "id": 12, 
+            "id": 7, 
             "input_connections": {
                 "normal": {
                     "id": 1, 
@@ -387,7 +266,7 @@
                 }
             ], 
             "position": {
-                "left": 834.03125, 
+                "left": 768.46875, 
                 "top": 598.59375
             }, 
             "post_job_actions": {
@@ -405,9 +284,9 @@
             "user_outputs": [], 
             "uuid": "6f360864-bd23-448d-8a63-877d48500ece"
         }, 
-        "13": {
+        "8": {
             "annotation": "", 
-            "id": 13, 
+            "id": 8, 
             "input_connections": {
                 "refOrHistory|input1": {
                     "id": 0, 
@@ -428,7 +307,7 @@
                 }
             ], 
             "position": {
-                "left": 571.03125, 
+                "left": 505.46875, 
                 "top": 912.625
             }, 
             "post_job_actions": {
@@ -446,9 +325,9 @@
             "user_outputs": [], 
             "uuid": "5c75140d-2bd5-421f-b012-95065f7c2c26"
         }, 
-        "14": {
+        "9": {
             "annotation": "", 
-            "id": 14, 
+            "id": 9, 
             "input_connections": {
                 "refOrHistory|input1": {
                     "id": 1, 
@@ -469,7 +348,7 @@
                 }
             ], 
             "position": {
-                "left": 537.03125, 
+                "left": 471.46875, 
                 "top": 1110.625
             }, 
             "post_job_actions": {
@@ -487,9 +366,9 @@
             "user_outputs": [], 
             "uuid": "b10ee50b-3b43-4d2a-8db5-60433d0392cb"
         }, 
-        "15": {
+        "10": {
             "annotation": "", 
-            "id": 15, 
+            "id": 10, 
             "input_connections": {
                 "dbsnp": {
                     "id": 3, 
@@ -518,7 +397,7 @@
                 }
             ], 
             "position": {
-                "left": 838.0625, 
+                "left": 772.5, 
                 "top": 401.625
             }, 
             "post_job_actions": {
@@ -536,9 +415,9 @@
             "user_outputs": [], 
             "uuid": "636e21f5-f10c-4f85-b234-ca1493f26598"
         }, 
-        "16": {
+        "11": {
             "annotation": "", 
-            "id": 16, 
+            "id": 11, 
             "input_connections": {
                 "exclude_list": {
                     "id": 4, 
@@ -575,7 +454,7 @@
                 }
             ], 
             "position": {
-                "left": 914.03125, 
+                "left": 848.46875, 
                 "top": 777.625
             }, 
             "post_job_actions": {
@@ -598,9 +477,9 @@
             "user_outputs": [], 
             "uuid": "b8a3419c-67c2-4b39-af65-1eb770f4b0f2"
         }, 
-        "17": {
+        "12": {
             "annotation": "", 
-            "id": 17, 
+            "id": 12, 
             "input_connections": {
                 "dnaNormal|inputbam": {
                     "id": 1, 
@@ -615,7 +494,7 @@
                     "output_name": "output"
                 }, 
                 "inputVCF": {
-                    "id": 11, 
+                    "id": 6, 
                     "output_name": "output_vcf"
                 }
             }, 
@@ -629,7 +508,7 @@
                 }
             ], 
             "position": {
-                "left": 1149.8125, 
+                "left": 1084.25, 
                 "top": 243.40625
             }, 
             "post_job_actions": {
@@ -647,9 +526,9 @@
             "user_outputs": [], 
             "uuid": "4545654d-9c15-45ca-93bf-b8705b592321"
         }, 
-        "18": {
+        "13": {
             "annotation": "", 
-            "id": 18, 
+            "id": 13, 
             "input_connections": {
                 "bam": {
                     "id": 0, 
@@ -660,7 +539,7 @@
                     "output_name": "output"
                 }, 
                 "vcf": {
-                    "id": 12, 
+                    "id": 7, 
                     "output_name": "output"
                 }
             }, 
@@ -674,7 +553,7 @@
                 }
             ], 
             "position": {
-                "left": 1193.0625, 
+                "left": 1127.5, 
                 "top": 622.625
             }, 
             "post_job_actions": {
@@ -692,16 +571,16 @@
             "user_outputs": [], 
             "uuid": "c9729852-a33b-4950-a346-5345b3f0bf4e"
         }, 
-        "19": {
+        "14": {
             "annotation": "", 
-            "id": 19, 
+            "id": 14, 
             "input_connections": {
                 "normal_pileup": {
-                    "id": 14, 
+                    "id": 9, 
                     "output_name": "output1"
                 }, 
                 "tumor_pileup": {
-                    "id": 13, 
+                    "id": 8, 
                     "output_name": "output1"
                 }
             }, 
@@ -719,7 +598,7 @@
                 }
             ], 
             "position": {
-                "left": 921.03125, 
+                "left": 855.46875, 
                 "top": 1175.125
             }, 
             "post_job_actions": {
@@ -742,12 +621,12 @@
             "user_outputs": [], 
             "uuid": "816ba9d1-1db4-4e51-bbe1-e0de69ec3f09"
         }, 
-        "20": {
+        "15": {
             "annotation": "", 
-            "id": 20, 
+            "id": 15, 
             "input_connections": {
                 "input_vcf": {
-                    "id": 15, 
+                    "id": 10, 
                     "output_name": "mutations"
                 }, 
                 "sample|info_file": {
@@ -770,7 +649,7 @@
                 }
             ], 
             "position": {
-                "left": 1414.03125, 
+                "left": 1348.46875, 
                 "top": 529.625
             }, 
             "post_job_actions": {
@@ -790,12 +669,12 @@
             "user_outputs": [], 
             "uuid": "1b8c3c6f-21c8-4554-8e73-6dc9e4399172"
         }, 
-        "21": {
+        "16": {
             "annotation": "", 
-            "id": 21, 
+            "id": 16, 
             "input_connections": {
                 "input_vcf": {
-                    "id": 16, 
+                    "id": 11, 
                     "output_name": "outputSomaticVcfFile"
                 }, 
                 "sample|info_file": {
@@ -818,7 +697,7 @@
                 }
             ], 
             "position": {
-                "left": 1414.03125, 
+                "left": 1348.46875, 
                 "top": 877.625
             }, 
             "post_job_actions": {
@@ -838,12 +717,12 @@
             "user_outputs": [], 
             "uuid": "2c8831e2-7a7b-47ed-85da-32f10a29eb6c"
         }, 
-        "22": {
+        "17": {
             "annotation": "", 
-            "id": 22, 
+            "id": 17, 
             "input_connections": {
                 "input_vcf": {
-                    "id": 17, 
+                    "id": 12, 
                     "output_name": "output_vcf"
                 }, 
                 "sample|info_file": {
@@ -866,7 +745,7 @@
                 }
             ], 
             "position": {
-                "left": 1506.53125, 
+                "left": 1440.96875, 
                 "top": 309.5625
             }, 
             "post_job_actions": {
@@ -886,12 +765,12 @@
             "user_outputs": [], 
             "uuid": "d52463d6-5193-4654-a17f-7fca90e6dfc8"
         }, 
-        "23": {
+        "18": {
             "annotation": "", 
-            "id": 23, 
+            "id": 18, 
             "input_connections": {
                 "input_vcf": {
-                    "id": 18, 
+                    "id": 13, 
                     "output_name": "output"
                 }, 
                 "sample|info_file": {
@@ -914,7 +793,7 @@
                 }
             ], 
             "position": {
-                "left": 1417.03125, 
+                "left": 1351.46875, 
                 "top": 711.625
             }, 
             "post_job_actions": {
@@ -934,9 +813,9 @@
             "user_outputs": [], 
             "uuid": "d7e4bdee-eae1-4796-8cb4-a49a2d880c8f"
         }, 
-        "24": {
+        "19": {
             "annotation": "", 
-            "id": 24, 
+            "id": 19, 
             "input_connections": {
                 "bam": {
                     "id": 0, 
@@ -947,7 +826,7 @@
                     "output_name": "output"
                 }, 
                 "vcf": {
-                    "id": 19, 
+                    "id": 14, 
                     "output_name": "snp_vcf"
                 }
             }, 
@@ -961,7 +840,7 @@
                 }
             ], 
             "position": {
-                "left": 1215.03125, 
+                "left": 1149.46875, 
                 "top": 1029.625
             }, 
             "post_job_actions": {
@@ -979,12 +858,12 @@
             "user_outputs": [], 
             "uuid": "25151231-5be0-4b98-b914-1881021056a6"
         }, 
-        "25": {
+        "20": {
             "annotation": "", 
-            "id": 25, 
+            "id": 20, 
             "input_connections": {
                 "input_vcf": {
-                    "id": 19, 
+                    "id": 14, 
                     "output_name": "indel_vcf"
                 }, 
                 "sample|info_file": {
@@ -1007,7 +886,7 @@
                 }
             ], 
             "position": {
-                "left": 1429.5, 
+                "left": 1363.9375, 
                 "top": 1307.03125
             }, 
             "post_job_actions": {
@@ -1027,258 +906,12 @@
             "user_outputs": [], 
             "uuid": "fe3fcabb-44f6-4a62-acbd-8222506bcded"
         }, 
-        "26": {
+        "21": {
             "annotation": "", 
-            "id": 26, 
-            "input_connections": {
-                "in_vcf": {
-                    "id": 20, 
-                    "output_name": "output_vcf"
-                }, 
-                "params|input_yaml": {
-                    "id": 7, 
-                    "output_name": "output"
-                }
-            }, 
-            "inputs": [], 
-            "label": null, 
-            "name": "mageTab", 
-            "outputs": [
-                {
-                    "name": "out_idf", 
-                    "type": "txt"
-                }, 
-                {
-                    "name": "out_sdrf", 
-                    "type": "tabular"
-                }
-            ], 
-            "position": {
-                "left": 1823.0625, 
-                "top": 538.625
-            }, 
-            "post_job_actions": {
-                "HideDatasetActionout_idf": {
-                    "action_arguments": {}, 
-                    "action_type": "HideDatasetAction", 
-                    "output_name": "out_idf"
-                }, 
-                "HideDatasetActionout_sdrf": {
-                    "action_arguments": {}, 
-                    "action_type": "HideDatasetAction", 
-                    "output_name": "out_sdrf"
-                }, 
-                "RenameDatasetActionout_idf": {
-                    "action_arguments": {
-                        "newname": "muse.magetab.idf"
-                    }, 
-                    "action_type": "RenameDatasetAction", 
-                    "output_name": "out_idf"
-                }, 
-                "RenameDatasetActionout_sdrf": {
-                    "action_arguments": {
-                        "newname": "muse.magtab.sdrf"
-                    }, 
-                    "action_type": "RenameDatasetAction", 
-                    "output_name": "out_sdrf"
-                }
-            }, 
-            "tool_errors": null, 
-            "tool_id": "mageTab", 
-            "tool_state": "{\"logLevel\": \"\\\"WARNING\\\"\", \"ontologyVersion\": \"\\\"1.3.1.1\\\"\", \"disease\": \"\\\"\\\"\", \"personEmail\": \"\\\"aradenba@soe.ucsc.edu\\\"\", \"protocolOntologies\": \"\\\"MGED Ontology,MGED Ontology\\\"\", \"pubStatus\": \"\\\"published\\\"\", \"expDesignFactorType\": \"\\\"disease_state\\\"\", \"__rerun_remap_job_id__\": null, \"pubMedId\": \"\\\"25405470\\\"\", \"personMidInitial\": \"\\\"J\\\"\", \"protocolTypes\": \"\\\"Variant Calling,MAF Generation\\\"\", \"params\": \"{\\\"source\\\": \\\"file\\\", \\\"input_yaml\\\": null, \\\"__current_case__\\\": 1}\", \"expDesignOntology\": \"\\\"MGED Ontology\\\"\", \"personAddress\": \"\\\"University of California Santa Cruz, 1156 High St, Mail Stop CBSE, Santa Cruz, CA 95064, USA\\\"\", \"__page__\": 0, \"in_vcf\": \"null\", \"expDesign\": \"\\\"individual_genetic_characteristics_design\\\"\", \"protocolNames\": \"\\\"ucsc.edu:variant_calling:Illumina_DNASeq:01,ucsc.edu:vcf2maf:Illumina_DNASeq:01\\\"\", \"ontologyName\": \"\\\"MGED Ontology\\\"\", \"expDescription\": \"\\\"Detection of somatic variants from the TCGA Whole-Exome Sequencing (WES) and RNA-Seq data using RADIA\\\"\", \"logFilename\": \"\\\"\\\"\", \"ontologyFile\": \"\\\"http://mged.sourceforge.net/ontologies/MGEDontology.php\\\"\", \"personFirstName\": \"\\\"Amie\\\"\", \"personAffiliation\": \"\\\"University of California Santa Cruz Genome Institute\\\"\", \"protocolDescriptions\": \"\\\"Somatic Variant Calling Pipeline: RADIA v1.1.1 (https://github.com/aradenbaugh/radia/),Annotation: SnpEff v3.3_GRCh37.69 (http://snpeff.sourceforge.net/)\\\"\", \"pubTitle\": \"\\\"RADIA: RNA and DNA Integrated Analysis for Somatic Mutation Detection\\\"\", \"pubAuthors\": \"\\\"Radenbaugh AJ, Ma S, Ewing A, Stuart JM, Collisson EA, Zhu J, Haussler D\\\"\", \"personLastName\": \"\\\"Radenbaugh\\\"\", \"personRole\": \"\\\"submitter\\\"\", \"protocolParameters\": \"\\\"\\\"\", \"expDesignFactorName\": \"\\\"somatic_variant\\\"\"}", 
-            "tool_version": "0.0.1", 
-            "type": "tool", 
-            "user_outputs": [], 
-            "uuid": "00a6d5c5-1db6-4bd2-b427-6623ef11f8a4"
-        }, 
-        "27": {
-            "annotation": "", 
-            "id": 27, 
-            "input_connections": {
-                "in_vcf": {
-                    "id": 21, 
-                    "output_name": "output_vcf"
-                }, 
-                "params|input_yaml": {
-                    "id": 9, 
-                    "output_name": "output"
-                }
-            }, 
-            "inputs": [], 
-            "label": null, 
-            "name": "mageTab", 
-            "outputs": [
-                {
-                    "name": "out_idf", 
-                    "type": "txt"
-                }, 
-                {
-                    "name": "out_sdrf", 
-                    "type": "tabular"
-                }
-            ], 
-            "position": {
-                "left": 1816.03125, 
-                "top": 913.625
-            }, 
-            "post_job_actions": {
-                "HideDatasetActionout_idf": {
-                    "action_arguments": {}, 
-                    "action_type": "HideDatasetAction", 
-                    "output_name": "out_idf"
-                }, 
-                "HideDatasetActionout_sdrf": {
-                    "action_arguments": {}, 
-                    "action_type": "HideDatasetAction", 
-                    "output_name": "out_sdrf"
-                }, 
-                "RenameDatasetActionout_idf": {
-                    "action_arguments": {
-                        "newname": "pindel.magetab.idf"
-                    }, 
-                    "action_type": "RenameDatasetAction", 
-                    "output_name": "out_idf"
-                }, 
-                "RenameDatasetActionout_sdrf": {
-                    "action_arguments": {
-                        "newname": "pindel.magetab.sdrf"
-                    }, 
-                    "action_type": "RenameDatasetAction", 
-                    "output_name": "out_sdrf"
-                }
-            }, 
-            "tool_errors": null, 
-            "tool_id": "mageTab", 
-            "tool_state": "{\"logLevel\": \"\\\"WARNING\\\"\", \"ontologyVersion\": \"\\\"1.3.1.1\\\"\", \"disease\": \"\\\"\\\"\", \"personEmail\": \"\\\"aradenba@soe.ucsc.edu\\\"\", \"protocolOntologies\": \"\\\"MGED Ontology,MGED Ontology\\\"\", \"pubStatus\": \"\\\"published\\\"\", \"expDesignFactorType\": \"\\\"disease_state\\\"\", \"__rerun_remap_job_id__\": null, \"pubMedId\": \"\\\"25405470\\\"\", \"personMidInitial\": \"\\\"J\\\"\", \"protocolTypes\": \"\\\"Variant Calling,MAF Generation\\\"\", \"params\": \"{\\\"source\\\": \\\"file\\\", \\\"input_yaml\\\": null, \\\"__current_case__\\\": 1}\", \"expDesignOntology\": \"\\\"MGED Ontology\\\"\", \"personAddress\": \"\\\"University of California Santa Cruz, 1156 High St, Mail Stop CBSE, Santa Cruz, CA 95064, USA\\\"\", \"__page__\": 0, \"in_vcf\": \"null\", \"expDesign\": \"\\\"individual_genetic_characteristics_design\\\"\", \"protocolNames\": \"\\\"ucsc.edu:variant_calling:Illumina_DNASeq:01,ucsc.edu:vcf2maf:Illumina_DNASeq:01\\\"\", \"ontologyName\": \"\\\"MGED Ontology\\\"\", \"expDescription\": \"\\\"Detection of somatic variants from the TCGA Whole-Exome Sequencing (WES) and RNA-Seq data using RADIA\\\"\", \"logFilename\": \"\\\"\\\"\", \"ontologyFile\": \"\\\"http://mged.sourceforge.net/ontologies/MGEDontology.php\\\"\", \"personFirstName\": \"\\\"Amie\\\"\", \"personAffiliation\": \"\\\"University of California Santa Cruz Genome Institute\\\"\", \"protocolDescriptions\": \"\\\"Somatic Variant Calling Pipeline: RADIA v1.1.1 (https://github.com/aradenbaugh/radia/),Annotation: SnpEff v3.3_GRCh37.69 (http://snpeff.sourceforge.net/)\\\"\", \"pubTitle\": \"\\\"RADIA: RNA and DNA Integrated Analysis for Somatic Mutation Detection\\\"\", \"pubAuthors\": \"\\\"Radenbaugh AJ, Ma S, Ewing A, Stuart JM, Collisson EA, Zhu J, Haussler D\\\"\", \"personLastName\": \"\\\"Radenbaugh\\\"\", \"personRole\": \"\\\"submitter\\\"\", \"protocolParameters\": \"\\\"\\\"\", \"expDesignFactorName\": \"\\\"somatic_variant\\\"\"}", 
-            "tool_version": "0.0.1", 
-            "type": "tool", 
-            "user_outputs": [], 
-            "uuid": "309ab519-f412-419f-b70b-a4c8d7dd9efe"
-        }, 
-        "28": {
-            "annotation": "", 
-            "id": 28, 
-            "input_connections": {
-                "in_vcf": {
-                    "id": 22, 
-                    "output_name": "output_vcf"
-                }, 
-                "params|input_yaml": {
-                    "id": 6, 
-                    "output_name": "output"
-                }
-            }, 
-            "inputs": [], 
-            "label": null, 
-            "name": "mageTab", 
-            "outputs": [
-                {
-                    "name": "out_idf", 
-                    "type": "txt"
-                }, 
-                {
-                    "name": "out_sdrf", 
-                    "type": "tabular"
-                }
-            ], 
-            "position": {
-                "left": 1826.09375, 
-                "top": 348.65625
-            }, 
-            "post_job_actions": {
-                "RenameDatasetActionout_idf": {
-                    "action_arguments": {
-                        "newname": "radia.magetab.idf"
-                    }, 
-                    "action_type": "RenameDatasetAction", 
-                    "output_name": "out_idf"
-                }, 
-                "RenameDatasetActionout_sdrf": {
-                    "action_arguments": {
-                        "newname": "radia.magetab.sdrf"
-                    }, 
-                    "action_type": "RenameDatasetAction", 
-                    "output_name": "out_sdrf"
-                }
-            }, 
-            "tool_errors": null, 
-            "tool_id": "mageTab", 
-            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"in_vcf\": \"null\", \"params\": \"{\\\"source\\\": \\\"file\\\", \\\"input_yaml\\\": null, \\\"__current_case__\\\": 1}\"}", 
-            "tool_version": "0.0.1", 
-            "type": "tool", 
-            "user_outputs": [], 
-            "uuid": "d832fb7a-a17f-4eb9-9c56-8bccc5d9dd77"
-        }, 
-        "29": {
-            "annotation": "", 
-            "id": 29, 
-            "input_connections": {
-                "in_vcf": {
-                    "id": 23, 
-                    "output_name": "output_vcf"
-                }, 
-                "params|input_yaml": {
-                    "id": 8, 
-                    "output_name": "output"
-                }
-            }, 
-            "inputs": [], 
-            "label": null, 
-            "name": "mageTab", 
-            "outputs": [
-                {
-                    "name": "out_idf", 
-                    "type": "txt"
-                }, 
-                {
-                    "name": "out_sdrf", 
-                    "type": "tabular"
-                }
-            ], 
-            "position": {
-                "left": 1816.03125, 
-                "top": 737.625
-            }, 
-            "post_job_actions": {
-                "HideDatasetActionout_idf": {
-                    "action_arguments": {}, 
-                    "action_type": "HideDatasetAction", 
-                    "output_name": "out_idf"
-                }, 
-                "HideDatasetActionout_sdrf": {
-                    "action_arguments": {}, 
-                    "action_type": "HideDatasetAction", 
-                    "output_name": "out_sdrf"
-                }, 
-                "RenameDatasetActionout_idf": {
-                    "action_arguments": {
-                        "newname": "somatic_sniper.magetab.idf"
-                    }, 
-                    "action_type": "RenameDatasetAction", 
-                    "output_name": "out_idf"
-                }, 
-                "RenameDatasetActionout_sdrf": {
-                    "action_arguments": {
-                        "newname": "somatic_sniper.magetab.sdrf"
-                    }, 
-                    "action_type": "RenameDatasetAction", 
-                    "output_name": "out_sdrf"
-                }
-            }, 
-            "tool_errors": null, 
-            "tool_id": "mageTab", 
-            "tool_state": "{\"logLevel\": \"\\\"WARNING\\\"\", \"ontologyVersion\": \"\\\"1.3.1.1\\\"\", \"disease\": \"\\\"\\\"\", \"personEmail\": \"\\\"aradenba@soe.ucsc.edu\\\"\", \"protocolOntologies\": \"\\\"MGED Ontology,MGED Ontology\\\"\", \"pubStatus\": \"\\\"published\\\"\", \"expDesignFactorType\": \"\\\"disease_state\\\"\", \"__rerun_remap_job_id__\": null, \"pubMedId\": \"\\\"25405470\\\"\", \"personMidInitial\": \"\\\"J\\\"\", \"protocolTypes\": \"\\\"Variant Calling,MAF Generation\\\"\", \"params\": \"{\\\"source\\\": \\\"file\\\", \\\"input_yaml\\\": null, \\\"__current_case__\\\": 1}\", \"expDesignOntology\": \"\\\"MGED Ontology\\\"\", \"personAddress\": \"\\\"University of California Santa Cruz, 1156 High St, Mail Stop CBSE, Santa Cruz, CA 95064, USA\\\"\", \"__page__\": 0, \"in_vcf\": \"null\", \"expDesign\": \"\\\"individual_genetic_characteristics_design\\\"\", \"protocolNames\": \"\\\"ucsc.edu:variant_calling:Illumina_DNASeq:01,ucsc.edu:vcf2maf:Illumina_DNASeq:01\\\"\", \"ontologyName\": \"\\\"MGED Ontology\\\"\", \"expDescription\": \"\\\"Detection of somatic variants from the TCGA Whole-Exome Sequencing (WES) and RNA-Seq data using RADIA\\\"\", \"logFilename\": \"\\\"\\\"\", \"ontologyFile\": \"\\\"http://mged.sourceforge.net/ontologies/MGEDontology.php\\\"\", \"personFirstName\": \"\\\"Amie\\\"\", \"personAffiliation\": \"\\\"University of California Santa Cruz Genome Institute\\\"\", \"protocolDescriptions\": \"\\\"Somatic Variant Calling Pipeline: RADIA v1.1.1 (https://github.com/aradenbaugh/radia/),Annotation: SnpEff v3.3_GRCh37.69 (http://snpeff.sourceforge.net/)\\\"\", \"pubTitle\": \"\\\"RADIA: RNA and DNA Integrated Analysis for Somatic Mutation Detection\\\"\", \"pubAuthors\": \"\\\"Radenbaugh AJ, Ma S, Ewing A, Stuart JM, Collisson EA, Zhu J, Haussler D\\\"\", \"personLastName\": \"\\\"Radenbaugh\\\"\", \"personRole\": \"\\\"submitter\\\"\", \"protocolParameters\": \"\\\"\\\"\", \"expDesignFactorName\": \"\\\"somatic_variant\\\"\"}", 
-            "tool_version": "0.0.1", 
-            "type": "tool", 
-            "user_outputs": [], 
-            "uuid": "3d209885-1a16-4843-8558-81446a457c1f"
-        }, 
-        "30": {
-            "annotation": "", 
-            "id": 30, 
+            "id": 21, 
             "input_connections": {
                 "input_vcf": {
-                    "id": 24, 
+                    "id": 19, 
                     "output_name": "output"
                 }, 
                 "sample|info_file": {
@@ -1301,7 +934,7 @@
                 }
             ], 
             "position": {
-                "left": 1429.03125, 
+                "left": 1363.46875, 
                 "top": 1094.625
             }, 
             "post_job_actions": {
@@ -1320,135 +953,7 @@
             "type": "tool", 
             "user_outputs": [], 
             "uuid": "a68c1ba3-588b-4f51-ad00-64da31e14478"
-        }, 
-        "31": {
-            "annotation": "", 
-            "id": 31, 
-            "input_connections": {
-                "in_vcf": {
-                    "id": 25, 
-                    "output_name": "output_vcf"
-                }, 
-                "params|input_yaml": {
-                    "id": 10, 
-                    "output_name": "output"
-                }
-            }, 
-            "inputs": [], 
-            "label": null, 
-            "name": "mageTab", 
-            "outputs": [
-                {
-                    "name": "out_idf", 
-                    "type": "txt"
-                }, 
-                {
-                    "name": "out_sdrf", 
-                    "type": "tabular"
-                }
-            ], 
-            "position": {
-                "left": 1822.0625, 
-                "top": 1294.125
-            }, 
-            "post_job_actions": {
-                "HideDatasetActionout_idf": {
-                    "action_arguments": {}, 
-                    "action_type": "HideDatasetAction", 
-                    "output_name": "out_idf"
-                }, 
-                "HideDatasetActionout_sdrf": {
-                    "action_arguments": {}, 
-                    "action_type": "HideDatasetAction", 
-                    "output_name": "out_sdrf"
-                }, 
-                "RenameDatasetActionout_idf": {
-                    "action_arguments": {
-                        "newname": "varscan.indel.magetab.idf"
-                    }, 
-                    "action_type": "RenameDatasetAction", 
-                    "output_name": "out_idf"
-                }, 
-                "RenameDatasetActionout_sdrf": {
-                    "action_arguments": {
-                        "newname": "varscan.indel.magetab.sdrf"
-                    }, 
-                    "action_type": "RenameDatasetAction", 
-                    "output_name": "out_sdrf"
-                }
-            }, 
-            "tool_errors": null, 
-            "tool_id": "mageTab", 
-            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"in_vcf\": \"null\", \"params\": \"{\\\"source\\\": \\\"file\\\", \\\"input_yaml\\\": null, \\\"__current_case__\\\": 1}\"}", 
-            "tool_version": "0.0.1", 
-            "type": "tool", 
-            "user_outputs": [], 
-            "uuid": "e067295e-ce89-4a15-b7ba-b39d7a283d34"
-        }, 
-        "32": {
-            "annotation": "", 
-            "id": 32, 
-            "input_connections": {
-                "in_vcf": {
-                    "id": 30, 
-                    "output_name": "output_vcf"
-                }, 
-                "params|input_yaml": {
-                    "id": 10, 
-                    "output_name": "output"
-                }
-            }, 
-            "inputs": [], 
-            "label": null, 
-            "name": "mageTab", 
-            "outputs": [
-                {
-                    "name": "out_idf", 
-                    "type": "txt"
-                }, 
-                {
-                    "name": "out_sdrf", 
-                    "type": "tabular"
-                }
-            ], 
-            "position": {
-                "left": 1812.03125, 
-                "top": 1098.625
-            }, 
-            "post_job_actions": {
-                "HideDatasetActionout_idf": {
-                    "action_arguments": {}, 
-                    "action_type": "HideDatasetAction", 
-                    "output_name": "out_idf"
-                }, 
-                "HideDatasetActionout_sdrf": {
-                    "action_arguments": {}, 
-                    "action_type": "HideDatasetAction", 
-                    "output_name": "out_sdrf"
-                }, 
-                "RenameDatasetActionout_idf": {
-                    "action_arguments": {
-                        "newname": "varscan.snp.magetab.idf"
-                    }, 
-                    "action_type": "RenameDatasetAction", 
-                    "output_name": "out_idf"
-                }, 
-                "RenameDatasetActionout_sdrf": {
-                    "action_arguments": {
-                        "newname": "varscan.snp.magetab.sdrf"
-                    }, 
-                    "action_type": "RenameDatasetAction", 
-                    "output_name": "out_sdrf"
-                }
-            }, 
-            "tool_errors": null, 
-            "tool_id": "mageTab", 
-            "tool_state": "{\"logLevel\": \"\\\"WARNING\\\"\", \"ontologyVersion\": \"\\\"1.3.1.1\\\"\", \"disease\": \"\\\"\\\"\", \"personEmail\": \"\\\"aradenba@soe.ucsc.edu\\\"\", \"protocolOntologies\": \"\\\"MGED Ontology,MGED Ontology\\\"\", \"pubStatus\": \"\\\"published\\\"\", \"expDesignFactorType\": \"\\\"disease_state\\\"\", \"__rerun_remap_job_id__\": null, \"pubMedId\": \"\\\"25405470\\\"\", \"personMidInitial\": \"\\\"J\\\"\", \"protocolTypes\": \"\\\"Variant Calling,MAF Generation\\\"\", \"params\": \"{\\\"source\\\": \\\"file\\\", \\\"input_yaml\\\": null, \\\"__current_case__\\\": 1}\", \"expDesignOntology\": \"\\\"MGED Ontology\\\"\", \"personAddress\": \"\\\"University of California Santa Cruz, 1156 High St, Mail Stop CBSE, Santa Cruz, CA 95064, USA\\\"\", \"__page__\": 0, \"in_vcf\": \"null\", \"expDesign\": \"\\\"individual_genetic_characteristics_design\\\"\", \"protocolNames\": \"\\\"ucsc.edu:variant_calling:Illumina_DNASeq:01,ucsc.edu:vcf2maf:Illumina_DNASeq:01\\\"\", \"ontologyName\": \"\\\"MGED Ontology\\\"\", \"expDescription\": \"\\\"Detection of somatic variants from the TCGA Whole-Exome Sequencing (WES) and RNA-Seq data using RADIA\\\"\", \"logFilename\": \"\\\"\\\"\", \"ontologyFile\": \"\\\"http://mged.sourceforge.net/ontologies/MGEDontology.php\\\"\", \"personFirstName\": \"\\\"Amie\\\"\", \"personAffiliation\": \"\\\"University of California Santa Cruz Genome Institute\\\"\", \"protocolDescriptions\": \"\\\"Somatic Variant Calling Pipeline: RADIA v1.1.1 (https://github.com/aradenbaugh/radia/),Annotation: SnpEff v3.3_GRCh37.69 (http://snpeff.sourceforge.net/)\\\"\", \"pubTitle\": \"\\\"RADIA: RNA and DNA Integrated Analysis for Somatic Mutation Detection\\\"\", \"pubAuthors\": \"\\\"Radenbaugh AJ, Ma S, Ewing A, Stuart JM, Collisson EA, Zhu J, Haussler D\\\"\", \"personLastName\": \"\\\"Radenbaugh\\\"\", \"personRole\": \"\\\"submitter\\\"\", \"protocolParameters\": \"\\\"\\\"\", \"expDesignFactorName\": \"\\\"somatic_variant\\\"\"}", 
-            "tool_version": "0.0.1", 
-            "type": "tool", 
-            "user_outputs": [], 
-            "uuid": "dcbce3dc-c431-47d0-a4cf-8ac297bdf9c5"
         }
     }, 
-    "uuid": "e75c64eb-ce38-4711-9a2a-d8f48b97a2a5"
+    "uuid": "789f506b-b8e3-433b-953e-b58a70f54bc7"
 }

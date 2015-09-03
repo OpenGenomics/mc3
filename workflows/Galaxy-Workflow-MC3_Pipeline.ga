@@ -18,7 +18,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 200, 
+                "left": 274, 
                 "top": 418.625
             }, 
             "tool_errors": null, 
@@ -43,7 +43,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 200.96875, 
+                "left": 274.96875, 
                 "top": 511.625
             }, 
             "tool_errors": null, 
@@ -68,7 +68,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 201.96875, 
+                "left": 275.96875, 
                 "top": 647.625
             }, 
             "tool_errors": null, 
@@ -93,7 +93,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 205.96875, 
+                "left": 279.96875, 
                 "top": 773.625
             }, 
             "tool_errors": null, 
@@ -118,7 +118,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 200.46875, 
+                "left": 274.46875, 
                 "top": 898.625
             }, 
             "tool_errors": null, 
@@ -130,7 +130,7 @@
             "uuid": "e14fd51e-8ead-4dc3-9acd-a0e750f2f5ec"
         }, 
         "5": {
-            "annotation": "", 
+            "annotation": "reheader_config", 
             "id": 5, 
             "input_connections": {}, 
             "inputs": [
@@ -140,7 +140,11 @@
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
-                    "name": "tumor_bam_name"
+                    "name": "center"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "reference_genome"
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
@@ -148,7 +152,7 @@
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
-                    "name": "normal_analysis_uuid"
+                    "name": "tumor_bam_name"
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
@@ -156,7 +160,7 @@
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
-                    "name": "normal_aliquot_uuid"
+                    "name": "normal_analysis_uuid"
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
@@ -164,7 +168,19 @@
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "normal_aliquot_uuid"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
                     "name": "normal_bam_name"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "filedate"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "tumor_aliquot_barcode"
                 }
             ], 
             "label": null, 
@@ -176,7 +192,7 @@
                 }
             ], 
             "position": {
-                "left": 204.9375, 
+                "left": 278.9375, 
                 "top": 1327
             }, 
             "post_job_actions": {
@@ -188,7 +204,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "tcga-vcf-reheader-config", 
-            "tool_state": "{\"tumor_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0, \"normal_aliquot_barcode\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"normal_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"platform\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_barcode\": \"\\\"\\\"\"}", 
+            "tool_state": "{\"tumor_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0, \"center\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"platform\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_aliquot_barcode\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"tumor_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"reference_genome\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"filedate\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_barcode\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
             "tool_version": "0.1", 
             "type": "tool", 
             "user_outputs": [], 
@@ -221,7 +237,7 @@
                 }
             ], 
             "position": {
-                "left": 754.40625, 
+                "left": 828.40625, 
                 "top": 233.09375
             }, 
             "post_job_actions": {
@@ -266,7 +282,7 @@
                 }
             ], 
             "position": {
-                "left": 768.46875, 
+                "left": 842.46875, 
                 "top": 598.59375
             }, 
             "post_job_actions": {
@@ -278,7 +294,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "somatic_sniper", 
-            "tool_state": "{\"somaticq\": \"\\\"15\\\"\", \"reference\": \"null\", \"normal\": \"null\", \"__page__\": 0, \"loh\": \"\\\"False\\\"\", \"tumor_name\": \"\\\"TUMOR\\\"\", \"normal_name\": \"\\\"NORMAL\\\"\", \"tumor\": \"null\", \"mapq\": \"\\\"0\\\"\", \"__rerun_remap_job_id__\": null, \"dis_priors\": \"\\\"False\\\"\", \"use_priorp\": \"\\\"False\\\"\", \"prior_p\": \"\\\"0.01\\\"\", \"gor\": \"\\\"False\\\"\"}", 
+            "tool_state": "{\"somaticq\": \"\\\"40\\\"\", \"reference\": \"null\", \"normal\": \"null\", \"__page__\": 0, \"loh\": \"\\\"True\\\"\", \"tumor_name\": \"\\\"TUMOR\\\"\", \"normal_name\": \"\\\"NORMAL\\\"\", \"tumor\": \"null\", \"mapq\": \"\\\"1\\\"\", \"__rerun_remap_job_id__\": null, \"dis_priors\": \"\\\"False\\\"\", \"use_priorp\": \"\\\"False\\\"\", \"prior_p\": \"\\\"0.01\\\"\", \"gor\": \"\\\"True\\\"\"}", 
             "tool_version": "1.0.5", 
             "type": "tool", 
             "user_outputs": [], 
@@ -307,7 +323,7 @@
                 }
             ], 
             "position": {
-                "left": 505.46875, 
+                "left": 579.46875, 
                 "top": 912.625
             }, 
             "post_job_actions": {
@@ -348,7 +364,7 @@
                 }
             ], 
             "position": {
-                "left": 471.46875, 
+                "left": 545.46875, 
                 "top": 1110.625
             }, 
             "post_job_actions": {
@@ -397,7 +413,7 @@
                 }
             ], 
             "position": {
-                "left": 772.5, 
+                "left": 846.5, 
                 "top": 401.625
             }, 
             "post_job_actions": {
@@ -454,7 +470,7 @@
                 }
             ], 
             "position": {
-                "left": 848.46875, 
+                "left": 922.46875, 
                 "top": 777.625
             }, 
             "post_job_actions": {
@@ -508,7 +524,7 @@
                 }
             ], 
             "position": {
-                "left": 1084.25, 
+                "left": 1158.25, 
                 "top": 243.40625
             }, 
             "post_job_actions": {
@@ -520,7 +536,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "radia_filter", 
-            "tool_state": "{\"inputVCF\": \"null\", \"pseudogenes\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"rnaNormal\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"__page__\": 0, \"inputFasta\": \"null\", \"__rerun_remap_job_id__\": null, \"cosmic\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"patientId\": \"\\\"MyPatient\\\"\", \"blacklist\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"retrogenes\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"snpeff\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"dbsnp\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"dnaNormal\": \"{\\\"use\\\": \\\"yes\\\", \\\"inputbam\\\": null, \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"__current_case__\\\": 0}\", \"dnaTumor\": \"{\\\"use\\\": \\\"yes\\\", \\\"inputbam\\\": null, \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"__current_case__\\\": 0}\", \"rnaTumor\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"target\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\"}", 
+            "tool_state": "{\"inputVCF\": \"null\", \"pseudogenes\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"rnaNormal\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"__page__\": 0, \"inputFasta\": \"null\", \"__rerun_remap_job_id__\": null, \"tcga\": \"\\\"True\\\"\", \"cosmic\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"patientId\": \"\\\"MyPatient\\\"\", \"blacklist\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"retrogenes\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"snpeff\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"dbsnp\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"dnaNormal\": \"{\\\"use\\\": \\\"yes\\\", \\\"inputbam\\\": null, \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"__current_case__\\\": 0}\", \"dnaTumor\": \"{\\\"use\\\": \\\"yes\\\", \\\"inputbam\\\": null, \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"__current_case__\\\": 0}\", \"rnaTumor\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"target\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\"}", 
             "tool_version": "0.1.0", 
             "type": "tool", 
             "user_outputs": [], 
@@ -553,7 +569,7 @@
                 }
             ], 
             "position": {
-                "left": 1127.5, 
+                "left": 1201.5, 
                 "top": 622.625
             }, 
             "post_job_actions": {
@@ -598,7 +614,7 @@
                 }
             ], 
             "position": {
-                "left": 855.46875, 
+                "left": 929.46875, 
                 "top": 1175.125
             }, 
             "post_job_actions": {
@@ -634,12 +650,7 @@
                     "output_name": "output_yaml"
                 }
             }, 
-            "inputs": [
-                {
-                    "description": "runtime parameter for tool TCGA VCF ReHeader", 
-                    "name": "reference"
-                }
-            ], 
+            "inputs": [], 
             "label": null, 
             "name": "TCGA VCF ReHeader", 
             "outputs": [
@@ -649,7 +660,7 @@
                 }
             ], 
             "position": {
-                "left": 1348.46875, 
+                "left": 1422.46875, 
                 "top": 529.625
             }, 
             "post_job_actions": {
@@ -682,12 +693,7 @@
                     "output_name": "output_yaml"
                 }
             }, 
-            "inputs": [
-                {
-                    "description": "runtime parameter for tool TCGA VCF ReHeader", 
-                    "name": "reference"
-                }
-            ], 
+            "inputs": [], 
             "label": null, 
             "name": "TCGA VCF ReHeader", 
             "outputs": [
@@ -697,7 +703,7 @@
                 }
             ], 
             "position": {
-                "left": 1348.46875, 
+                "left": 1422.46875, 
                 "top": 877.625
             }, 
             "post_job_actions": {
@@ -730,12 +736,7 @@
                     "output_name": "output_yaml"
                 }
             }, 
-            "inputs": [
-                {
-                    "description": "runtime parameter for tool TCGA VCF ReHeader", 
-                    "name": "reference"
-                }
-            ], 
+            "inputs": [], 
             "label": null, 
             "name": "TCGA VCF ReHeader", 
             "outputs": [
@@ -745,7 +746,7 @@
                 }
             ], 
             "position": {
-                "left": 1440.96875, 
+                "left": 1514.96875, 
                 "top": 309.5625
             }, 
             "post_job_actions": {
@@ -778,12 +779,7 @@
                     "output_name": "output_yaml"
                 }
             }, 
-            "inputs": [
-                {
-                    "description": "runtime parameter for tool TCGA VCF ReHeader", 
-                    "name": "reference"
-                }
-            ], 
+            "inputs": [], 
             "label": null, 
             "name": "TCGA VCF ReHeader", 
             "outputs": [
@@ -793,7 +789,7 @@
                 }
             ], 
             "position": {
-                "left": 1351.46875, 
+                "left": 1425.46875, 
                 "top": 711.625
             }, 
             "post_job_actions": {
@@ -840,7 +836,7 @@
                 }
             ], 
             "position": {
-                "left": 1149.46875, 
+                "left": 1223.46875, 
                 "top": 1029.625
             }, 
             "post_job_actions": {
@@ -871,12 +867,7 @@
                     "output_name": "output_yaml"
                 }
             }, 
-            "inputs": [
-                {
-                    "description": "runtime parameter for tool TCGA VCF ReHeader", 
-                    "name": "reference"
-                }
-            ], 
+            "inputs": [], 
             "label": null, 
             "name": "TCGA VCF ReHeader", 
             "outputs": [
@@ -886,7 +877,7 @@
                 }
             ], 
             "position": {
-                "left": 1363.9375, 
+                "left": 1437.9375, 
                 "top": 1307.03125
             }, 
             "post_job_actions": {
@@ -919,12 +910,7 @@
                     "output_name": "output_yaml"
                 }
             }, 
-            "inputs": [
-                {
-                    "description": "runtime parameter for tool TCGA VCF ReHeader", 
-                    "name": "reference"
-                }
-            ], 
+            "inputs": [], 
             "label": null, 
             "name": "TCGA VCF ReHeader", 
             "outputs": [
@@ -934,7 +920,7 @@
                 }
             ], 
             "position": {
-                "left": 1363.46875, 
+                "left": 1437.46875, 
                 "top": 1094.625
             }, 
             "post_job_actions": {
@@ -955,5 +941,5 @@
             "uuid": "a68c1ba3-588b-4f51-ad00-64da31e14478"
         }
     }, 
-    "uuid": "789f506b-b8e3-433b-953e-b58a70f54bc7"
+    "uuid": "c1e705c7-1a41-4645-a471-69fa2dc13ab0"
 }

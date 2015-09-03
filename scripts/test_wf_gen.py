@@ -3,6 +3,7 @@
 import os
 import json
 import uuid
+import datetime
 import argparse
 import shutil
 import subprocess
@@ -18,31 +19,32 @@ import urllib
 
 REFDATA_PROJECT="syn3241088"
 
-def syn_sync(syn, project, docstore):
+def syn_sync(syn, project, docstore, filter=None):
     #download reference files from Synapse and populate the document store
     for a in syn.chunkedQuery('select * from entity where parentId=="%s"' % (project)):
-        ent = syn.get(a['entity.id'])
+        if filter is None or a['entity.name'] in filter or a['entity.name'].replace(".gz", "") in filter:
+            ent = syn.get(a['entity.id'])
 
-        id = ent.annotations['uuid'][0]
-        t = Target(uuid=id)
-        docstore.create(t)
-        path = docstore.get_filename(t)
-        name = ent.name
-        if 'dataPrep' in ent.annotations:
-            if ent.annotations['dataPrep'][0] == 'gunzip':
-                subprocess.check_call("gunzip -c %s > %s" % (ent.path, path), shell=True)
-                name = name.replace(".gz", "")
+            id = ent.annotations['uuid'][0]
+            t = Target(uuid=id)
+            docstore.create(t)
+            path = docstore.get_filename(t)
+            name = ent.name
+            if 'dataPrep' in ent.annotations:
+                if ent.annotations['dataPrep'][0] == 'gunzip':
+                    subprocess.check_call("gunzip -c %s > %s" % (ent.path, path), shell=True)
+                    name = name.replace(".gz", "")
+                else:
+                    print "Unknown DataPrep"
             else:
-                print "Unknown DataPrep"
-        else:
-            shutil.copy(ent.path, path)
-        docstore.update_from_file(t)
-        meta = {}
-        meta['name'] = name
-        meta['uuid'] = id
-        if 'dataPrep' in meta:
-            del meta['dataPrep']
-        docstore.put(id, meta)
+                shutil.copy(ent.path, path)
+            docstore.update_from_file(t)
+            meta = {}
+            meta['name'] = name
+            meta['uuid'] = id
+            if 'dataPrep' in meta:
+                del meta['dataPrep']
+            docstore.put(id, meta)
 
 fake_metadata = {
     "pair0" : {
@@ -50,12 +52,12 @@ fake_metadata = {
         "disease" : "BRCA",
         "normal" : {
             "uuid" : "e5383ad1-30f6-4528-bbe5-0ec14d0e6e2f",
-            "id" : "TCGA-E9-A1NH-11A-33D-A14G-09",
+            "barcode" : "TCGA-E9-A1NH-11A-33D-A14G-09",
             "aliquot_id" : "0ee95056-a7cc-415c-a487-3ad08604dfc0",
             "file_name" : "TCGA_MC3.TCGA-E9-A1NH-11A-33D-A14G-09.bam"
         },
         "tumour" : {
-            "id" : "TCGA-E9-A1NH-01A-11D-A14G-09",
+            "barcode" : "TCGA-E9-A1NH-01A-11D-A14G-09",
             "uuid" : "4ab28e27-e860-4b3d-8abd-56b58930d2f6",
             "file_name" : "TCGA_MC3.TCGA-E9-A1NH-01A-11D-A14G-09.bam",
             "aliquot_id" : "13c312ec-0add-4758-ab8d-c193e2e08c6d"
@@ -69,8 +71,23 @@ def run_gen(args):
 
     docstore = from_url(args.out_base)
 
+    data_mapping = {
+        "dbsnp" : "dbsnp_132_b37.leftAligned.vcf",
+        "centromere" : "centromere_hg19.bed",
+        "reference_genome" : "Homo_sapiens_assembly19.fasta",
+    }
+
     if args.ref_download:
-        syn_sync(syn, REFDATA_PROJECT, docstore)
+        syn_sync(syn, REFDATA_PROJECT, docstore, data_mapping.values())
+
+    dm = {}
+    for k,v in data_mapping.items():
+        hit = None
+        for a in docstore.filter(name=v):
+            hit = a[0]
+        if hit is None:
+            raise Exception("%s not found" % (v))
+        dm[k] = { "uuid" : hit }
 
     if args.sample is not None:
         sync_doc_dir(
@@ -79,10 +96,6 @@ def run_gen(args):
         )
     else:
         sync_doc_dir( os.path.join( os.path.dirname(__file__), "..", "testexomes" ), docstore)
-
-    data_mapping = {
-        "dbsnp" : "dbsnp_132_b37.leftAligned.vcf"
-    }
 
     tumor_uuids = {}
     normal_uuids = {}
@@ -103,16 +116,33 @@ def run_gen(args):
     for donor in tumor_uuids:
         if donor in normal_uuids:
             print "participant", donor
-            workflow_inputs = {
-                'tumor_bam' : { 'uuid' : tumor_uuids[donor] },
-                'normal_bam' : { 'uuid' : normal_uuids[donor]},
-                'reference_genome' : { 'uuid' : reference_id }
-            }
+
+            donor_name = None
+            for k,v in fake_metadata.items():
+                if v['participant_id'] == donor:
+                    donor_name = k
+
+            workflow_dm = dict(dm)
+            workflow_dm['tumor_bam'] = { "uuid" : tumor_uuids[donor] }
+            workflow_dm['normal_bam'] = { "uuid" : normal_uuids[donor] }
 
             task = GalaxyWorkflowTask("workflow_%s" % (donor),
                 mc3_workflow,
-                inputs=workflow_inputs,
+                inputs=workflow_dm,
                 parameters={
+                    "reheader_config" : {
+                        "platform" : "Illumina",
+                        "center" : "OHSU",
+                        "filedate" : datetime.datetime.now().strftime("%Y%m%d"),
+                        "normal_analysis_uuid" : fake_metadata[donor_name]['normal']['uuid'],
+                        "normal_bam_name" : fake_metadata[donor_name]['normal']['file_name'],
+                        "normal_aliquot_uuid" : fake_metadata[donor_name]['normal']['aliquot_id'],
+                        "normal_aliquot_barcode": fake_metadata[donor_name]['normal']['barcode'],
+                        "tumor_analysis_uuid" : fake_metadata[donor_name]['tumour']['uuid'],
+                        "tumor_bam_name" : fake_metadata[donor_name]['tumour']['file_name'],
+                        "tumor_aliquot_uuid" : fake_metadata[donor_name]['tumour']['aliquot_id'],
+                        "tumor_aliquot_barcode" : fake_metadata[donor_name]['tumour']['barcode'],
+                    }
                 },
                 tags=[ "donor:%s" % (donor) ],
             )
@@ -127,7 +157,7 @@ def run_gen(args):
     if args.create_service:
         service = GalaxyService(
             docstore=docstore,
-            galaxy="bgruening/galaxy-stable",
+            galaxy=args.galaxy,
             sudo=args.sudo,
             tool_data=args.tool_data,
             tool_dir=args.tool_dir,
@@ -218,6 +248,7 @@ if __name__ == "__main__":
     parser_gen.add_argument("--tool-data", default=os.path.abspath("tool_data"))
     parser_gen.add_argument("--tool-dir", default=os.path.abspath("tools"))
     parser_gen.add_argument("--alt-table", default=None)
+    parser_gen.add_argument("--galaxy", default="bgruening/galaxy-stable")
     parser_gen.add_argument("--sample", action="append", default=None)
     parser_gen.set_defaults(func=run_gen)
 

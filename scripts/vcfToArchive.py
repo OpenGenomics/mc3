@@ -132,7 +132,7 @@ class SDRF(object):
         self.isTumor = None
         if params['ID'] == 'NORMAL':
             self.isTumor = 'no'
-        elif params['ID'] == 'PRIMARY':
+        elif (params['ID'] == 'PRIMARY') or (params['ID'] == 'TUMOR'):
             self.isTumor = 'yes'
         self.material = 'DNA'		# NOTE: hardcoded, must parse from header when adding RNA data
 	self.annot = '->'

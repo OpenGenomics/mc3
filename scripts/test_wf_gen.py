@@ -72,7 +72,7 @@ def run_gen(args):
     docstore = from_url(args.out_base)
 
     data_mapping = {
-        "dbsnp" : "dbsnp_132_b37.leftAligned.vcf",
+        "db_snp" : "dbsnp_132_b37.leftAligned.vcf",
         "centromere" : "centromere_hg19.bed",
         "reference_genome" : "Homo_sapiens_assembly19.fasta",
     }
@@ -133,6 +133,7 @@ def run_gen(args):
                     "reheader_config" : {
                         "platform" : "Illumina",
                         "center" : "OHSU",
+                        "reference_genome" : "Homo_sapiens_assembly19.fasta",
                         "filedate" : datetime.datetime.now().strftime("%Y%m%d"),
                         "normal_analysis_uuid" : fake_metadata[donor_name]['normal']['uuid'],
                         "normal_bam_name" : fake_metadata[donor_name]['normal']['file_name'],

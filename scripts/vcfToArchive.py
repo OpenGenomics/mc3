@@ -245,6 +245,11 @@ def noneClean(v):
         return ""
     return v
 
+def oneIDF(idfObjectList, param):
+    """Return output based on first input yaml parameter objects"""
+    outString = "\t" +  str(noneClean(idfObjectList[0].params[param]))
+    return outString
+
 def concatIDF(idfObjectList, param):
     """Create tab separated strings from input yaml parameter objects"""
     outString = ""
@@ -257,11 +262,11 @@ def createIDFfile(idfFilename, sdrfFilename, idfObjects):
     idfFileHandler = get_write_fileHandler(idfFilename)
 
     # output the experimental design lines
-    idfFileHandler.write("".join(["Investigation Title", concatIDF(idfObjects, "investigationTitle")]) + "\n")
-    idfFileHandler.write("".join(["Experimental Design", concatIDF(idfObjects, "expDesign")]) + "\n")
-    idfFileHandler.write("".join(["Experimental Design Term Source REF", concatIDF(idfObjects, "expDesignOntology")]) + "\n")
-    idfFileHandler.write("".join(["Experimental Factor Name", concatIDF(idfObjects, "expDesignFactorName")]) + "\n")
-    idfFileHandler.write("".join(["Experimental Factor Type", concatIDF(idfObjects, "expDesignFactorType")]) + "\n")
+    idfFileHandler.write("".join(["Investigation Title", oneIDF(idfObjects, "investigationTitle")]) + "\n")
+    idfFileHandler.write("".join(["Experimental Design", oneIDF(idfObjects, "expDesign")]) + "\n")
+    idfFileHandler.write("".join(["Experimental Design Term Source REF", oneIDF(idfObjects, "expDesignOntology")]) + "\n")
+    idfFileHandler.write("".join(["Experimental Factor Name", oneIDF(idfObjects, "expDesignFactorName")]) + "\n")
+    idfFileHandler.write("".join(["Experimental Factor Type", oneIDF(idfObjects, "expDesignFactorType")]) + "\n")
     idfFileHandler.write("\n")
 
     # output the person lines
@@ -295,10 +300,10 @@ def createIDFfile(idfFilename, sdrfFilename, idfObjects):
     idfFileHandler.write("\t".join(["SDRF Files", sdrfBasename]) + "\n")
     idfFileHandler.write("\n")
 
-    # output the ontology lines
-    idfFileHandler.write("".join(["Term Source Name", concatIDF(idfObjects, "ontologyName")]) + "\n")
-    idfFileHandler.write("".join(["Term Source File", concatIDF(idfObjects, "ontologyFile")]) + "\n")
-    idfFileHandler.write("".join(["Term Source Version", concatIDF(idfObjects, "ontologyVersion")]) + "\n")
+    # output the ontology lines (get field from one input only)
+    idfFileHandler.write("".join(["Term Source Name", oneIDF(idfObjects, "ontologyName")]) + "\n")
+    idfFileHandler.write("".join(["Term Source File", oneIDF(idfObjects, "ontologyFile")]) + "\n")
+    idfFileHandler.write("".join(["Term Source Version", oneIDF(idfObjects, "ontologyVersion")]) + "\n")
 
     # close the file
     idfFileHandler.close()

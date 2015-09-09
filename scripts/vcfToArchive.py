@@ -117,11 +117,10 @@ class SDRF(object):
             self.dataLevel = "Comment [TCGA Data Level]"
             self.archive = "Comment [TCGA Archive Name]"
 
-##SAMPLE=<ID=NORMAL,Description="Normal sample",SampleUUID=6a71666e-fc7c-4bd8-ae31-31c3322b03e9,SampleTCGABarcode=TCGA-00-0000-10A-00A-0000-00,AnalysisUUID=1fa3a6c6-68a1-4e8f-a72f-a5d4a76a3758,File="testexome.pair0.normal.bam",Platform="Illumina",Source="dbGAP",Accession="dbGaP",softwareName=<pindel>,softwareVer=<0.2.5b1>,softwareParam=<>>
-##SAMPLE=<ID=PRIMARY,Description="Primary Tumor",SampleUUID=15d1322f-c272-42fa-abe5-d0f0e9cabba5,SampleTCGABarcode=TCGA-00-0000-01A-00A-0000-00,AnalysisUUID=1d20ac06-389b-4105-a74b-f69b72886639,File="testexome.pair0.tumour.bam",Platform="Illumina",Source="dbGAP",Accession="dbGaP",softwareName=<pindel>,softwareVer=<0.2.5b1>,softwareParam=<>>
+##SAMPLE=<ID=PRIMARY,Description="Primary Tumor",SampleUUID=f23b3d0d-26a5-4adf-8aec-4994d094465b,SampleTCGABarcode=TCGA-W5-AA33-01A-11D-A417-09,AnalysisUUID=cd5d8895-6b13-450f-993b-bff9943dc0d9,File="9a6ebf433eb4bcb93be593f74ffa1d3b.bam",Platform="Illumina",Source="dbGAP",Accession="dbGaP",softwareName=<varscan>,softwareVer=<2.4.0>,softwareParam=<"min-coverage=8,min-coverage-normal=8,min-coverage-tumor=6,min-var-freq=0.1,min-freq-for-hom=0.75,normal-purity=1.0,tumor-purity=1.0,p-value=0.99,somatic-p-value=0.05">>
     def sampleSDRF(self, line):
         sampleLine = line[len("##SAMPLE=<"):len(line)-1]	# remove outer <>
-        params = dict(item.split("=") for item in sampleLine.split(","))
+        params = dict(item.split("=",1) for item in sampleLine.split(","))
         # remove the quotes
         for key in params:
             if (params[key].startswith("\"")):

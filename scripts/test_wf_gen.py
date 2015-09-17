@@ -62,6 +62,134 @@ fake_metadata = {
             "file_name" : "TCGA_MC3.TCGA-E9-A1NH-01A-11D-A14G-09.bam",
             "aliquot_id" : "13c312ec-0add-4758-ab8d-c193e2e08c6d"
         }
+    },
+    "pair2" : {
+        "participant_id" : "92c65e5a-3f07-49d9-ab69-46a0eb86ae88",
+        "disease" : "READ",
+        "normal" : {
+            "barcode" : "TCGA-AG-3882-10A-01W-0901-10",
+            "uuid" : "98bbddda-8ad1-4e4b-a702-e2d9026738d6",
+            "file_name" : "TCGA_MC3.TCGA-AG-3882-10A-01W-0901-10.bam",
+            "aliquot_id" : "2f4d9862-155b-4a81-909d-e0e652dd9159"            
+        }, 
+        "tumour" : {
+            "barcode" : "TCGA-AG-3882-01A-01W-0899-10",
+            "uuid" : "257dd1a3-7d73-4d54-ad93-e50b22212e7c",
+            "file_name" : "TCGA_MC3.TCGA-AG-3882-01A-01W-0899-10.bam",
+            "aliquot_id" : "1490465c-fa59-4e82-8911-ecfabfeade29"
+        }
+    },
+    "pair3" : {
+        "participant_id" : "5dc7e186-7e01-4a54-8ae8-350dace2297b",
+        "disease" : "PRAD",
+        "normal" : {
+            "barcode" : "TCGA-J4-A83I-10B-01D-A362-08",
+            "uuid" : "bcb73e69-89f0-4a5a-a606-519553c99270",
+            "file_name" : "C529.TCGA-J4-A83I-10B-01D-A362-08.1.bam",
+            "aliquot_id" : "13d07794-c0fa-4070-9dcd-9cee45840284"
+        },
+        "tumour" : {
+            "barcode" : "TCGA-J4-A83I-01A-11D-A364-08",
+            "uuid" : "952720a2-bf8b-4a02-a0f8-b59c9d44c73b",
+            "file_name" : "C529.TCGA-J4-A83I-01A-11D-A364-08.1.bam",
+            "aliquot_id" : "fdeb9e4e-d715-4565-9cb4-40525a0575ad"
+        }
+    },
+    "pair4" : {
+        "participant_id" : "84cb84d0-7c7e-453c-8cc5-65b5af941028",
+        "disease" : "CESC",
+        "normal" : {
+            "barcode" : "TCGA-EA-A411-10A-01D-A243-09",
+            "uuid" : "ec580fc3-68f5-49af-a14b-bfbcf2a62786",
+            "file_name" : "TCGA_MC3.TCGA-EA-A411-10A-01D-A243-09.bam",
+            "aliquot_id" : "13cc40ed-7de6-42ff-885b-bd6965e8d657"
+        },
+        "tumour" : {
+            "barcode" : "TCGA-EA-A411-01A-11D-A243-09",
+            "uuid" : "15785428-a11e-4357-bc5f-ef28a68d5788",
+            "file_name" : "TCGA_MC3.TCGA-EA-A411-01A-11D-A243-09.bam",
+            "aliquot_id" : "4612db5e-d3f3-48a6-9349-f94cbf9b8d3d"
+        }
+    },
+    "pair5" : {
+        "participant_id" : "9d84dff8-6c19-4881-93c6-56c98a3049b5",
+        "disease" : "UCEC",
+        "normal" : {
+            "barcode" : "TCGA-AX-A2HA-11A-11D-A18P-09",
+            "uuid" : "3349ee96-6dbd-4a05-86f3-8962d3f0d542",
+            "file_name" : "TCGA_MC3.TCGA-AX-A2HA-11A-11D-A18P-09.bam",
+            "aliquot_id" : "b953c4e5-e489-455a-98e8-a635e95c5d81"
+        }, 
+        "tumour" : {
+            "barcode" : "TCGA-AX-A2HA-01A-12D-A18P-09",
+            "uuid" : "36829e84-4dfe-4232-ad87-f8292c5e90a9",
+            "file_name" : "TCGA_MC3.TCGA-AX-A2HA-01A-12D-A18P-09.bam",
+            "aliquot_id" : "140451fd-80a7-4198-93fe-00debbda61c8"
+        }
+    },
+    "pair6" : {
+        "participant_id" : "6014f16b-5f3d-43ec-b8a7-7cf99583101a",
+        "disease" : "KIRP",
+        "normal" : {
+            "barcode" : "TCGA-UZ-A9PS-10A-01D-A42M-10",
+            "uuid" : "e77f1160-39a2-4373-bf0d-5265fb41f930",
+            "file_name" : "TCGA-UZ-A9PS-10A-01D-A42M-10_Illumina.bam",
+            "aliquot_id" : "57691588-0681-41ba-b333-4d612c7f0542"
+        },
+        "tumour" : {
+            "barcode" : "TCGA-UZ-A9PS-01A-11D-A42J-10",
+            "uuid" : "9248e05f-b628-427b-a04f-6187b76b34be",
+            "file_name" : "TCGA-UZ-A9PS-01A-11D-A42J-10_Illumina.bam",
+            "aliquot_id" : "acba931b-e52d-4487-b13a-7d8c91981263"
+        } 
+    },
+    "pair7" : {
+        "participant_id" : "7aece0e0-e57b-40b9-8ef3-8b98624b0e91",
+        "disease" : "KIRC",
+        "normal" : {
+            "barcode" : "TCGA-B8-5546-11A-01D-1534-10",
+            "uuid" : "c1aea022-7a07-48c2-b31c-e891af48076b",
+            "file_name" : "TCGA_MC3.TCGA-B8-5546-11A-01D-1534-10.bam",
+            "aliquot_id" : "24a28744-4b2a-45c3-acae-c504a1ffd8a0"
+        },
+        "tumour" : {
+            "barcode" : "TCGA-B8-5546-01A-01D-1534-10",
+            "uuid" : "10003d6f-da9a-449a-bdc6-086b235be6ed",
+            "file_name" : "TCGA_MC3.TCGA-B8-5546-01A-01D-1534-10.bam",
+            "aliquot_id" : "e3f75b12-27ee-4d38-bd72-f6e167a25da6"
+        }
+    },
+    "pair8" : {
+        "participant_id" : "2b82e941-1b16-444e-af41-24dbc0a7e8b5",
+        "disease" : "GBM",
+        "normal" : {
+            "barcode" : "TCGA-12-1597-10A-01D-1495-08",
+            "uuid" : "cb1f526c-9741-4839-89c5-0e84a939ad4e",
+            "file_name" : "C484.TCGA-12-1597-10A-01D-1495-08.5.bam",
+            "aliquot_id" : "ecbbe2f6-d86b-4498-be57-285695ea7eb2"
+        }, 
+        "tumour" : {
+            "barcode" : "TCGA-12-1597-01B-01D-1495-08",
+            "uuid" : "c9adfe63-cfe8-41aa-9ee5-b26ecb9c11da",
+            "file_name" : "C484.TCGA-12-1597-01B-01D-1495-08.6.bam",
+            "aliquot_id" : "7d35c610-cc06-4aa5-8c96-2f7b7465069f"
+        }
+    },
+    "pair9" : {
+        "participant_id" : "755d3bde-76c3-45c1-8427-8e4d5d686dc1",
+        "disease" : "COAD",
+        "normal" : {
+            "barcode" : "TCGA-CK-6747-10A-01D-1835-10",
+            "uuid" : "0c04ec83-e9eb-40c6-b99c-df9730fe8c61",
+            "file_name" : "TCGA_MC3.TCGA-CK-6747-10A-01D-1835-10.bam",
+            "aliquot_id" : "14cd6385-3a7e-4ec7-bf1e-698524efac6e"
+        },
+        "tumour" : {
+            "barcode" : "TCGA-CK-6747-01A-11D-1835-10",
+            "uuid" : "a315835a-ab33-4f62-adf9-94725bde5b49",
+            "file_name" : "TCGA_MC3.TCGA-CK-6747-01A-11D-1835-10.bam",
+            "aliquot_id" : "3e07ea99-283d-4404-9777-097d3030691b"
+        }
     }
 }
 

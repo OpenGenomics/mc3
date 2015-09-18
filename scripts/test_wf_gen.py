@@ -300,7 +300,8 @@ def run_gen(args):
                 ["delly", 4],
                 ["gatk_bqsr", 12],
                 ["gatk_indel", 12],
-                ["bwa_mem", 12]
+                ["bwa_mem", 12],
+                ["radia", 8]
             ]
         )
         with open("%s.service" % (args.out_base), "w") as handle:

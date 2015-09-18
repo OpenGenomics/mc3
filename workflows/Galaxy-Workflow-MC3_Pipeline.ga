@@ -176,10 +176,6 @@
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
-                    "name": "filedate"
-                }, 
-                {
-                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
                     "name": "tumor_aliquot_barcode"
                 }
             ], 
@@ -425,7 +421,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "MuSE", 
-            "tool_state": "{\"__page__\": 0, \"reference\": \"null\", \"normal\": \"null\", \"__rerun_remap_job_id__\": null, \"muse\": \"{\\\"version\\\": \\\"MuSEv0.9.9.5\\\", \\\"__current_case__\\\": 0, \\\"contamination\\\": \\\"0.05\\\"}\", \"tumor\": \"null\", \"dbsnp\": \"null\"}", 
+            "tool_state": "{\"__page__\": 0, \"reference\": \"null\", \"normal\": \"null\", \"__rerun_remap_job_id__\": null, \"muse\": \"{\\\"version\\\": \\\"MuSEv1.0rc\\\", \\\"mode\\\": \\\"wxs\\\", \\\"__current_case__\\\": 1}\", \"tumor\": \"null\", \"dbsnp\": \"null\"}", 
             "tool_version": "0.9.0", 
             "type": "tool", 
             "user_outputs": [], 
@@ -632,7 +628,7 @@
             "tool_errors": null, 
             "tool_id": "varscan_somatic_vcf", 
             "tool_state": "{\"strand_filter\": \"\\\"0\\\"\", \"min_coverage\": \"\\\"8\\\"\", \"normal_purity\": \"\\\"1.0\\\"\", \"p_value\": \"\\\"0.99\\\"\", \"__page__\": 0, \"min_coverage_normal\": \"\\\"8\\\"\", \"min_freq_for_hom\": \"\\\"0.75\\\"\", \"normal_pileup\": \"null\", \"min_coverage_tumor\": \"\\\"6\\\"\", \"min_var_freq\": \"\\\"0.1\\\"\", \"tumor_pileup\": \"null\", \"somatic_p_value\": \"\\\"0.05\\\"\", \"validation\": \"\\\"0\\\"\", \"__rerun_remap_job_id__\": null, \"tumor_purity\": \"\\\"1.0\\\"\"}", 
-            "tool_version": "2.3.9", 
+            "tool_version": "2.4.0", 
             "type": "tool", 
             "user_outputs": [], 
             "uuid": "816ba9d1-1db4-4e51-bbe1-e0de69ec3f09"
@@ -941,5 +937,5 @@
             "uuid": "a68c1ba3-588b-4f51-ad00-64da31e14478"
         }
     }, 
-    "uuid": "c1e705c7-1a41-4645-a471-69fa2dc13ab0"
+    "uuid": "3a50941c-c697-4843-9caa-488040d0ace0"
 }

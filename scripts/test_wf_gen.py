@@ -301,7 +301,8 @@ def run_gen(args):
                 ["gatk_bqsr", 12],
                 ["gatk_indel", 12],
                 ["bwa_mem", 12],
-                ["radia", 8]
+                ["radia", 8],
+                ['radia_filter', 8]
             ]
         )
         with open("%s.service" % (args.out_base), "w") as handle:
@@ -362,6 +363,28 @@ def run_download(args):
                         "participant_id" : fake_metadata[tmp[1]]['participant_id']
                     }))
 
+def run_extract(args):
+    docstore = from_url(args.out_base)
+    
+    for id, ent in docstore.filter(file_ext="vcf", name=[
+        "muse.vcf", "pindel.vcf", "radia.vcf", "somatic_sniper.vcf", 
+        "varscan.indel.vcf", "varscan.snp.vcf"
+    ]):
+        t = Target(uuid=ent['id'])
+        if docstore.size(t) > 0:
+            donor = None
+            for e in ent['tags']:
+                tmp = e.split(":")
+                if tmp[0] == 'donor':
+                    donor = tmp[1]
+            if donor is not None:
+                donor_dir = os.path.join(args.out_dir, donor)
+                if not os.path.exists(donor_dir):
+                    os.makedirs(donor_dir)
+                print "Found", donor, ent['name']
+                shutil.copy( docstore.get_filename(t), os.path.join(donor_dir, ent['name']) )
+    
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -384,6 +407,11 @@ if __name__ == "__main__":
 
     parser_download = subparsers.add_parser('download')
     parser_download.set_defaults(func=run_download)
+
+    parser_extract = subparsers.add_parser('extract')
+    parser_extract.add_argument("--out-base", default="test_mc3")
+    parser_extract.add_argument("--out-dir", default="output")
+    parser_extract.set_defaults(func=run_extract)
 
 
     args = parser.parse_args()

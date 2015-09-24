@@ -43,7 +43,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 274.9583320617676, 
+                "left": 274.953125, 
                 "top": 511.625
             }, 
             "tool_errors": null, 
@@ -68,7 +68,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 282.9583320617676, 
+                "left": 282.953125, 
                 "top": 653.625
             }, 
             "tool_errors": null, 
@@ -93,7 +93,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 279.9583320617676, 
+                "left": 279.953125, 
                 "top": 773.625
             }, 
             "tool_errors": null, 
@@ -118,7 +118,7 @@
             "name": "Input dataset", 
             "outputs": [], 
             "position": {
-                "left": 274.4583320617676, 
+                "left": 274.453125, 
                 "top": 898.625
             }, 
             "tool_errors": null, 
@@ -140,6 +140,10 @@
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "participant_uuid"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
                     "name": "center"
                 }, 
                 {
@@ -152,7 +156,7 @@
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
-                    "name": "tumor_bam_name"
+                    "name": "normal_aliquot_uuid"
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
@@ -168,11 +172,15 @@
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
-                    "name": "normal_aliquot_uuid"
+                    "name": "disease_code"
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
                     "name": "normal_bam_name"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "tumor_bam_name"
                 }, 
                 {
                     "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
@@ -200,7 +208,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "tcga-vcf-reheader-config", 
-            "tool_state": "{\"tumor_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0, \"center\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"platform\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_aliquot_barcode\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"tumor_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"reference_genome\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"filedate\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_barcode\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_state": "{\"tumor_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0, \"participant_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"center\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"platform\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_aliquot_barcode\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"normal_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"reference_genome\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"disease_code\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"filedate\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_barcode\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
             "tool_version": "0.1", 
             "type": "tool", 
             "user_outputs": [], 
@@ -233,7 +241,7 @@
                 }
             ], 
             "position": {
-                "left": 828.3958435058594, 
+                "left": 828.390625, 
                 "top": 233.0625
             }, 
             "post_job_actions": {
@@ -278,8 +286,8 @@
                 }
             ], 
             "position": {
-                "left": 842.4583740234375, 
-                "top": 598.5833435058594
+                "left": 842.453125, 
+                "top": 598.578125
             }, 
             "post_job_actions": {
                 "HideDatasetActionoutput": {
@@ -319,7 +327,7 @@
                 }
             ], 
             "position": {
-                "left": 579.4583435058594, 
+                "left": 579.453125, 
                 "top": 912.625
             }, 
             "post_job_actions": {
@@ -360,7 +368,7 @@
                 }
             ], 
             "position": {
-                "left": 545.4583435058594, 
+                "left": 545.453125, 
                 "top": 1110.625
             }, 
             "post_job_actions": {
@@ -466,7 +474,7 @@
                 }
             ], 
             "position": {
-                "left": 922.4583740234375, 
+                "left": 922.453125, 
                 "top": 777.625
             }, 
             "post_job_actions": {
@@ -610,7 +618,7 @@
                 }
             ], 
             "position": {
-                "left": 929.4583740234375, 
+                "left": 929.453125, 
                 "top": 1175.125
             }, 
             "post_job_actions": {
@@ -808,7 +816,7 @@
                 }
             ], 
             "position": {
-                "left": 1223.4583740234375, 
+                "left": 1223.453125, 
                 "top": 1029.625
             }, 
             "post_job_actions": {
@@ -894,7 +902,7 @@
                 }
             ], 
             "position": {
-                "left": 1726.4583740234375, 
+                "left": 1726.453125, 
                 "top": 588.625
             }, 
             "post_job_actions": {
@@ -937,7 +945,7 @@
                 }
             ], 
             "position": {
-                "left": 1723.4583740234375, 
+                "left": 1723.453125, 
                 "top": 882.625
             }, 
             "post_job_actions": {
@@ -980,7 +988,7 @@
                 }
             ], 
             "position": {
-                "left": 1731.9583740234375, 
+                "left": 1731.953125, 
                 "top": 436.5625
             }, 
             "post_job_actions": {
@@ -1023,7 +1031,7 @@
                 }
             ], 
             "position": {
-                "left": 1727.4583740234375, 
+                "left": 1727.453125, 
                 "top": 731.625
             }, 
             "post_job_actions": {
@@ -1140,7 +1148,7 @@
                 }
             ], 
             "position": {
-                "left": 1725.4583740234375, 
+                "left": 1725.453125, 
                 "top": 1070.625
             }, 
             "post_job_actions": {
@@ -1184,7 +1192,7 @@
             ], 
             "position": {
                 "left": 1718.9375, 
-                "top": 1258.0208740234375
+                "top": 1258.015625
             }, 
             "post_job_actions": {
                 "RenameDatasetActionoutput_vcf": {
@@ -1204,5 +1212,5 @@
             "uuid": "fe3fcabb-44f6-4a62-acbd-8222506bcded"
         }
     }, 
-    "uuid": "68c0f1ac-b01b-4baf-b87c-0724496e22ad"
+    "uuid": "b18af63d-ca8b-4612-b55e-ae4ab0916542"
 }

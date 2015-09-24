@@ -209,7 +209,7 @@ def sdrfFromVcf(vcfFile, archive):
 
         elif (line.startswith("INFO") or line.startswith("FORMAT")):
             break
-
+    
     vcfFileHandler.close()
     return sdrfList
 
@@ -390,6 +390,10 @@ pindel.vcf, varscan.snp.vcf, etc. It may be better to parse this info from the V
         for vcfFile in os.listdir(patient):
             if vcfFile.endswith('vcf'):
                 sdrfObjectList = sdrfFromVcf(os.path.join(patient, vcfFile), outData)
+                if len(sdrfObjectList) == 0:
+                    raise Exception("No SDRF Objects in %s" % os.path.join(patient, vcfFile))
+                
+
     	        # copy and rename with center name and patient barcode
                 # Note that there are two varscan outputs that have to be kept separate but point to the same IDF entry
                 idfName = vcfFile.split(".")[0]	# radia, pindel...

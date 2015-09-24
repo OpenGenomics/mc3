@@ -262,6 +262,8 @@ def run_gen(args):
                         "platform" : "Illumina",
                         "center" : "OHSU",
                         "reference_genome" : "Homo_sapiens_assembly19.fasta",
+                        "participant_uuid" : fake_metadata[donor_name]['participant_id'],
+                        "disease_code" : fake_metadata[donor_name]['disease'],
                         "filedate" : datetime.datetime.now().strftime("%Y%m%d"),
                         "normal_analysis_uuid" : fake_metadata[donor_name]['normal']['uuid'],
                         "normal_bam_name" : fake_metadata[donor_name]['normal']['file_name'],

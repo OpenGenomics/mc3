@@ -14,6 +14,8 @@ from nebula.service import GalaxyService
 from nebula.tasks import TaskGroup, GalaxyWorkflowTask
 from nebula.target import Target
 
+from glob import glob
+
 import synapseclient
 import urllib
 
@@ -385,8 +387,56 @@ def run_extract(args):
                     os.makedirs(donor_dir)
                 print "Found", donor, ent['name']
                 shutil.copy( docstore.get_filename(t), os.path.join(donor_dir, ent['name']) )
-    
 
+SNP_METHOD = [
+    "muse",
+    "radia",
+    "somatic_sniper",
+    "varscan.snp",
+]
+
+INDEL_METHOD = [
+    "pindel",
+    "varscan.indel"
+]
+
+def run_stats(args):
+    import evaluator
+    rev_map = {}
+    for k, v in fake_metadata.items():
+        rev_map[v['participant_id']] = k
+    
+    basedir = os.path.dirname( os.path.dirname(__file__) )
+    exome_dir = os.path.join(basedir, "testexomes")
+    
+    out_scores = {}
+    for donor_dir in glob(os.path.join(args.out_dir, "*")):
+        donor = os.path.basename(donor_dir)
+        if rev_map[donor] not in out_scores:
+            out_scores[rev_map[donor]] = {}
+        for vcf_file in glob( os.path.join(donor_dir, "*.vcf")):
+            method = os.path.basename(vcf_file).replace(".vcf", "")
+            vtype = None
+            if method in SNP_METHOD:
+                vtype = "SNV"
+            if method in INDEL_METHOD:
+                vtype = "INDEL"
+            truth_file = os.path.join(exome_dir, "testexome" + rev_map[donor][-1:] + ".truth.vcf.gz" )
+            scores = evaluator.evaluate(vcf_file, truth_file, vtype=vtype, truthmask=False)
+            out_scores[rev_map[donor]][method] = scores
+    print out_scores
+    
+    totals = {}
+    for v in out_scores.values():
+        for method, values in v.items():
+            if method not in totals:
+                totals[method] = []
+            totals[method].append( values )
+    for method, values in totals.items():
+        out = []
+        for i in range(3):
+            out.append( "%s" % (sum( j[i] for j in values  ) / float(len(values) )) )
+        print method, "\t".join(out)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -415,6 +465,9 @@ if __name__ == "__main__":
     parser_extract.add_argument("--out-dir", default="output")
     parser_extract.set_defaults(func=run_extract)
 
+    parser_stats = subparsers.add_parser('stats')
+    parser_stats.set_defaults(func=run_stats)
+    parser_stats.add_argument("out_dir")
 
     args = parser.parse_args()
 

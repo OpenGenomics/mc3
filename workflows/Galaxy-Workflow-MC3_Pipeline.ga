@@ -339,7 +339,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "sam_pileup", 
-            "tool_state": "{\"__page__\": 0, \"c\": \"{\\\"consensus\\\": \\\"no\\\", \\\"__current_case__\\\": 0}\", \"indels\": \"\\\"no\\\"\", \"nobaq\": \"\\\"yes\\\"\", \"refOrHistory\": \"{\\\"input1\\\": null, \\\"reference\\\": \\\"history\\\", \\\"__current_case__\\\": 0, \\\"ownFile\\\": null}\", \"__rerun_remap_job_id__\": null, \"lastCol\": \"\\\"yes\\\"\", \"mapCap\": \"\\\"60\\\"\"}", 
+            "tool_state": "{\"__page__\": 0, \"c\": \"{\\\"consensus\\\": \\\"no\\\", \\\"__current_case__\\\": 0}\", \"indels\": \"\\\"no\\\"\", \"nobaq\": \"\\\"yes\\\"\", \"refOrHistory\": \"{\\\"input1\\\": null, \\\"reference\\\": \\\"history\\\", \\\"__current_case__\\\": 0, \\\"ownFile\\\": null}\", \"__rerun_remap_job_id__\": null, \"mapq\": \"{\\\"filter\\\": \\\"yes\\\", \\\"__current_case__\\\": 1, \\\"min\\\": \\\"1\\\"}\", \"lastCol\": \"\\\"yes\\\"\"}", 
             "tool_version": "1.1.2", 
             "type": "tool", 
             "user_outputs": [], 
@@ -380,7 +380,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "sam_pileup", 
-            "tool_state": "{\"__page__\": 0, \"c\": \"{\\\"consensus\\\": \\\"no\\\", \\\"__current_case__\\\": 0}\", \"indels\": \"\\\"no\\\"\", \"nobaq\": \"\\\"yes\\\"\", \"refOrHistory\": \"{\\\"input1\\\": null, \\\"reference\\\": \\\"history\\\", \\\"__current_case__\\\": 0, \\\"ownFile\\\": null}\", \"__rerun_remap_job_id__\": null, \"lastCol\": \"\\\"yes\\\"\", \"mapCap\": \"\\\"60\\\"\"}", 
+            "tool_state": "{\"__page__\": 0, \"c\": \"{\\\"consensus\\\": \\\"no\\\", \\\"__current_case__\\\": 0}\", \"indels\": \"\\\"no\\\"\", \"nobaq\": \"\\\"yes\\\"\", \"refOrHistory\": \"{\\\"input1\\\": null, \\\"reference\\\": \\\"history\\\", \\\"__current_case__\\\": 0, \\\"ownFile\\\": null}\", \"__rerun_remap_job_id__\": null, \"mapq\": \"{\\\"filter\\\": \\\"yes\\\", \\\"__current_case__\\\": 1, \\\"min\\\": \\\"1\\\"}\", \"lastCol\": \"\\\"yes\\\"\"}", 
             "tool_version": "1.1.2", 
             "type": "tool", 
             "user_outputs": [], 
@@ -1212,5 +1212,5 @@
             "uuid": "fe3fcabb-44f6-4a62-acbd-8222506bcded"
         }
     }, 
-    "uuid": "f59b3a27-3f46-4272-bcc3-cedf195e9943"
+    "uuid": "18b4408b-536b-4b19-84b5-d4cb5b980abb"
 }

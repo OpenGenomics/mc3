@@ -366,6 +366,10 @@ def run_download(args):
                         "sampleType" : tmp[2],
                         "participant_id" : fake_metadata[tmp[1]]['participant_id']
                     }))
+        if tmp[-1] == "vcf":
+            subprocess.check_call("bgzip %s" % (file_path), shell=True)
+            subprocess.check_call("tabix %s.gz" % (file_path), shell=True)
+            
 
 def run_extract(args):
     docstore = from_url(args.out_base)
@@ -438,6 +442,23 @@ def run_stats(args):
             out.append( "%s" % (sum( j[i] for j in values  ) / float(len(values) )) )
         print method, "\t".join(out)
 
+def run_errors(args):
+
+    doc = from_url(args.out_base)
+
+    for id, entry in doc.filter():
+        if entry.get('state', '') == 'error':
+            if args.within is None or 'update_time' not in entry or check_within(entry['update_time'], args.within):
+                print "Dataset", id, entry.get("job", {}).get("tool_id", ""), entry.get('update_time', ''), entry.get("tags", "")
+                if args.full:
+                    if 'provenance' in entry:
+                        print "tool:", entry['provenance']['tool_id']
+                        print "-=-=-=-=-=-=-"
+                    print entry['job']['stdout']
+                    print "-------------"
+                    print entry['job']['stderr']
+                    print "-=-=-=-=-=-=-"
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
@@ -469,6 +490,12 @@ if __name__ == "__main__":
     parser_stats.set_defaults(func=run_stats)
     parser_stats.add_argument("out_dir")
 
+    parser_errors = subparsers.add_parser('errors')
+    parser_errors.add_argument("--within", type=int, default=None)
+    parser_errors.add_argument("--full", action="store_true", default=False)
+    parser_errors.add_argument("--out-base", default="test_mc3")
+    parser_errors.set_defaults(func=run_errors)
+    
     args = parser.parse_args()
 
     args.func(args)

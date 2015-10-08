@@ -1,0 +1,1397 @@
+{
+    "a_galaxy_workflow": "true", 
+    "annotation": "", 
+    "format-version": "0.1", 
+    "name": "MC3_Pipeline_Test", 
+    "steps": {
+        "0": {
+            "annotation": "", 
+            "id": 0, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "tumor_bam"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 274, 
+                "top": 418.625
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"tumor_bam\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "750571aa-b165-4d73-b9f6-7cd813eda3ad"
+        }, 
+        "1": {
+            "annotation": "", 
+            "id": 1, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "normal_bam"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 274.953125, 
+                "top": 511.625
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"normal_bam\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "56b21306-75eb-479c-a43c-5f4a19ea9fb5"
+        }, 
+        "2": {
+            "annotation": "", 
+            "id": 2, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "reference_genome"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 282.953125, 
+                "top": 653.625
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"reference_genome\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "e83a493b-317f-4c73-be8f-f31ea1031c83"
+        }, 
+        "3": {
+            "annotation": "", 
+            "id": 3, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "db_snp"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 279.953125, 
+                "top": 773.625
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"db_snp\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "2408268d-dc6d-4e2d-8934-9e360721ae5f"
+        }, 
+        "4": {
+            "annotation": "", 
+            "id": 4, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "centromere"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 274.453125, 
+                "top": 898.625
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"centromere\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "e14fd51e-8ead-4dc3-9acd-a0e750f2f5ec"
+        }, 
+        "5": {
+            "annotation": "", 
+            "id": 5, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "", 
+                    "name": "cosmic"
+                }
+            ], 
+            "label": null, 
+            "name": "Input dataset", 
+            "outputs": [], 
+            "position": {
+                "left": 274, 
+                "top": 997.5
+            }, 
+            "tool_errors": null, 
+            "tool_id": null, 
+            "tool_state": "{\"name\": \"cosmic\"}", 
+            "tool_version": null, 
+            "type": "data_input", 
+            "user_outputs": [], 
+            "uuid": "43eeae9d-650e-4e30-b59c-79d2566f8a38"
+        }, 
+        "6": {
+            "annotation": "reheader_config", 
+            "id": 6, 
+            "input_connections": {}, 
+            "inputs": [
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "tumor_aliquot_uuid"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "participant_uuid"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "center"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "reference_genome"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "normal_aliquot_barcode"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "normal_aliquot_uuid"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "tumor_analysis_uuid"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "normal_analysis_uuid"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "platform"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "disease_code"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "normal_bam_name"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "tumor_bam_name"
+                }, 
+                {
+                    "description": "runtime parameter for tool TCGA VCF ReHeader Config", 
+                    "name": "tumor_aliquot_barcode"
+                }
+            ], 
+            "label": null, 
+            "name": "TCGA VCF ReHeader Config", 
+            "outputs": [
+                {
+                    "name": "output_yaml", 
+                    "type": "txt"
+                }
+            ], 
+            "position": {
+                "left": 278.9375, 
+                "top": 1327
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_yaml": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_yaml"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "tcga-vcf-reheader-config", 
+            "tool_state": "{\"tumor_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": 0, \"participant_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"center\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"platform\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_aliquot_barcode\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"normal_aliquot_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"normal_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"reference_genome\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"disease_code\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_analysis_uuid\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_bam_name\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"filedate\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"tumor_aliquot_barcode\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "c912d216-3978-498f-b2bf-af1e0b5fe2bc"
+        }, 
+        "7": {
+            "annotation": "", 
+            "id": 7, 
+            "input_connections": {
+                "dnaNormal|inputbam": {
+                    "id": 1, 
+                    "output_name": "output"
+                }, 
+                "dnaTumor|inputbam": {
+                    "id": 0, 
+                    "output_name": "output"
+                }, 
+                "fastaFile": {
+                    "id": 2, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "radia", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 828.390625, 
+                "top": 233.0625
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_vcf": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "radia", 
+            "tool_state": "{\"fastaFile\": \"null\", \"__page__\": 0, \"genotypeMinDepth\": \"\\\"2\\\"\", \"rnaNormal\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"genotypeMinPct\": \"\\\"0.1\\\"\", \"patientId\": \"\\\"Patient\\\"\", \"disease\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"refUrl\": \"\\\"\\\"\", \"dataSource\": \"\\\"\\\"\", \"rnaTumor\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"dnaNormal\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\", \\\"inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}}\", \"dnaTumor\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\", \\\"inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}}\", \"refId\": \"\\\"HG19\\\"\", \"sequencingPlatform\": \"\\\"\\\"\"}", 
+            "tool_version": "0.1.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "adbcb7c2-ea85-4377-b38b-6f12c7f86078"
+        }, 
+        "8": {
+            "annotation": "", 
+            "id": 8, 
+            "input_connections": {
+                "normal": {
+                    "id": 1, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "tumor": {
+                    "id": 0, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Somatic Sniper", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 842.453125, 
+                "top": 598.578125
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "somatic_sniper", 
+            "tool_state": "{\"somaticq\": \"\\\"40\\\"\", \"reference\": \"null\", \"normal\": \"null\", \"__page__\": 0, \"loh\": \"\\\"True\\\"\", \"tumor_name\": \"\\\"TUMOR\\\"\", \"normal_name\": \"\\\"NORMAL\\\"\", \"tumor\": \"null\", \"mapq\": \"\\\"1\\\"\", \"__rerun_remap_job_id__\": null, \"dis_priors\": \"\\\"False\\\"\", \"use_priorp\": \"\\\"False\\\"\", \"prior_p\": \"\\\"0.01\\\"\", \"gor\": \"\\\"True\\\"\"}", 
+            "tool_version": "1.0.5", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "6f360864-bd23-448d-8a63-877d48500ece"
+        }, 
+        "9": {
+            "annotation": "", 
+            "id": 9, 
+            "input_connections": {
+                "refOrHistory|input1": {
+                    "id": 0, 
+                    "output_name": "output"
+                }, 
+                "refOrHistory|ownFile": {
+                    "id": 2, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Generate pileup", 
+            "outputs": [
+                {
+                    "name": "output1", 
+                    "type": "pileup"
+                }
+            ], 
+            "position": {
+                "left": 579.453125, 
+                "top": 912.625
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput1": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output1"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "sam_pileup", 
+            "tool_state": "{\"__page__\": 0, \"c\": \"{\\\"consensus\\\": \\\"no\\\", \\\"__current_case__\\\": 0}\", \"indels\": \"\\\"no\\\"\", \"nobaq\": \"\\\"yes\\\"\", \"refOrHistory\": \"{\\\"input1\\\": null, \\\"reference\\\": \\\"history\\\", \\\"__current_case__\\\": 0, \\\"ownFile\\\": null}\", \"__rerun_remap_job_id__\": null, \"mapq\": \"{\\\"filter\\\": \\\"yes\\\", \\\"__current_case__\\\": 1, \\\"min\\\": \\\"1\\\"}\", \"lastCol\": \"\\\"yes\\\"\"}", 
+            "tool_version": "1.1.2", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "5c75140d-2bd5-421f-b012-95065f7c2c26"
+        }, 
+        "10": {
+            "annotation": "", 
+            "id": 10, 
+            "input_connections": {
+                "refOrHistory|input1": {
+                    "id": 1, 
+                    "output_name": "output"
+                }, 
+                "refOrHistory|ownFile": {
+                    "id": 2, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "Generate pileup", 
+            "outputs": [
+                {
+                    "name": "output1", 
+                    "type": "pileup"
+                }
+            ], 
+            "position": {
+                "left": 545.453125, 
+                "top": 1110.625
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput1": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output1"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "sam_pileup", 
+            "tool_state": "{\"__page__\": 0, \"c\": \"{\\\"consensus\\\": \\\"no\\\", \\\"__current_case__\\\": 0}\", \"indels\": \"\\\"no\\\"\", \"nobaq\": \"\\\"yes\\\"\", \"refOrHistory\": \"{\\\"input1\\\": null, \\\"reference\\\": \\\"history\\\", \\\"__current_case__\\\": 0, \\\"ownFile\\\": null}\", \"__rerun_remap_job_id__\": null, \"mapq\": \"{\\\"filter\\\": \\\"yes\\\", \\\"__current_case__\\\": 1, \\\"min\\\": \\\"1\\\"}\", \"lastCol\": \"\\\"yes\\\"\"}", 
+            "tool_version": "1.1.2", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "b10ee50b-3b43-4d2a-8db5-60433d0392cb"
+        }, 
+        "11": {
+            "annotation": "", 
+            "id": 11, 
+            "input_connections": {
+                "dbsnp": {
+                    "id": 3, 
+                    "output_name": "output"
+                }, 
+                "normal": {
+                    "id": 1, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "tumor": {
+                    "id": 0, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "MuSE", 
+            "outputs": [
+                {
+                    "name": "mutations", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 846.5, 
+                "top": 401.625
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionmutations": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "mutations"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "MuSE", 
+            "tool_state": "{\"__page__\": 0, \"reference\": \"null\", \"normal\": \"null\", \"__rerun_remap_job_id__\": null, \"muse\": \"{\\\"version\\\": \\\"MuSEv1.0rc\\\", \\\"mode\\\": \\\"wxs\\\", \\\"__current_case__\\\": 1}\", \"tumor\": \"null\", \"dbsnp\": \"null\"}", 
+            "tool_version": "0.9.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "636e21f5-f10c-4f85-b234-ca1493f26598"
+        }, 
+        "12": {
+            "annotation": "", 
+            "id": 12, 
+            "input_connections": {
+                "exclude_list": {
+                    "id": 4, 
+                    "output_name": "output"
+                }, 
+                "inputReferenceFile": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "inputs|normalInputBamFile": {
+                    "id": 1, 
+                    "output_name": "output"
+                }, 
+                "inputs|tumorInputBamFile": {
+                    "id": 0, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "pindel", 
+            "outputs": [
+                {
+                    "name": "outputRawFile", 
+                    "type": "tabular"
+                }, 
+                {
+                    "name": "outputVcfFile", 
+                    "type": "vcf"
+                }, 
+                {
+                    "name": "outputSomaticVcfFile", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 922.453125, 
+                "top": 777.625
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutputRawFile": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "outputRawFile"
+                }, 
+                "HideDatasetActionoutputVcfFile": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "outputVcfFile"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "pindel", 
+            "tool_state": "{\"sensitivity\": \"\\\"0.95\\\"\", \"balance_cutoff\": \"\\\"0\\\"\", \"anchor_quality\": \"\\\"0\\\"\", \"reportInversions\": \"\\\"True\\\"\", \"report_only_close_mapped_reads\": \"\\\"False\\\"\", \"exclude_list\": \"null\", \"window_size\": \"\\\"5\\\"\", \"NM\": \"\\\"2\\\"\", \"reportLongInsertions\": \"\\\"True\\\"\", \"inputReferenceFile\": \"null\", \"__rerun_remap_job_id__\": null, \"breakdancer\": \"{\\\"checking\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"referenceName\": \"\\\"HG19\\\"\", \"minimum_support_for_event\": \"\\\"3\\\"\", \"additional_mismatch\": \"\\\"1\\\"\", \"reportBreakpoints\": \"\\\"True\\\"\", \"inputs\": \"{\\\"defineInsertSize\\\": {\\\"manual_define\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"__current_case__\\\": 1, \\\"normalInputBamFile\\\": null, \\\"somatic_hom\\\": \\\"6\\\", \\\"mode\\\": \\\"pair\\\", \\\"tumorInputBamFile\\\": null, \\\"somatic_cov\\\": \\\"20\\\", \\\"somatic_vaf\\\": \\\"0.08\\\"}\", \"__page__\": 0, \"options_DD\": \"{\\\"options_DD_selector\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"reportDuplications\": \"\\\"True\\\"\", \"IndelCorrection\": \"\\\"False\\\"\", \"maximum_allowed_mismatch_rate\": \"\\\"0.02\\\"\", \"min_num_matched_bases\": \"\\\"30\\\"\", \"max_range_index\": \"\\\"4\\\"\", \"NormalSamples\": \"\\\"False\\\"\", \"min_perfect_match_around_BP\": \"\\\"3\\\"\", \"report_interchromosomal_events\": \"\\\"False\\\"\", \"min_inversion_size\": \"\\\"50\\\"\", \"sequencing_error_rate\": \"\\\"0.01\\\"\", \"input_SV_Calls_for_assembly\": \"{\\\"checking\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "b8a3419c-67c2-4b39-af65-1eb770f4b0f2"
+        }, 
+        "13": {
+            "annotation": "", 
+            "id": 13, 
+            "input_connections": {
+                "cosmic": {
+                    "id": 5, 
+                    "output_name": "output"
+                }, 
+                "dbsnp": {
+                    "id": 3, 
+                    "output_name": "output"
+                }, 
+                "normal": {
+                    "id": 1, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "tumor": {
+                    "id": 0, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "MuTect", 
+            "outputs": [
+                {
+                    "name": "callstats", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "coverage", 
+                    "type": "txt"
+                }, 
+                {
+                    "name": "mutations", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 784, 
+                "top": 1414.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActioncallstats": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "callstats"
+                }, 
+                "HideDatasetActioncoverage": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "coverage"
+                }, 
+                "HideDatasetActionmutations": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "mutations"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "mutect", 
+            "tool_state": "{\"initial_tumor_lod\": \"\\\"4.0\\\"\", \"reference\": \"null\", \"normal\": \"null\", \"__page__\": 0, \"intervalfile\": \"null\", \"__rerun_remap_job_id__\": null, \"cosmic\": \"null\", \"tumor\": \"null\", \"intervals\": \"\\\"\\\"\", \"contamination\": \"{\\\"input\\\": \\\"na\\\", \\\"__current_case__\\\": 2}\", \"tumor_lod\": \"\\\"10.0\\\"\", \"dbsnp\": \"null\"}", 
+            "tool_version": "1.0.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "4548ef89-44e8-4220-8e4e-56e2d7c41e98"
+        }, 
+        "14": {
+            "annotation": "", 
+            "id": 14, 
+            "input_connections": {
+                "dnaNormal|inputbam": {
+                    "id": 1, 
+                    "output_name": "output"
+                }, 
+                "dnaTumor|inputbam": {
+                    "id": 0, 
+                    "output_name": "output"
+                }, 
+                "inputFasta": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "inputVCF": {
+                    "id": 7, 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "radia_filter", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1158.25, 
+                "top": 243.375
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_vcf": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "radia_filter", 
+            "tool_state": "{\"inputVCF\": \"null\", \"pseudogenes\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"rnaNormal\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"filterRejects\": \"\\\"True\\\"\", \"__page__\": 0, \"inputFasta\": \"null\", \"__rerun_remap_job_id__\": null, \"tcga\": \"\\\"True\\\"\", \"cosmic\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"patientId\": \"\\\"MyPatient\\\"\", \"blacklist\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"retrogenes\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"filterGermline\": \"\\\"True\\\"\", \"snpeff\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"dbsnp\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"dnaNormal\": \"{\\\"use\\\": \\\"yes\\\", \\\"inputbam\\\": null, \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"__current_case__\\\": 0}\", \"dnaTumor\": \"{\\\"use\\\": \\\"yes\\\", \\\"inputbam\\\": null, \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"__current_case__\\\": 0}\", \"rnaTumor\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"target\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\"}", 
+            "tool_version": "0.1.0", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "4545654d-9c15-45ca-93bf-b8705b592321"
+        }, 
+        "15": {
+            "annotation": "", 
+            "id": 15, 
+            "input_connections": {
+                "bam": {
+                    "id": 0, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "vcf": {
+                    "id": 8, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "fpfilter", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1201.5, 
+                "top": 622.625
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "fpfilter", 
+            "tool_state": "{\"min_strandness\": \"\\\"0.01\\\"\", \"max_mapqual_diff\": \"\\\"30\\\"\", \"bam\": \"null\", \"min_var_dist_3\": \"\\\"0.2\\\"\", \"reference\": \"null\", \"min_var_count\": \"\\\"4\\\"\", \"max_readlen_diff\": \"\\\"25\\\"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"max_mm_qualsum_diff\": \"\\\"50\\\"\", \"min_var_dist_3 \": \"\\\"\\\"\", \"vcf\": \"null\", \"sample\": \"\\\"TUMOR\\\"\", \"min_read_pos\": \"\\\"0.1\\\"\", \"min_var_freq\": \"\\\"0.05\\\"\", \"max_var_mm_qualsum\": \"\\\"100\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "c9729852-a33b-4950-a346-5345b3f0bf4e"
+        }, 
+        "16": {
+            "annotation": "", 
+            "id": 16, 
+            "input_connections": {
+                "normal_pileup": {
+                    "id": 10, 
+                    "output_name": "output1"
+                }, 
+                "tumor_pileup": {
+                    "id": 9, 
+                    "output_name": "output1"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "VarScan Somatic (VCF Output)", 
+            "outputs": [
+                {
+                    "name": "snp_vcf", 
+                    "type": "vcf"
+                }, 
+                {
+                    "name": "indel_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 929.453125, 
+                "top": 1175.125
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionindel_vcf": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "indel_vcf"
+                }, 
+                "HideDatasetActionsnp_vcf": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "snp_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "varscan_somatic_vcf", 
+            "tool_state": "{\"strand_filter\": \"\\\"0\\\"\", \"min_coverage\": \"\\\"3\\\"\", \"normal_purity\": \"\\\"1.0\\\"\", \"p_value\": \"\\\"0.99\\\"\", \"__page__\": 0, \"min_coverage_normal\": \"\\\"8\\\"\", \"min_freq_for_hom\": \"\\\"0.75\\\"\", \"normal_pileup\": \"null\", \"min_coverage_tumor\": \"\\\"6\\\"\", \"min_var_freq\": \"\\\"0.08\\\"\", \"tumor_pileup\": \"null\", \"somatic_p_value\": \"\\\"0.05\\\"\", \"validation\": \"\\\"0\\\"\", \"__rerun_remap_job_id__\": null, \"tumor_purity\": \"\\\"1.0\\\"\"}", 
+            "tool_version": "2.3.9", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "816ba9d1-1db4-4e51-bbe1-e0de69ec3f09"
+        }, 
+        "17": {
+            "annotation": "", 
+            "id": 17, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 11, 
+                    "output_name": "mutations"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "VCF Filter", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1227.5, 
+                "top": 495.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_vcf": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "vcf-filter", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"filter_text\": \"\\\"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y,MT\\\"\", \"input_vcf\": \"null\", \"filterRejects\": \"\\\"True\\\"\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "6a4bda58-cf18-4524-9425-b5036a08da1d"
+        }, 
+        "18": {
+            "annotation": "", 
+            "id": 18, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 12, 
+                    "output_name": "outputSomaticVcfFile"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "VCF Filter", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1416.5, 
+                "top": 852.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_vcf": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "vcf-filter", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"filter_text\": \"\\\"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y,MT\\\"\", \"input_vcf\": \"null\", \"filterRejects\": \"\\\"False\\\"\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "4af7dd84-840a-4161-ade1-f00190d3d45b"
+        }, 
+        "19": {
+            "annotation": "", 
+            "id": 19, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 13, 
+                    "output_name": "mutations"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "VCF Filter", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1418, 
+                "top": 1545.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_vcf": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "vcf-filter", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"filter_text\": \"\\\"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y,MT\\\"\", \"input_vcf\": \"null\", \"filterRejects\": \"\\\"True\\\"\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "bc011690-3574-429c-8ea0-02a2c1fdebe2"
+        }, 
+        "20": {
+            "annotation": "", 
+            "id": 20, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 14, 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "VCF Filter", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1495.5, 
+                "top": 385.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_vcf": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "vcf-filter", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"filter_text\": \"\\\"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y,MT\\\"\", \"input_vcf\": \"null\", \"filterRejects\": \"\\\"False\\\"\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "5f006efd-eca4-439e-b4ea-2fde9e305ca1"
+        }, 
+        "21": {
+            "annotation": "", 
+            "id": 21, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 15, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "VCF Filter", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1449.5, 
+                "top": 697.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_vcf": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "vcf-filter", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"filter_text\": \"\\\"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y,MT\\\"\", \"input_vcf\": \"null\", \"filterRejects\": \"\\\"False\\\"\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "8901c959-d447-41c2-8e08-466062924ed2"
+        }, 
+        "22": {
+            "annotation": "", 
+            "id": 22, 
+            "input_connections": {
+                "bam": {
+                    "id": 0, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "vcf": {
+                    "id": 16, 
+                    "output_name": "snp_vcf"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "fpfilter", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1223.453125, 
+                "top": 1029.625
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "fpfilter", 
+            "tool_state": "{\"min_strandness\": \"\\\"0.01\\\"\", \"max_mapqual_diff\": \"\\\"30\\\"\", \"bam\": \"null\", \"min_var_dist_3\": \"\\\"0.2\\\"\", \"reference\": \"null\", \"min_var_count\": \"\\\"4\\\"\", \"max_readlen_diff\": \"\\\"25\\\"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"max_mm_qualsum_diff\": \"\\\"50\\\"\", \"min_var_dist_3 \": \"\\\"\\\"\", \"vcf\": \"null\", \"sample\": \"\\\"TUMOR\\\"\", \"min_read_pos\": \"\\\"0.1\\\"\", \"min_var_freq\": \"\\\"0.05\\\"\", \"max_var_mm_qualsum\": \"\\\"100\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "25151231-5be0-4b98-b914-1881021056a6"
+        }, 
+        "23": {
+            "annotation": "", 
+            "id": 23, 
+            "input_connections": {
+                "bam": {
+                    "id": 0, 
+                    "output_name": "output"
+                }, 
+                "reference": {
+                    "id": 2, 
+                    "output_name": "output"
+                }, 
+                "vcf": {
+                    "id": 16, 
+                    "output_name": "indel_vcf"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "fpfilter", 
+            "outputs": [
+                {
+                    "name": "output", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1239, 
+                "top": 1262.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "fpfilter", 
+            "tool_state": "{\"min_strandness\": \"\\\"0.01\\\"\", \"max_mapqual_diff\": \"\\\"30\\\"\", \"bam\": \"null\", \"min_var_dist_3\": \"\\\"0.2\\\"\", \"reference\": \"null\", \"min_var_count\": \"\\\"4\\\"\", \"max_readlen_diff\": \"\\\"25\\\"\", \"__page__\": 0, \"__rerun_remap_job_id__\": null, \"max_mm_qualsum_diff\": \"\\\"50\\\"\", \"vcf\": \"null\", \"sample\": \"\\\"TUMOR\\\"\", \"min_read_pos\": \"\\\"0.1\\\"\", \"min_var_freq\": \"\\\"0.05\\\"\", \"max_var_mm_qualsum\": \"\\\"100\\\"\"}", 
+            "tool_version": "0.0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "83b08b24-aa50-439d-b834-8f01b0cb1490"
+        }, 
+        "24": {
+            "annotation": "", 
+            "id": 24, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 17, 
+                    "output_name": "output_vcf"
+                }, 
+                "sample|info_file": {
+                    "id": 6, 
+                    "output_name": "output_yaml"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA VCF ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1726.453125, 
+                "top": 588.625
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput_vcf": {
+                    "action_arguments": {
+                        "newname": "muse.vcf"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "tcga-vcf-reheader", 
+            "tool_state": "{\"normal_aliquot_name\": \"\\\"\\\"\", \"tumor_aliquot_uuid\": \"\\\"\\\"\", \"software_name\": \"\\\"MuSE\\\"\", \"software_params\": \"\\\"\\\"\", \"center\": \"\\\"mdanderson.org\\\"\", \"software_version\": \"\\\"1.0.0rc\\\"\", \"__page__\": 0, \"normal_aliquot_uuid\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"normal_analysis_uuid\": \"\\\"\\\"\", \"normal_bam_name\": \"\\\"\\\"\", \"sample\": \"{\\\"source\\\": \\\"file\\\", \\\"info_file\\\": null, \\\"__current_case__\\\": 1}\", \"platform\": \"\\\"\\\"\", \"normal_aliquot_uuid}\": \"\\\"\\\"\", \"tumor_aliquot_name\": \"\\\"\\\"\", \"tumor_analysis_uuid\": \"\\\"\\\"\", \"filedate\": \"\\\"DATE\\\"\", \"tumor_bam_name\": \"\\\"\\\"\", \"input_vcf\": \"null\", \"reference\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "1b8c3c6f-21c8-4554-8e73-6dc9e4399172"
+        }, 
+        "25": {
+            "annotation": "", 
+            "id": 25, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 18, 
+                    "output_name": "output_vcf"
+                }, 
+                "sample|info_file": {
+                    "id": 6, 
+                    "output_name": "output_yaml"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA VCF ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1723.453125, 
+                "top": 882.625
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput_vcf": {
+                    "action_arguments": {
+                        "newname": "pindel.vcf"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "tcga-vcf-reheader", 
+            "tool_state": "{\"normal_aliquot_name\": \"\\\"\\\"\", \"tumor_aliquot_uuid\": \"\\\"\\\"\", \"software_name\": \"\\\"pindel\\\"\", \"software_params\": \"\\\"\\\"\", \"center\": \"\\\"wustl.edu\\\"\", \"software_version\": \"\\\"0.2.5b1\\\"\", \"__page__\": 0, \"normal_aliquot_uuid\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"normal_analysis_uuid\": \"\\\"\\\"\", \"normal_bam_name\": \"\\\"\\\"\", \"sample\": \"{\\\"source\\\": \\\"file\\\", \\\"info_file\\\": null, \\\"__current_case__\\\": 1}\", \"platform\": \"\\\"\\\"\", \"normal_aliquot_uuid}\": \"\\\"\\\"\", \"tumor_aliquot_name\": \"\\\"\\\"\", \"tumor_analysis_uuid\": \"\\\"\\\"\", \"filedate\": \"\\\"DATE\\\"\", \"tumor_bam_name\": \"\\\"\\\"\", \"input_vcf\": \"null\", \"reference\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "2c8831e2-7a7b-47ed-85da-32f10a29eb6c"
+        }, 
+        "26": {
+            "annotation": "", 
+            "id": 26, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 19, 
+                    "output_name": "output_vcf"
+                }, 
+                "sample|info_file": {
+                    "id": 6, 
+                    "output_name": "output_yaml"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA VCF ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1737.5, 
+                "top": 1441.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_vcf": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_vcf"
+                }, 
+                "RenameDatasetActionoutput_vcf": {
+                    "action_arguments": {
+                        "newname": "mutect.vcf"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "tcga-vcf-reheader", 
+            "tool_state": "{\"__page__\": 0, \"software_name\": \"\\\"mutect\\\"\", \"software_params\": \"\\\"\\\"\", \"center\": \"\\\"broad.org\\\"\", \"software_version\": \"\\\"1.1.5\\\"\", \"__rerun_remap_job_id__\": null, \"sample\": \"{\\\"source\\\": \\\"file\\\", \\\"info_file\\\": null, \\\"__current_case__\\\": 1}\", \"input_vcf\": \"null\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "e26e539d-395d-4e99-a4e0-930188d230d1"
+        }, 
+        "27": {
+            "annotation": "", 
+            "id": 27, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 20, 
+                    "output_name": "output_vcf"
+                }, 
+                "sample|info_file": {
+                    "id": 6, 
+                    "output_name": "output_yaml"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA VCF ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1731.953125, 
+                "top": 436.5625
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput_vcf": {
+                    "action_arguments": {
+                        "newname": "radia.vcf"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "tcga-vcf-reheader", 
+            "tool_state": "{\"normal_aliquot_name\": \"\\\"\\\"\", \"tumor_aliquot_uuid\": \"\\\"\\\"\", \"software_name\": \"\\\"radia\\\"\", \"software_params\": \"\\\"\\\"\", \"center\": \"\\\"ucsc.edu\\\"\", \"software_version\": \"\\\"1.0\\\"\", \"__page__\": 0, \"normal_analysis_uuid\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"normal_aliquot_uuid\": \"\\\"\\\"\", \"normal_bam_name\": \"\\\"\\\"\", \"sample\": \"{\\\"source\\\": \\\"file\\\", \\\"info_file\\\": null, \\\"__current_case__\\\": 1}\", \"platform\": \"\\\"\\\"\", \"tumor_aliquot_name\": \"\\\"\\\"\", \"tumor_analysis_uuid\": \"\\\"\\\"\", \"filedate\": \"\\\"DATE\\\"\", \"tumor_bam_name\": \"\\\"\\\"\", \"input_vcf\": \"null\", \"reference\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "d52463d6-5193-4654-a17f-7fca90e6dfc8"
+        }, 
+        "28": {
+            "annotation": "", 
+            "id": 28, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 21, 
+                    "output_name": "output_vcf"
+                }, 
+                "sample|info_file": {
+                    "id": 6, 
+                    "output_name": "output_yaml"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA VCF ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1727.453125, 
+                "top": 731.625
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput_vcf": {
+                    "action_arguments": {
+                        "newname": "somatic_sniper.vcf"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "tcga-vcf-reheader", 
+            "tool_state": "{\"normal_aliquot_name\": \"\\\"\\\"\", \"tumor_aliquot_uuid\": \"\\\"\\\"\", \"software_name\": \"\\\"SomaticSniper\\\"\", \"software_params\": \"\\\"\\\"\", \"center\": \"\\\"wustl.edu\\\"\", \"software_version\": \"\\\"1.0.4\\\"\", \"__page__\": 0, \"normal_aliquot_uuid\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"normal_analysis_uuid\": \"\\\"\\\"\", \"normal_bam_name\": \"\\\"\\\"\", \"sample\": \"{\\\"source\\\": \\\"file\\\", \\\"info_file\\\": null, \\\"__current_case__\\\": 1}\", \"platform\": \"\\\"\\\"\", \"normal_aliquot_uuid}\": \"\\\"\\\"\", \"tumor_aliquot_name\": \"\\\"\\\"\", \"tumor_analysis_uuid\": \"\\\"\\\"\", \"filedate\": \"\\\"DATE\\\"\", \"tumor_bam_name\": \"\\\"\\\"\", \"input_vcf\": \"null\", \"reference\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "d7e4bdee-eae1-4796-8cb4-a49a2d880c8f"
+        }, 
+        "29": {
+            "annotation": "", 
+            "id": 29, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 22, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "VCF Filter", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1487.5, 
+                "top": 1061.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_vcf": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "vcf-filter", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"filter_text\": \"\\\"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y,MT\\\"\", \"input_vcf\": \"null\", \"filterRejects\": \"\\\"True\\\"\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "8e1b76c5-efa4-47f0-b234-a23397145f5c"
+        }, 
+        "30": {
+            "annotation": "", 
+            "id": 30, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 23, 
+                    "output_name": "output"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "VCF Filter", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1467.5, 
+                "top": 1225.5
+            }, 
+            "post_job_actions": {
+                "HideDatasetActionoutput_vcf": {
+                    "action_arguments": {}, 
+                    "action_type": "HideDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "vcf-filter", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"filter_text\": \"\\\"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y,MT\\\"\", \"input_vcf\": \"null\", \"filterRejects\": \"\\\"True\\\"\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "e2b00a97-585d-43c6-86e3-269748f482b6"
+        }, 
+        "31": {
+            "annotation": "", 
+            "id": 31, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 29, 
+                    "output_name": "output_vcf"
+                }, 
+                "sample|info_file": {
+                    "id": 6, 
+                    "output_name": "output_yaml"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA VCF ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1725.453125, 
+                "top": 1070.625
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput_vcf": {
+                    "action_arguments": {
+                        "newname": "varscan.snp.vcf"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "tcga-vcf-reheader", 
+            "tool_state": "{\"normal_aliquot_name\": \"\\\"\\\"\", \"tumor_aliquot_uuid\": \"\\\"\\\"\", \"software_name\": \"\\\"varscan\\\"\", \"software_params\": \"\\\"\\\"\", \"center\": \"\\\"wustl.edu\\\"\", \"software_version\": \"\\\"2.3.9\\\"\", \"__page__\": 0, \"normal_aliquot_uuid\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"normal_analysis_uuid\": \"\\\"\\\"\", \"normal_bam_name\": \"\\\"\\\"\", \"sample\": \"{\\\"source\\\": \\\"file\\\", \\\"info_file\\\": null, \\\"__current_case__\\\": 1}\", \"platform\": \"\\\"\\\"\", \"normal_aliquot_uuid}\": \"\\\"\\\"\", \"tumor_aliquot_name\": \"\\\"\\\"\", \"tumor_analysis_uuid\": \"\\\"\\\"\", \"filedate\": \"\\\"DATE\\\"\", \"tumor_bam_name\": \"\\\"\\\"\", \"input_vcf\": \"null\", \"reference\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "a68c1ba3-588b-4f51-ad00-64da31e14478"
+        }, 
+        "32": {
+            "annotation": "", 
+            "id": 32, 
+            "input_connections": {
+                "input_vcf": {
+                    "id": 30, 
+                    "output_name": "output_vcf"
+                }, 
+                "sample|info_file": {
+                    "id": 6, 
+                    "output_name": "output_yaml"
+                }
+            }, 
+            "inputs": [], 
+            "label": null, 
+            "name": "TCGA VCF ReHeader", 
+            "outputs": [
+                {
+                    "name": "output_vcf", 
+                    "type": "vcf"
+                }
+            ], 
+            "position": {
+                "left": 1718.9375, 
+                "top": 1258.015625
+            }, 
+            "post_job_actions": {
+                "RenameDatasetActionoutput_vcf": {
+                    "action_arguments": {
+                        "newname": "varscan.indel.vcf"
+                    }, 
+                    "action_type": "RenameDatasetAction", 
+                    "output_name": "output_vcf"
+                }
+            }, 
+            "tool_errors": null, 
+            "tool_id": "tcga-vcf-reheader", 
+            "tool_state": "{\"normal_aliquot_name\": \"\\\"\\\"\", \"tumor_aliquot_uuid\": \"\\\"\\\"\", \"software_name\": \"\\\"varscan\\\"\", \"software_params\": \"\\\"\\\"\", \"center\": \"\\\"wustl.edu\\\"\", \"software_version\": \"\\\"2.3.9\\\"\", \"__page__\": 0, \"normal_analysis_uuid\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"normal_aliquot_uuid\": \"\\\"\\\"\", \"normal_bam_name\": \"\\\"\\\"\", \"sample\": \"{\\\"source\\\": \\\"file\\\", \\\"info_file\\\": null, \\\"__current_case__\\\": 1}\", \"platform\": \"\\\"\\\"\", \"tumor_aliquot_name\": \"\\\"\\\"\", \"tumor_analysis_uuid\": \"\\\"\\\"\", \"filedate\": \"\\\"DATE\\\"\", \"tumor_bam_name\": \"\\\"\\\"\", \"input_vcf\": \"null\", \"reference\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_version": "0.1", 
+            "type": "tool", 
+            "user_outputs": [], 
+            "uuid": "fe3fcabb-44f6-4a62-acbd-8222506bcded"
+        }
+    }, 
+    "uuid": "7a41c39e-eb4b-40e9-9091-a928a3bf7ee9"
+}

@@ -345,9 +345,26 @@ pindel.vcf, varscan.snp.vcf, etc. It may be better to parse this info from the V
     (cmdLineOptions, cmdLineArgs) = cmdLineParser.parse_args()
     inputDir = str(cmdLineArgs[0])
     yamlDir = str(cmdLineArgs[1])
-    disease = str(cmdLineArgs[2])
-    archiveDir = disease
+    outDir = str(cmdLineArgs[2])
 
+    # parse the yaml format idf configs
+    idfObjects = []
+    for item in os.listdir(yamlDir):
+        if item.endswith('yml'):
+            idfObjects.append(idfParams(os.path.join(yamlDir, item)))
+    sanity_check(idfObjects)
+    
+    #scan input directory for different disease
+    # get patient directories in input dir. 
+    # FIXME: This assumes all patients have the same (input) disease!
+    pdirs = [ os.path.join(inputDir, d) for d in os.listdir(inputDir) if os.path.isdir(os.path.join(inputDir,d)) ]
+    for patient in pdirs:
+        for vcfFile in os.listdir(patient):
+            if vcfFile.endswith('vcf'):
+                print vcfFile
+
+
+    return
     # create output names
     # the outputdirs are of the format <domain>_<disease study>.Multicenter_mutation_calling_MC3.<archive type>.<serial index>.<revision>.<series>
     serial_index = "1"
@@ -366,13 +383,6 @@ pindel.vcf, varscan.snp.vcf, etc. It may be better to parse this info from the V
     createDir(mageTabDir)
     dataDir = os.path.join(archiveDir, outData)
     createDir(dataDir)
-
-    # parse the yaml format idf configs
-    idfObjects = []
-    for item in os.listdir(yamlDir):
-        if item.endswith('yml'):
-            idfObjects.append(idfParams(os.path.join(yamlDir, item)))
-    sanity_check(idfObjects)
 
     # create the output IDF file
     createIDFfile(os.path.join(mageTabDir, idfFilename), sdrfFilename, idfObjects)

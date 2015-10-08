@@ -300,7 +300,7 @@ def run_gen(args):
                 ["gatk_indel", 24],
                 ["MuSE", 8],
                 ["pindel", 8],
-                ["muTect", 8],
+                ["mutect", 8],
                 ["delly", 4],
                 ["gatk_bqsr", 12],
                 ["gatk_indel", 12],

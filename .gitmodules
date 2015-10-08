@@ -31,3 +31,6 @@
 [submodule "tools/icgc-pcap-tools"]
 	path = tools/icgc-pcap-tools
 	url = https://github.com/ucscCancer/icgc-pcap-tools.git
+[submodule "tools/mutect-tool"]
+	path = tools/mutect-tool
+	url = https://github.com/ucscCancer/mutect-tool.git

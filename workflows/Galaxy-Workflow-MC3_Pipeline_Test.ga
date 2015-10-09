@@ -1125,11 +1125,6 @@
                 "top": 1441.5
             }, 
             "post_job_actions": {
-                "HideDatasetActionoutput_vcf": {
-                    "action_arguments": {}, 
-                    "action_type": "HideDatasetAction", 
-                    "output_name": "output_vcf"
-                }, 
                 "RenameDatasetActionoutput_vcf": {
                     "action_arguments": {
                         "newname": "mutect.vcf"
@@ -1393,5 +1388,5 @@
             "uuid": "fe3fcabb-44f6-4a62-acbd-8222506bcded"
         }
     }, 
-    "uuid": "7a41c39e-eb4b-40e9-9091-a928a3bf7ee9"
+    "uuid": "ea745638-ad2d-4723-9643-7f51fdb43594"
 }

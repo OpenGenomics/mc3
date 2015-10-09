@@ -205,6 +205,7 @@ def run_gen(args):
         "db_snp" : "dbsnp_132_b37.leftAligned.vcf",
         "centromere" : "centromere_hg19.bed",
         "reference_genome" : "Homo_sapiens_assembly19.fasta",
+        "cosmic" : "b37_cosmic_v54_120711.vcf"
     }
 
     if args.ref_download:

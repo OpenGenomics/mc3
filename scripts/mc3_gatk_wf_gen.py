@@ -194,8 +194,8 @@ def run_gen(args):
             s.store(handle)
 
 def run_upload(args):
-    syn = synapseclient.Synapse()
-    syn.login()
+    #syn = synapseclient.Synapse()
+    #syn.login()
 
     docstore = from_url(args.out_base)
 

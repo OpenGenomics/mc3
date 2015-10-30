@@ -214,7 +214,7 @@ def run_upload(args):
                 bam_map[ts[1]] = id
     
     if not os.path.exists(args.out):
-        os.mkdir(arg.out)
+        os.mkdir(args.out)
     
     for id in bam_map:
         t = Target(uuid=id)

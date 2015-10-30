@@ -216,11 +216,11 @@ def run_upload(args):
     if not os.path.exists(args.out):
         os.mkdir(args.out)
     
-    for id in bam_map:
-        t = Target(uuid=id)
+    for key, value in bam_map.items():
+        t = Target(uuid=value)
         path = docstore.get_filename(t)
-        print "%s\t%s" % (bam_map[id], path )
-        os.symlink(path, os.path.join(args.out, "MC3." + bam_map[id] + ".bam"))
+        print "%s\t%s" % (value, path )
+        os.symlink(path, os.path.join(args.out, "MC3." + key + ".bam"))
 
     #print donor_map
     #print bam_map

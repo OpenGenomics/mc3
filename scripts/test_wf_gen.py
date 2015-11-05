@@ -7,17 +7,22 @@ import datetime
 import argparse
 import shutil
 import subprocess
-from nebula.docstore import from_url
-from nebula.docstore.util import sync_doc_dir
-from nebula.galaxy import GalaxyWorkflow
-from nebula.service import GalaxyService
-from nebula.tasks import TaskGroup, GalaxyWorkflowTask
-from nebula.target import Target
-
 from glob import glob
-
-import synapseclient
 import urllib
+
+#these non-standard libraries are only used for some of the methods, so punt till
+#later to start throwing exceptions
+try:
+    from nebula.docstore import from_url
+    from nebula.docstore.util import sync_doc_dir
+    from nebula.galaxy import GalaxyWorkflow
+    from nebula.service import GalaxyService
+    from nebula.tasks import TaskGroup, GalaxyWorkflowTask
+    from nebula.target import Target
+    import synapseclient
+except ImportError:
+    pass
+    
 
 REFDATA_PROJECT="syn3241088"
 
@@ -317,6 +322,40 @@ def run_gen(args):
                 s.set_docstore_config(cache_path=args.scratch, open_perms=True)
             s.store(handle)
 
+def run_gencwl(args):
+    
+    tools_templates = {
+        "mutect" : {
+            "tumor" : lambda x, y: { 
+                "class" : "File", 
+                "path" : os.path.abspath(os.path.join(args.exome_dir, "testexome.%s.tumour.bam" % (x))) 
+            },
+            "normal" : lambda x, y: { 
+                "class" : "File", 
+                "path" : os.path.abspath(os.path.join(args.exome_dir, "testexome.%s.normal.bam" % (x)))
+            },
+            "reference" : { "class" : "File", "path" : os.path.abspath(os.path.join(args.data_dir, "Homo_sapiens_assembly19.fasta"))},
+            "cosmic" : { "class" : "File", "path" : os.path.abspath(os.path.join(args.data_dir, "b37_cosmic_v54_120711.vcf")) },
+            "dbsnp" : { "class" : "File", "path" : os.path.abspath(os.path.join(args.data_dir, "dbsnp_132_b37.leftAligned.vcf")) },
+            "tumor_lod" : 10.0
+        }
+    }
+
+    if not os.path.exists(args.outdir):
+        os.mkdir(args.outdir)
+    
+    for k,v in fake_metadata.items():
+        for tool, tool_data in tools_templates.items():
+            o = {}
+            for t,d in tool_data.items():
+                if callable(d):
+                    o[t] = d(k, v)
+                else:
+                    o[t] = d
+            outfile = os.path.join(args.outdir, "%s.%s.json" % (k, tool))
+            with open(outfile, "w") as handle:
+                handle.write(json.dumps(o))
+                    
 def run_download(args):
     basedir = os.path.dirname( os.path.dirname(__file__) )
     exome_dir = os.path.join(basedir, "testexomes")
@@ -367,6 +406,8 @@ def run_download(args):
                         "sampleType" : tmp[2],
                         "participant_id" : fake_metadata[tmp[1]]['participant_id']
                     }))
+            if not os.path.exists(file_path + ".bai"):
+                subprocess.check_call("samtools index %s" % (file_path), shell=True)
         if tmp[-1] == "vcf":
             subprocess.check_call("bgzip %s" % (file_path), shell=True)
             subprocess.check_call("tabix %s.gz" % (file_path), shell=True)
@@ -478,6 +519,12 @@ if __name__ == "__main__":
     parser_gen.add_argument("--galaxy", default="bgruening/galaxy-stable")
     parser_gen.add_argument("--sample", action="append", default=None)
     parser_gen.set_defaults(func=run_gen)
+
+    parser_gencwl = subparsers.add_parser('gen-cwl')
+    parser_gencwl.add_argument("--outdir", default="cwl_job")
+    parser_gencwl.add_argument("--exome-dir", default="testexomes")
+    parser_gencwl.add_argument("--data-dir", default="data")
+    parser_gencwl.set_defaults(func=run_gencwl)
 
     parser_download = subparsers.add_parser('download')
     parser_download.set_defaults(func=run_download)

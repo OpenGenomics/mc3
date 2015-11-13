@@ -243,11 +243,11 @@
             "annotation": "", 
             "id": 7, 
             "input_connections": {
-                "dnaNormal|inputbam": {
+                "dnaNormal|dn_inputbam": {
                     "id": 1, 
                     "output_name": "output"
                 }, 
-                "dnaTumor|inputbam": {
+                "dnaTumor|dt_inputbam": {
                     "id": 0, 
                     "output_name": "output"
                 }, 
@@ -278,7 +278,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "radia", 
-            "tool_state": "{\"fastaFile\": \"null\", \"__page__\": 0, \"genotypeMinDepth\": \"\\\"2\\\"\", \"rnaNormal\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"genotypeMinPct\": \"\\\"0.1\\\"\", \"patientId\": \"\\\"Patient\\\"\", \"disease\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"refUrl\": \"\\\"\\\"\", \"dataSource\": \"\\\"\\\"\", \"rnaTumor\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"dnaNormal\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\", \\\"inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}}\", \"dnaTumor\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\", \\\"inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}}\", \"refId\": \"\\\"HG19\\\"\", \"sequencingPlatform\": \"\\\"\\\"\"}", 
+            "tool_state": "{\"fastaFile\": \"null\", \"__page__\": 0, \"genotypeMinDepth\": \"\\\"2\\\"\", \"rnaNormal\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"genotypeMinPct\": \"\\\"0.1\\\"\", \"patientId\": \"\\\"Patient\\\"\", \"disease\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"refUrl\": \"\\\"\\\"\", \"dataSource\": \"\\\"\\\"\", \"rnaTumor\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"dnaNormal\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\", \\\"dn_inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}}\", \"dnaTumor\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\", \\\"dt_inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}}\", \"refId\": \"\\\"HG19\\\"\", \"sequencingPlatform\": \"\\\"\\\"\"}", 
             "tool_version": "0.1.0", 
             "type": "tool", 
             "user_outputs": [], 
@@ -1170,7 +1170,7 @@
             "post_job_actions": {
                 "RenameDatasetActionoutput_vcf": {
                     "action_arguments": {
-                        "newname": "radia.vcf"
+                        "newname": "radia.dna.vcf"
                     }, 
                     "action_type": "RenameDatasetAction", 
                     "output_name": "output_vcf"
@@ -1178,7 +1178,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "tcga-vcf-reheader", 
-            "tool_state": "{\"normal_aliquot_name\": \"\\\"\\\"\", \"tumor_aliquot_uuid\": \"\\\"\\\"\", \"software_name\": \"\\\"radia\\\"\", \"software_params\": \"\\\"\\\"\", \"center\": \"\\\"ucsc.edu\\\"\", \"software_version\": \"\\\"1.0\\\"\", \"__page__\": 0, \"normal_analysis_uuid\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"normal_aliquot_uuid\": \"\\\"\\\"\", \"normal_bam_name\": \"\\\"\\\"\", \"sample\": \"{\\\"source\\\": \\\"file\\\", \\\"info_file\\\": null, \\\"__current_case__\\\": 1}\", \"platform\": \"\\\"\\\"\", \"tumor_aliquot_name\": \"\\\"\\\"\", \"tumor_analysis_uuid\": \"\\\"\\\"\", \"filedate\": \"\\\"DATE\\\"\", \"tumor_bam_name\": \"\\\"\\\"\", \"input_vcf\": \"null\", \"reference\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", 
+            "tool_state": "{\"__page__\": 0, \"software_name\": \"\\\"radia\\\"\", \"software_params\": \"\\\"\\\"\", \"center\": \"\\\"ucsc.edu\\\"\", \"software_version\": \"\\\"1.0\\\"\", \"__rerun_remap_job_id__\": null, \"sample\": \"{\\\"source\\\": \\\"file\\\", \\\"info_file\\\": null, \\\"__current_case__\\\": 1}\", \"input_vcf\": \"null\"}", 
             "tool_version": "0.1", 
             "type": "tool", 
             "user_outputs": [], 

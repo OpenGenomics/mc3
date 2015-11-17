@@ -1,0 +1,152 @@
+{
+  "name": "varscan-tool",
+  "title": "varscan variant caller 2.3.9",
+  "dxapi": "1.0.0",
+  "inputSpec": [
+    {
+      "patterns": [
+        "*.pileup", "*.mpileup"
+      ],
+      "label": "normal mpileup file",
+      "help": "The SAMtools mpileup file for normal sample",
+      "name": "normal_pileup",
+      "class": "file"
+    },
+    {
+      "patterns": [
+        "*.pileup", "*.mpileup"
+      ],
+      "label": "tumor mpileup file",
+      "help": "The SAMtools mpileup file for tumor sample",
+      "name": "tumor_pileup",
+      "class": "file"
+    },
+    {
+      "label": "output prefix",
+      "help": "Prefix for naming output file",
+      "name": "output",
+      "class": "string",
+      "optional": true
+    },
+    {
+      "label": "min-coverage",
+      "help": "Minimum coverage in normal and tumor to call variant",
+      "name": "min_coverage",
+      "class": "int",
+      "default": 3
+    },
+    {
+      "label": "min-coverage-normal",
+      "help": "Minimum coverage in normal to call somatic",
+      "name": "min_coverage_normal",
+      "class": "int",
+      "optional": true,
+      "default": 8
+    },
+    {
+      "label": "min-coverage-tumor",
+      "help": "Minimum coverage in tumor to call somatic",
+      "name": "min_coverage_tumor",
+      "class": "int",
+      "optional": true,
+      "default": 6
+    },
+    {
+      "label": "min-var-freq-het",
+      "help": "Minimum variant frequency to call a heterozygote",
+      "name": "min_var_freq",
+      "class": "float",
+      "default": 0.08
+    },
+    {
+      "label": "min-var-freq-for-hom",
+      "help": "Minimum variant frequency to call a homozygote",
+      "name": "min_freq_for_hom",
+      "class": "float",
+      "default": 0.75
+    },
+    {
+      "label": "normal-purity",
+      "help": "Estimated purity (non-tumor content) of normal sample",
+      "name": "normal_purity",
+      "class": "float",
+      "optional": true,
+      "default": 1.0
+    },
+    {
+      "label": "tumor-purity",
+      "help": "Estimated purity (tumor content) of tumor sample",
+      "name": "tumor_purity",
+      "class": "float",
+      "optional": true,
+      "default": 1.0
+    },
+    {
+      "label": "p-value-het",
+      "help": "P-value threshold to call a heterozygote",
+      "name": "p_value",
+      "class": "float",
+      "default": 0.99
+    },
+    {
+      "label": "somatic-p-value",
+      "help": "P-value threshold to call a somatic site",
+      "name": "somatic_p_value",
+      "class": "float",
+      "default": 0.05
+    },
+    {
+      "label": "strand-filter",
+      "help": "Removes variants with >90% strand bias",
+      "name": "strand_filter",
+      "class": "boolean",
+      "optional": true,
+      "default": false
+    },
+    {
+      "label": "Output All",
+      "help": "Outputs all compared positions even if non-variant",
+      "name": "validation",
+      "class": "boolean",
+      "optional": true,
+      "default": false
+    }
+  ],
+  "outputSpec": [
+    {
+      "patterns": [
+        "*.vcf"
+      ],
+      "label": "varscan.somatic.snp.vcf",
+      "help": "Somatic SNP called by Varscan",
+      "name": "snp_vcf",
+      "class": "file"
+    },
+    {
+      "patterns": [
+        "*.vcf"
+      ],
+      "label": "varscan.somatic.indel.vcf",
+      "help": "Somatic indel called by Varscan",
+      "name": "indel_vcf",
+      "class": "file"
+    }
+  ],
+  "runSpec": {
+    "execDepends": [
+      {
+        "name": "samtools"
+      },
+      {
+        "name": "openjdk-6-jre-headless"
+      }
+    ],
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem1_ssd1_x8"
+      }
+    },
+    "file": "src/code.sh",
+    "interpreter": "bash"
+  }
+}

@@ -1,0 +1,14 @@
+--vcf-file              the input VCF file. Must have a GT field.
+--bam-file              the BAM file of the sample you are filtering on. Typically the tumor.
+--sample                the sample name of the sample you want to filter on in the VCF file.
+--reference-sequence    a fasta containing the reference sequence the BAM file was aligned to.
+--output                the filename of the output VCF file
+--min-read-pos          minimum average relative distance from start/end of read
+--min-var-freq          minimum variant allele frequency
+--min-var-count         minimum number of variant-supporting reads
+--min-strandedness      minimum representation of variant allele on each strand
+--max-mm-qualsum-diff   maximum difference of mismatch quality sum between variant and reference reads (paralog filter)
+--max_var_mm_qualsum    maximum mismatch quality sum of reference-supporting reads
+--max-mapqual-diff      maximum difference of mapping quality between variant and reference reads
+--max-readlen-diff      maximum difference of average supporting read length between variant and reference reads (paralog filter)
+--min-var-dist-3        minimum average distance to effective 3prime end of read (real end or Q2) for variant-supporting reads

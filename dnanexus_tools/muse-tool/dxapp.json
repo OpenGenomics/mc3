@@ -1,0 +1,91 @@
+{
+  "name": "muse-tool",
+  "title": "muse",
+  "version": "0.0.1",
+  "inputSpec": [
+    {
+      "name": "tumor_bam",
+      "label": "Tumor BAM",
+      "help": "Tumor BAM",
+      "class": "file",
+      "patterns": ["*.bam"]
+    },
+    {
+      "name": "tumor_bai",
+      "label": "Tumor BAM index",
+      "help": "Tumor BAM index",
+      "class": "file",
+      "patterns": ["*.bai"]
+    },
+    {
+      "name": "normal_bam",
+      "label": "Normal BAM",
+      "help": "Normal BAM",
+      "class": "file",
+      "patterns": ["*.bam"]
+    },
+    {
+      "name": "normal_bai",
+      "label": "Normal BAM index",
+      "help": "Normal BAM index",
+      "class": "file",
+      "patterns": ["*.bai"]
+    },
+    {
+      "name": "reference",
+      "label": "Reference genome",
+      "help": "Reference genome used to align BAMs",
+      "class": "file",
+      "patterns": ["*.fa.gz"]
+    },
+    {
+      "name": "dbsnp",
+      "label": "dbSNP VCF",
+      "help": "VCF containing dbSNP variants",
+      "class": "file",
+      "optional": true,
+      "patterns": ["*.vcf*"]
+    },
+    {
+      "name": "muse",
+      "label": "MuSE Version",
+      "help": "Version of MuSE to run",
+      "class": "string",
+      "default": "MuSEv1.0rc",
+      "choices": ["MuSEv0.9.9.5", "MuSEv1.0rc"]
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "help": "Mode to run MuSE in",
+      "class": "string",
+      "default": "wxs",
+      "choices": ["wxs", "wgs"]
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "mutations",
+      "label": "MuSE VCF",
+      "help": "Mutations in VCF format",
+      "class": "file",
+      "patterns": ["*.vcf"]
+    }
+  ],
+  "runSpec": {
+    "interpreter": "bash",
+    "file": "src/script.sh",
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem1_ssd1_x8"
+      }
+    },
+    "execDepends": [
+      { "name": "samtools" },
+      { "name": "tabix" },
+      { "name": "pysam", "package_manager": "pip"}
+    ]
+  },
+  "access": {"network": ["*"]}
+}
+

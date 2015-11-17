@@ -1,0 +1,55 @@
+{
+  "name": "tcga-vcf-filter-tool",
+  "title": "TCGA VCF filter",
+  "dxapi": "1.0.0",
+  "inputSpec": [
+    {
+      "patterns": [
+        "*.vcf"
+      ],
+      "label": "Input VCF",
+      "help": "Input VCF",
+      "name": "input_vcf",
+      "class": "file"
+    },
+    {
+      "label": "Allowed Sequences",
+      "name": "filter_text",
+      "class": "string",
+      "default": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y,MT"
+    },
+    {
+      "label": "Filter Rejected calls",
+      "name": "filterRejects",
+      "class": "boolean",
+      "default": true
+    },
+    {
+      "label": "Output prefix",
+      "help": "Output prefix",
+      "name": "output_vcf",
+      "class": "string",
+      "optional": true
+    }
+  ],
+  "outputSpec": [
+    {
+      "patterns": [
+        "*.vcf"
+      ],
+      "label": "Output VCF",
+      "help": "Output VCF",
+      "name": "output_vcf",
+      "class": "file"
+    }
+  ],
+  "runSpec": {
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem1_ssd1_x4"
+      }
+    },
+    "file": "src/code.sh",
+    "interpreter": "bash"
+  }
+}

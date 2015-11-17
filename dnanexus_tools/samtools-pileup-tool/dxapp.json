@@ -1,0 +1,99 @@
+{
+  "name": "samtools-pileup-tool",
+  "title": "samtools pileup 1.2",
+  "dxapi": "1.0.0",
+  "inputSpec": [
+    {
+      "patterns": [
+        "*.bam"
+      ],
+      "label": "Input BAM",
+      "help": "Input BAM",
+      "name": "input1",
+      "class": "file"
+    },
+    {
+      "patterns": [
+        "*.bai"
+      ],
+      "label": "Input BAM Index",
+      "help": "Input BAM Index",
+      "name": "input1_index",
+      "class": "file"
+    },
+    {
+      "label": "Output prefix",
+      "help": "Output prefix",
+      "name": "output1",
+      "class": "string",
+      "optional": true
+    },
+    {
+      "patterns": [
+        "*.fa",
+        "*.fasta"
+      ],
+      "label": "Reference genome",
+      "help": "Reference genome used to align BAMs",
+      "name": "reference",
+      "class": "file"
+    },
+    {
+      "label": "Print lastCol",
+      "help": "Whether or not to print the mapping quality as the last column",
+      "name": "lastCol",
+      "class": "boolean",
+      "default": true
+    },
+    {
+      "label": "Indels only",
+      "help": "Whether or not to print only output pileup lines containing indels",
+      "name": "indels",
+      "class": "boolean",
+      "default": false
+    },
+    {
+      "label": "No BAQ",
+      "help": " disable BAQ computation",
+      "name": "noBaq",
+      "class": "boolean",
+      "default": true
+    },
+    {
+      "label": "Min MAPQ",
+      "help": "Skip reads with mapQ smaller than this value",
+      "name": "minMapq",
+      "class": "int",
+      "default": 1
+    }
+  ],
+  "outputSpec": [
+    {
+      "patterns": [
+        "*.pileup"
+      ],
+      "label": "Output Pileup",
+      "help": "Output Pileup",
+      "name": "pileup",
+      "class": "file"
+    }
+  ],
+  "runSpec": {
+    "execDepends": [
+      {
+        "package_manager": "pip",
+        "name": "bx-python"
+      }
+    ],
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem1_ssd1_x8"
+      }
+    },
+    "file": "src/code.sh",
+    "interpreter": "bash"
+  },
+  "access": {
+    "network": ["*"]
+  }
+}

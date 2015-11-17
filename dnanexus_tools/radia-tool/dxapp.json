@@ -1,0 +1,130 @@
+{
+  "name": "radia-tool",
+  "title": "radia",
+  "version": "0.0.1",
+  "inputSpec": [
+    {
+      "name": "dnaTumor",
+      "label": "Tumor DNA BAM",
+      "help": "Tumor DNA BAM",
+      "class": "file",
+      "patterns": ["*.bam"]
+    },
+    {
+      "name": "dnaTumorBai",
+      "label": "Tumor DNA BAI",
+      "help": "Tumor DNA BAI",
+      "class": "file",
+      "patterns": ["*.bai"],
+      "optional": true
+    },
+    {
+      "name": "dnaNormal",
+      "label": "Normal DNA BAM",
+      "help": "Normal DNA BAM",
+      "class": "file",
+      "patterns": ["*.bam"]
+    },
+    {
+      "name": "dnaNormalBai",
+      "label": "Normal DNA BAI",
+      "help": "Normal DNA BAI",
+      "class": "file",
+      "patterns": ["*.bai"],
+      "optional": true
+    },
+    {
+      "name": "rnaTumor",
+      "label": "Tumor RNA BAM",
+      "help": "Tumor RNA BAM",
+      "class": "file",
+      "patterns": ["*.bam"],
+      "optional": true
+    },
+    {
+      "name": "rnaTumorBai",
+      "label": "Tumor RNA BAI",
+      "help": "Tumor RNA BAI",
+      "class": "file",
+      "patterns": ["*.bai"],
+      "optional": true
+    },
+    {
+      "name": "rnaNormal",
+      "label": "Normal RNA BAM",
+      "help": "Normal RNA BAM",
+      "class": "file",
+      "patterns": ["*.bam"],
+      "optional": true
+    },
+    {
+      "name": "rnaNormalBai",
+      "label": "Normal RNA BAI",
+      "help": "Normal RNA BAI",
+      "class": "file",
+      "patterns": ["*.bai"],
+      "optional": true
+    },
+    {
+      "name": "fasta",
+      "label": "Reference genome",
+      "help": "Reference genome used to align BAMs",
+      "class": "file",
+      "patterns": ["*.fa*"]
+    },
+    {
+      "name": "patientId",
+      "label": "Patient ID",
+      "help": "Patient ID or samples",
+      "class": "string",
+      "optional": true
+    },
+    {
+      "name": "radia_options",
+      "label": "Radia options",
+      "help": "Options to pass to radia.py",
+      "class": "string",
+      "default": ""
+    },
+    {
+      "name": "radia_filter_options",
+      "label": "Radia filter options",
+      "help": "Options to pass to radia_filter.py",
+      "class": "string",
+      "default": "--makeTCGAcompliant --filter-reject --filter-germline"
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "output_vcf",
+      "label": "Radia VCF",
+      "help": "Mutations in VCF format",
+      "class": "file",
+      "patterns": ["*.vcf"]
+    },
+    {
+      "name": "filtered_output_vcf",
+      "label": "Filtered Radia VCF",
+      "help": "Filtered mutations in VCF format",
+      "class": "file",
+      "patterns": ["*.vcf"]
+    }
+  ],
+  "runSpec": {
+    "interpreter": "bash",
+    "file": "src/script.sh",
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem1_ssd1_x8"
+      }
+    },
+    "execDepends": [
+      { "name": "samtools" },
+      { "name": "tabix" },
+      { "name": "pysam", "package_manager": "pip"},
+      { "name": "PyVCF", "package_manager": "pip"}
+    ]
+  },
+  "access": {"network": ["*"]}
+}
+

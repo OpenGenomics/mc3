@@ -1,0 +1,144 @@
+{
+  "name": "somaticsniper-tool",
+  "title": "somaticsniper",
+  "dxapi": "1.0.0",
+  "inputSpec": [
+    {
+      "patterns": [
+        "*.bam"
+      ],
+      "label": "TumorBAM",
+      "help": "Tumor BAM",
+      "name": "tumor",
+      "class": "file"
+    },
+    {
+      "patterns": [
+        "*.bam"
+      ],
+      "label": "NormalBAM",
+      "help": "Normal BAM",
+      "name": "normal",
+      "class": "file"
+    },
+    {
+      "patterns": [
+        "*.fa",
+        "*.fasta"
+      ],
+      "label": "Reference genome",
+      "help": "Reference genome in FASTA format",
+      "name": "reference",
+      "class": "file"
+    },
+    {
+      "label": "output prefix",
+      "help": "Prefix of output file",
+      "name": "output",
+      "class": "string",
+      "optional": true
+    },
+    {
+      "label": "Tumor sample id",
+      "help": "Tumor sample id (for VCF header)",
+      "name": "tumor_name",
+      "class": "string",
+      "default": "TUMOR"
+    },
+    {
+      "label": "Normal sample id",
+      "help": "Tumor sample id (for VCF header)",
+      "name": "normal_name",
+      "class": "string",
+      "default": "NORMAL"
+    },
+    {
+      "label": "MAP cutoff",
+      "help": "Filter reads with mapping quality less than this value",
+      "name": "mapq",
+      "class": "int",
+      "default": 1,
+      "optional": true
+    },
+    {
+      "label": "Somatic quality cutoff",
+      "help": "Filter snv output with quality less than this value",
+      "name": "somaticq",
+      "class": "int",
+      "default": 40,
+      "optional": true
+    },
+    {
+      "label": "Do not report LOH variants",
+      "help": "Do not report LOH variants as determined by genotypes",
+      "name": "loh",
+      "class": "boolean",
+      "default": true,
+      "optional": true
+    },
+    {
+      "label": "Do not report Gain of Reference variants",
+      "help": "Do not report Gain of Reference variants as determined by genotypes",
+      "name": "gor",
+      "class": "boolean",
+      "default": true,
+      "optional": true
+    },
+    {
+      "label": "Disable priors",
+      "help": "Disable priors in the somatic calculation",
+      "name": "dis_priors",
+      "class": "boolean",
+      "default": false,
+      "optional": true
+    },
+    {
+      "label": "Use prior probabilities",
+      "help": "Prior probabilities accounting for somatic mutation rate",
+      "name": "use_priorp",
+      "class": "boolean",
+      "default": true,
+      "optional": true
+    },
+    {
+      "label": "Prior probability",
+      "help": "Prior probability of a somatic mutation",
+      "name": "prior_p",
+      "class": "float",
+      "default": 0.01,
+      "optional": true
+    }
+  ],
+  "outputSpec": [
+    {
+      "patterns": [
+        "*.vcf"
+      ],
+      "label": "Somatic Sniper vcf",
+      "help": "Somatic Sniper vcf",
+      "name": "vcf",
+      "class": "file"
+    }
+  ],
+  "runSpec": {
+    "execDepends": [
+      {
+        "name": "libncurses-dev"
+      },
+      {
+        "package_manager": "pip",
+        "name": "pysam"
+      }
+    ],
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem1_ssd1_x4"
+      }
+    },
+    "file": "src/code.sh",
+    "interpreter": "bash"
+  },
+  "access": {
+    "network": ["*"]
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "name": "tcga-vcf-reheader",
+  "title": "TCGA VCF reheader",
+  "dxapi": "1.0.0",
+  "inputSpec": [
+    {
+      "patterns": [
+        "*.vcf"
+      ],
+      "label": "Input VCF",
+      "help": "Input VCF",
+      "name": "input_vcf",
+      "class": "file"
+    },
+    {
+      "label": "Software Name",
+      "help": "Software Name",
+      "name": "software_name",
+      "class": "string"
+    },
+    {
+      "label": "Software Version",
+      "help": "Software name",
+      "name": "software_version",
+      "class": "string"
+    },
+    {
+      "label": "Software Params",
+      "help": "Software Params",
+      "name": "software_params",
+      "class": "string",
+      "optionl": true
+    },
+    {
+      "label": "Center",
+      "help": "center",
+      "name": "center",
+      "class": "string"
+    },
+    {
+      "label": "Reference",
+      "help": "reference_genome",
+      "name": "reference_genome",
+      "class": "string",
+      "optional": true
+    },
+    {
+      "label": "Platform",
+      "help": "Platform",
+      "name": "platform",
+      "class": "string",
+      "default": "Illumina"
+    },
+    {
+      "label": "participant uuid",
+      "help": "participant uuid",
+      "name": "participant_uuid",
+      "class": "string"
+    },
+    {
+      "label": "disease code",
+      "help": "disease code",
+      "name": "disease_code",
+      "class": "string",
+      "default": "XXXX"
+    },
+    {
+      "label": "Normal Analysis UUID",
+      "help": "Normal Analysis UUID",
+      "name": "normal_analysis_uuid",
+      "class": "string"
+    },
+    {
+      "label": "Normal Bam Name",
+      "help": "Normal Bam Name",
+      "name": "normal_bam_name",
+      "class": "string"
+    },
+    {
+      "label": "Normal Aliquot UUID",
+      "help": "Normal Aliquot UUID",
+      "name": "normal_aliquot_uuid",
+      "class": "string"
+    },
+    {
+      "label": "Normal Aliquot Barcode",
+      "help": "Normal Aliquot Barcode",
+      "name": "normal_aliquot_barcode",
+      "class": "string"
+    },
+        {
+      "label": "Tumor Analysis UUID",
+      "help": "Tumor Analysis UUID",
+      "name": "tumor_analysis_uuid",
+      "class": "string"
+    },
+    {
+      "label": "Tumor Bam Name",
+      "help": "Tumor Bam Name",
+      "name": "tumor_bam_name",
+      "class": "string"
+    },
+    {
+      "label": "Tumor Aliquot UUID",
+      "help": "Tumor Aliquot UUID",
+      "name": "tumor_aliquot_uuid",
+      "class": "string"
+    },
+    {
+      "label": "Tumor Aliquote Barcode",
+      "help": "Tumor Aliquot Barcode",
+      "name": "tumor_aliquot_barcode",
+      "class": "string"
+    },
+    {
+      "label": "Sample Info",
+      "help": "Sample Info",
+      "name": "info_file",
+      "class": "file",
+      "optional": true
+    },
+    {
+      "label": "Output prefix",
+      "help": "Output prefix",
+      "name": "output_vcf",
+      "class": "string",
+      "optional": true
+    }
+  ],
+  "outputSpec": [
+    {
+      "patterns": [
+        "*.vcf"
+      ],
+      "label": "Output VCF",
+      "help": "Output VCF",
+      "name": "output_vcf",
+      "class": "file"
+    }
+  ],
+  "runSpec": {
+    "execDepends": [
+      {
+        "package_manager": "pip",
+        "name": "pyyaml"
+      }
+    ],
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem1_ssd1_x4"
+      }
+    },
+    "file": "src/code.sh",
+    "interpreter": "bash"
+  },
+  "access": {
+    "network": ["*"]
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "name": "pindel-tool",
+  "title": "pindel",
+  "dxapi": "1.0.0",
+  "inputSpec": [
+    {
+      "patterns": [
+        "*.bam"
+      ],
+      "label": "TumorBAM",
+      "help": "Tumor BAM",
+      "name": "tumorInputBamFile",
+      "class": "file"
+    },
+    {
+      "patterns": [
+        "*.bam"
+      ],
+      "label": "NormalBAM",
+      "help": "Normal BAM",
+      "name": "normalInputBamFile",
+      "class": "file",
+      "optional": true
+    },
+    {
+      "patterns": [
+        "*.bai"
+      ],
+      "label": "TumorBAI",
+      "help": "Tumor BAM Index",
+      "name": "tumorInputBaiFile",
+      "class": "file"
+    },
+    {
+      "patterns": [
+        "*.bai"
+      ],
+      "label": "NormalBAI",
+      "help": "Normal BAM Index",
+      "name": "normalInputBaiFile",
+      "class": "file",
+      "optional": true
+    },
+    {
+      "patterns": [
+        "*.fa",
+        "*.fasta"
+      ],
+      "label": "Reference genome",
+      "help": "Reference genome in FASTA format",
+      "name": "inputReferenceFile",
+      "class": "file"
+    },
+    {
+      "label": "Reference Name",
+      "help": "Name of the Reference Genome",
+      "name": "referenceName",
+      "class": "string",
+      "default": "HG19"
+    },
+    {
+      "label": "Tag",
+      "help": "Tag for this sample",
+      "name": "sampleTag",
+      "class": "string",
+      "default": "sample"
+    },
+    {
+      "label": "Tumor insert size",
+      "help": "Manually defined insert size of reads",
+      "name": "tumorInsertSize",
+      "class": "int",
+      "optional": true
+    },
+    {
+      "label": "Normal insert size",
+      "help": "Manually defined insert size of reads",
+      "name": "normalInsertSize",
+      "class": "int",
+      "optional": true
+    },
+    {
+      "label": "Somatic Filter VAF",
+      "name": "somatic_vaf",
+      "class": "float",
+      "default": 0.08
+    },
+    {
+      "label": "Somatic Filter COV",
+      "name": "somatic_cov",
+      "class": "int",
+      "default": 20
+    },
+    {
+      "label": "Somatic Filter HOM",
+      "name": "somatic_hom",
+      "class": "int",
+      "default": 6
+    },
+    {
+      "label": "window size",
+      "name": "window_size",
+      "help": "for saving RAM, divides the reference in bins of X million bases and only analyzes the reads that belong in the current bin, (default=5 million)",
+      "class": "int",
+      "default": 5
+    },
+    {
+      "label": "Report inversions",
+      "name": "reportInversions",
+      "class": "boolean",
+      "default": true
+    },
+    {
+      "label": "Report duplications",
+      "name": "reportDuplications",
+      "class": "boolean",
+      "default": true
+    },
+    {
+      "label": "Report long insertions",
+      "name": "reportLongInsertions",
+      "class": "boolean",
+      "default": true
+    },
+    {
+      "label": "Report breakpoints",
+      "name": "reportBreakpoints",
+      "class": "boolean",
+      "default": true
+    },
+    {
+      "label": "Report only close mapped reads",
+      "name": "report_only_close_mapped_reads",
+      "help": "do not search for SVs, only report reads of which only one end (the one closest to the mapped read of the paired-end read) could be mapped (the output file can then be used as an input file for another run of pindel, which may save size if you need to transfer files).",
+      "class": "boolean",
+      "default": false
+    },
+    {
+      "label": "Report interchromosomal events",
+      "name": "report_interchromosomal_events",
+      "help": "search for interchromosomal events. Note: will require the computer to have at least 4 GB of memory",
+      "class": "boolean",
+      "default": false
+    },
+    {
+      "label": "min inversion size",
+      "name": "min_inversion_size",
+      "class": "int",
+      "default": 50
+    },
+    {
+      "label": "output prefix",
+      "help": "Prefix of output file",
+      "name": "output",
+      "class": "string",
+      "optional": true
+    },
+    {
+      "label": "advanced options",
+      "help": "adanved option passed as cmd line args to pindel.py wrapper",
+      "name": "advanced_opts",
+      "class": "string",
+      "optional": true,
+      "default": "--sensitivity 0.95 --balance_cutoff 0 --anchor_quality 0 --NM 2 --minimum_support_for_event 3 --additional_mismatch 1 --maximum_allowed_mismatch_rate 0.02 --min_num_matched_bases 30 --max_range_index 4 --min_perfect_match_around_BP 3 --min_inversion_size 50 --sequencing_error_rate 0.01"
+    }
+  ],
+  "outputSpec": [
+    {
+      "label": "Output raw file",
+      "help": "Pindel output raw file",
+      "name": "outputRawFile",
+      "class": "file"
+    },
+    {
+      "label": "Output vcf",
+      "help": "Pindel output vcf",
+      "name": "outputVcf",
+      "class": "file"
+    },
+    {
+      "label": "Output somatic vcf",
+      "help": "Pindel output somatic vcf",
+      "name": "outputSomaticVcf",
+      "class": "file",
+      "optional": true
+    }
+  ],
+  "runSpec": {
+    "execDepends": [
+      {
+        "name": "libncurses-dev"
+      },
+      {
+        "package_manager": "pip",
+        "name": "PyVCF"
+      }
+    ],
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem3_ssd1_x8"
+      }
+    },
+    "file": "src/code.sh",
+    "interpreter": "bash"
+  },
+  "access": {
+    "network": ["*"]
+  }
+}

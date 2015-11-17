@@ -1,0 +1,136 @@
+{
+  "name": "fpfilter-tool",
+  "title": "fpfilter-tool",
+  "dxapi": "1.0.0",
+  "inputSpec": [
+    {
+      "patterns": [
+        "*.vcf"
+      ],
+      "label": "VCF file",
+      "help": "The input VCF file. Must have a GT field.",
+      "name": "vcf",
+      "class": "file"
+    },
+    {
+      "patterns": [
+        "*.bam"
+      ],
+      "label": "bam file",
+      "help": "The BAM file of the sample you are filtering on. Typically the tumor.",
+      "name": "bam",
+      "class": "file"
+    },
+    {
+      "patterns": [
+        "*.fasta", "*.fa"
+      ],
+      "label": "Reference Genome",
+      "help": "A fasta containing the reference sequence the BAM file was aligned to",
+      "name": "reference",
+      "class": "file"
+    },
+    {
+      "label": "Sample",
+      "help": "The sample name of the sample you want to filter on in the VCF file.",
+      "name": "sample",
+      "class": "string",
+      "default": "TUMOR"
+    },
+    {
+      "label": "Output Prefix",
+      "help": "Prefix of the output vcf file",
+      "name": "output",
+      "class": "string",
+      "optional": true
+    },
+    {
+      "label": "Min Read Pos",
+      "help": "Minimum average relative distance from start/end of read.",
+      "name": "min_read_pos",
+      "class": "float",
+      "default": 0.1
+    },
+    {
+      "label": "Min Var Freq",
+      "help": "Minimum variant allele frequency.",
+      "name": "min_var_freq",
+      "class": "float",
+      "default": 0.05
+    },
+    {
+      "label": "min-Min Var Count-tumor",
+      "help": "Minimum number of variant-supporting reads.",
+      "name": "min_var_count",
+      "class": "int",
+      "default": 4
+    },
+    {
+      "label": "Min Strandness",
+      "help": "Minimum representation of variant allele on each strand.",
+      "name": "min_strandness",
+      "class": "float",
+      "default": 0.01
+    },
+    {
+      "label": "Max mm qualsum diff",
+      "help": "Maximum difference of mismatch quality sum between variant and reference reads (paralog filter).",
+      "name": "max_mm_qualsum_diff",
+      "class": "int",
+      "default": 50
+    },
+    {
+      "label": "Max var mm qualsum",
+      "help": "Maximum mismatch quality sum of reference-supporting reads.",
+      "name": "max_var_mm_qualsum",
+      "class": "int",
+      "default": 100
+    },
+    {
+      "label": "Max mapqual diff",
+      "help": "Maximum difference of mapping quality between variant and reference reads.",
+      "name": "max_mapqual_diff",
+      "class": "int",
+      "default": 30
+    },
+    {
+      "label": "Max readlen diff",
+      "help": "Maximum difference of average supporting read length between variant and reference reads (paralog filter)",
+      "name": "max_readlen_diff",
+      "class": "int",
+      "default": 25
+    },
+    {
+      "label": "Min var dist 3",
+      "help": "minimum average distance to effective 3prime end of read (real end or Q2) for variant-supporting reads",
+      "name": "min_var_dist_3",
+      "class": "float",
+      "default": 0.2
+    }
+  ],
+  "outputSpec": [
+    {
+      "patterns": [
+        "*.vcf"
+      ],
+      "label": "Fpfilter annotated VCF",
+      "help": "Fpfilter annotated VCF",
+      "name": "annotated_output",
+      "class": "file"
+    }
+  ],
+  "runSpec": {
+    "execDepends": [
+      {
+        "name": "samtools"
+      }
+    ],
+    "systemRequirements": {
+      "main": {
+        "instanceType": "mem1_ssd1_x8"
+      }
+    },
+    "file": "src/code.sh",
+    "interpreter": "bash"
+  }
+}

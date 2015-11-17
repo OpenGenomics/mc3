@@ -283,11 +283,11 @@
             "annotation": "", 
             "id": 7, 
             "input_connections": {
-                "dnaNormal|inputbam": {
+                "dnaNormal|dn_inputbam": {
                     "id": 1, 
                     "output_name": "outfile"
                 }, 
-                "dnaTumor|inputbam": {
+                "dnaTumor|dt_inputbam": {
                     "id": 0, 
                     "output_name": "outfile"
                 }, 
@@ -318,7 +318,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "radia", 
-            "tool_state": "{\"fastaFile\": \"null\", \"__page__\": 0, \"genotypeMinDepth\": \"\\\"2\\\"\", \"rnaNormal\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"genotypeMinPct\": \"\\\"0.1\\\"\", \"patientId\": \"\\\"Patient\\\"\", \"disease\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"refUrl\": \"\\\"\\\"\", \"dataSource\": \"\\\"\\\"\", \"rnaTumor\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"dnaNormal\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\", \\\"inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}}\", \"dnaTumor\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\", \\\"inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}}\", \"refId\": \"\\\"HG19\\\"\", \"sequencingPlatform\": \"\\\"\\\"\"}", 
+            "tool_state": "{\"fastaFile\": \"null\", \"__page__\": 0, \"genotypeMinDepth\": \"\\\"2\\\"\", \"rnaNormal\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"genotypeMinPct\": \"\\\"0.1\\\"\", \"patientId\": \"\\\"Patient\\\"\", \"disease\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"refUrl\": \"\\\"\\\"\", \"dataSource\": \"\\\"\\\"\", \"rnaTumor\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"dnaNormal\": \"{\\\"use\\\": \\\"yes\\\", \\\"__current_case__\\\": 0, \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}, \\\"MinBaseQuality\\\": \\\"10\\\", \\\"dn_inputbam\\\": null, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"MinTotalBases\\\": \\\"4\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\"}\", \"dnaTumor\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\", \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"dt_inputbam\\\": null, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}}\", \"refId\": \"\\\"HG19\\\"\", \"sequencingPlatform\": \"\\\"\\\"\"}", 
             "tool_version": "0.1.0", 
             "type": "tool", 
             "user_outputs": [], 
@@ -808,7 +808,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "vcf-filter", 
-            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"filter_text\": \"\\\"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y,MT\\\"\", \"input_vcf\": \"null\", \"filterRejects\": \"\\\"True\\\"\"}", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"filter_text\": \"\\\"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y,MT\\\"\", \"input_vcf\": \"null\", \"filterRejects\": \"\\\"False\\\"\"}", 
             "tool_version": "0.1", 
             "type": "tool", 
             "user_outputs": [], 
@@ -1428,5 +1428,5 @@
             "uuid": "fe3fcabb-44f6-4a62-acbd-8222506bcded"
         }
     }, 
-    "uuid": "3662a114-0338-4f31-a1e1-a5e18f64ae84"
+    "uuid": "78be65b2-6e14-4c2c-bb53-6584018880e6"
 }

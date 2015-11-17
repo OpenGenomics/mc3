@@ -70,7 +70,8 @@ def run_gen(args):
         "GRCh37-lite.fa",
         "GRCh37-lite-+-HPV_Redux-build.fa",
         "GRCh37-lite_WUGSC_variant_1.fa.gz",
-        "GRCh37-lite_WUGSC_variant_2.fa.gz"
+        "GRCh37-lite_WUGSC_variant_2.fa.gz",
+        "hg19_M_rCRS.fa.gz"
     ]
 
     if args.ref_download:
@@ -86,54 +87,86 @@ def run_gen(args):
         dm[k] = { "uuid" : hit }
 
     mc3_dna_workflow = GalaxyWorkflow(ga_file="workflows/Galaxy-Workflow-MC3_Pipeline_CGHub_DNA.ga")
-	mc3_dnarna_workflow = GalaxyWorkflow(ga_file="workflows/Galaxy-Workflow-MC3_Pipeline_CGHub_DNA_RNA.ga")
+    mc3_dnarna_workflow = GalaxyWorkflow(ga_file="workflows/Galaxy-Workflow-MC3_Pipeline_CGHub_DNA_RNA.ga")
+
+    rna_hit = None
+    for a in docstore.filter(name="hg19_M_rCRS.fa"):
+        rna_hit = a[0]
 
     tasks = TaskGroup()
+    assembly_hits = {}
     with open(args.joblist) as handle:
         reader = csv.DictReader(handle, delimiter="\t")
         for row in reader:
-            workflow_dm = dict(dm)
-            
             if row['normal_assembly'] != row['tumor_assembly']:
                 print "Row Mispatch", row['normal_assembly'], row['tumor_assembly']
                 #raise Exception("Mismatch reference")
             ref_name = row['normal_assembly']
             if ref_name in ref_rename:
                 ref_name = ref_rename[ref_name]
-            hit = None
-            for a in docstore.filter(name=ref_name + ".fasta"):
-                hit = a[0]
-            for a in docstore.filter(name=ref_name + ".fa"):
-                hit = a[0]
-            if hit is None:
-                raise Exception("%s not found" % (ref_name))
-                
+            if ref_name in assembly_hits:
+                hit = assembly_hits[ref_name]
+            else:
+                hit = None
+                for a in docstore.filter(name=ref_name + ".fasta"):
+                    hit = a[0]
+                for a in docstore.filter(name=ref_name + ".fa"):
+                    hit = a[0]
+                if hit is None:
+                    raise Exception("%s not found" % (ref_name))
+                assembly_hits[ref_name] = hit
             workflow_dm = dict(dm)
             workflow_dm['reference_genome'] = { "uuid" : hit }
             
-            task = GalaxyWorkflowTask("workflow_%s" % (row['job_id']),
-                mc3_workflow,
-                inputs=workflow_dm,
-                parameters={
-                    "reheader_config" : {
-                        "platform" : "Illumina",
-                        "center" : "OHSU",
-                        "reference_genome" : ref_name,
-                        "participant_uuid" : row['participant_id'],
-                        "disease_code" : row['disease'],
-                        "filedate" : datetime.datetime.now().strftime("%Y%m%d"),
-                        "normal_analysis_uuid" : row['normal_analysis_id'],
-                        "normal_bam_name" : row['normal_filename'],
-                        "normal_aliquot_uuid" : row['normal_aliquot_id'],
-                        "normal_aliquot_barcode": row['normal_barcode'],
-                        "tumor_analysis_uuid" : row['tumor_analysis_id'],
-                        "tumor_bam_name" : row['tumor_filename'],
-                        "tumor_aliquot_uuid" : row['tumor_aliquot_id'],
-                        "tumor_aliquot_barcode" : row['tumor_barcode'],
-                    }
+            params = {
+                'tumor_bam' : {
+                    "uuid" : row['tumor_analysis_id'],
+                    "gnos_endpoint" : "cghub.ucsc.edu",
+                    "cred_file" : "/tool_data/files/cghub.key"
                 },
-                tags=[ "donor:%s" % (row['participant_id']) ],
-            )
+                'normal_bam' : {
+                    "uuid" : row['normal_analysis_id'],
+                    "gnos_endpoint" : "cghub.ucsc.edu",
+                    "cred_file" : "/tool_data/files/cghub.key"
+                },
+                "reheader_config" : {
+                    "platform" : "Illumina",
+                    "center" : "OHSU",
+                    "reference_genome" : ref_name,
+                    "participant_uuid" : row['participant_id'],
+                    "disease_code" : row['disease'],
+                    "filedate" : datetime.datetime.now().strftime("%Y%m%d"),
+                    "normal_analysis_uuid" : row['normal_analysis_id'],
+                    "normal_bam_name" : row['normal_filename'],
+                    "normal_aliquot_uuid" : row['normal_aliquot_id'],
+                    "normal_aliquot_barcode": row['normal_barcode'],
+                    "tumor_analysis_uuid" : row['tumor_analysis_id'],
+                    "tumor_bam_name" : row['tumor_filename'],
+                    "tumor_aliquot_uuid" : row['tumor_aliquot_id'],
+                    "tumor_aliquot_barcode" : row['tumor_barcode'],
+                }
+            }
+            
+            if row['rna_analysis_id'] != "NA":
+                params['rna_tumor_bam'] = {
+                    "uuid" : row['rna_analysis_id'],
+                    "gnos_endpoint" : "cghub.ucsc.edu",
+                    "cred_file" : "/tool_data/files/cghub.key"
+                }
+                workflow_dm['rna_reference_genome'] = { "uuid" : rna_hit }
+                task = GalaxyWorkflowTask("workflow_%s" % (row['job_id']),
+                    mc3_dnarna_workflow,
+                    inputs=workflow_dm,
+                    parameters=params,
+                    tags=[ "donor:%s" % (row['participant_id']) ],
+                )            
+            else: 
+                task = GalaxyWorkflowTask("workflow_%s" % (row['job_id']),
+                    mc3_dna_workflow,
+                    inputs=workflow_dm,
+                    parameters=params,
+                    tags=[ "donor:%s" % (row['participant_id']) ],
+                )
             tasks.append(task)
 
     if not os.path.exists("%s.tasks" % (args.out_base)):
@@ -175,8 +208,8 @@ def run_extract(args):
     docstore = from_url(args.out_base)
     
     for id, ent in docstore.filter(file_ext="vcf", name=[
-        "muse.vcf", "pindel.vcf", "radia.vcf", "somatic_sniper.vcf", 
-        "varscan.indel.vcf", "varscan.snp.vcf"
+        "muse.vcf", "pindel.vcf", "radia.dna-rna.vcf", "radia.dna.vcf", "somatic_sniper.vcf", 
+        "varscan.indel.vcf", "varscan.snp.vcf", "mutect.vcf"
     ]):
         t = Target(uuid=ent['id'])
         if docstore.size(t) > 0:
@@ -242,6 +275,14 @@ def run_stats(args):
             out.append( "%s" % (sum( j[i] for j in values  ) / float(len(values) )) )
         print method, "\t".join(out)
 
+def check_within(datestr, max_hours):
+    delta = datetime.datetime.now() - datetime.datetime.strptime(datestr, "%Y-%m-%dT%H:%M:%S.%f")
+    age =  delta.days * 24 + delta.seconds / 3600
+    if age < max_hours:
+        return True
+    return False
+
+
 def run_errors(args):
 
     doc = from_url(args.out_base)
@@ -277,7 +318,7 @@ if __name__ == "__main__":
     parser_gen.set_defaults(func=run_gen)
 
     parser_extract = subparsers.add_parser('extract')
-    parser_extract.add_argument("--out-base", default="test_mc3")
+    parser_extract.add_argument("--out-base", default="mc3_run")
     parser_extract.add_argument("--out-dir", default="output")
     parser_extract.set_defaults(func=run_extract)
 
@@ -288,7 +329,7 @@ if __name__ == "__main__":
     parser_errors = subparsers.add_parser('errors')
     parser_errors.add_argument("--within", type=int, default=None)
     parser_errors.add_argument("--full", action="store_true", default=False)
-    parser_errors.add_argument("--out-base", default="test_mc3")
+    parser_errors.add_argument("--out-base", default="mc3_run")
     parser_errors.set_defaults(func=run_errors)
     
     args = parser.parse_args()

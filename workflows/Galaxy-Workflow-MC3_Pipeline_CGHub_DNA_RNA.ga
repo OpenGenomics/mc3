@@ -353,11 +353,11 @@
             "annotation": "", 
             "id": 9, 
             "input_connections": {
-                "dnaNormal|inputbam": {
+                "dnaNormal|dn_inputbam": {
                     "id": 3, 
                     "output_name": "outfile"
                 }, 
-                "dnaTumor|inputbam": {
+                "dnaTumor|dt_inputbam": {
                     "id": 1, 
                     "output_name": "outfile"
                 }, 
@@ -369,7 +369,7 @@
                     "id": 2, 
                     "output_name": "output"
                 }, 
-                "rnaTumor|inputbam": {
+                "rnaTumor|rt_inputbam": {
                     "id": 0, 
                     "output_name": "outfile"
                 }
@@ -396,7 +396,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "radia", 
-            "tool_state": "{\"fastaFile\": \"null\", \"__page__\": 0, \"genotypeMinDepth\": \"\\\"2\\\"\", \"rnaNormal\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"genotypeMinPct\": \"\\\"0.1\\\"\", \"patientId\": \"\\\"Patient\\\"\", \"disease\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"refUrl\": \"\\\"\\\"\", \"dataSource\": \"\\\"\\\"\", \"rnaTumor\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"NormalDNASample\\\", \\\"inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"inputfasta\\\": null, \\\"use\\\": \\\"yes\\\", \\\"__current_case__\\\": 0}}\", \"dnaNormal\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\", \\\"inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}}\", \"dnaTumor\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\", \\\"inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}}\", \"refId\": \"\\\"HG19\\\"\", \"sequencingPlatform\": \"\\\"\\\"\"}", 
+            "tool_state": "{\"fastaFile\": \"null\", \"__page__\": 0, \"genotypeMinDepth\": \"\\\"2\\\"\", \"rnaNormal\": \"{\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}\", \"genotypeMinPct\": \"\\\"0.1\\\"\", \"patientId\": \"\\\"Patient\\\"\", \"disease\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"refUrl\": \"\\\"\\\"\", \"dataSource\": \"\\\"\\\"\", \"rnaTumor\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"NormalDNASample\\\", \\\"rt_inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"inputfasta\\\": null, \\\"use\\\": \\\"yes\\\", \\\"__current_case__\\\": 0}}\", \"dnaNormal\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\", \\\"dn_inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}}\", \"dnaTumor\": \"{\\\"use\\\": \\\"yes\\\", \\\"Description\\\": \\\"Normal DNA Sample\\\", \\\"dt_inputbam\\\": null, \\\"MinTotalBases\\\": \\\"4\\\", \\\"MinBaseQuality\\\": \\\"10\\\", \\\"__current_case__\\\": 0, \\\"MinAltBases\\\": \\\"2\\\", \\\"MinMappingQuality\\\": \\\"10\\\", \\\"fasta\\\": {\\\"use\\\": \\\"no\\\", \\\"__current_case__\\\": 1}}\", \"refId\": \"\\\"HG19\\\"\", \"sequencingPlatform\": \"\\\"\\\"\"}", 
             "tool_version": "0.1.0", 
             "type": "tool", 
             "user_outputs": [], 
@@ -894,7 +894,7 @@
             }, 
             "tool_errors": null, 
             "tool_id": "vcf-filter", 
-            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"filter_text\": \"\\\"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y,MT\\\"\", \"input_vcf\": \"null\", \"filterRejects\": \"\\\"True\\\"\"}", 
+            "tool_state": "{\"__page__\": 0, \"__rerun_remap_job_id__\": null, \"filter_text\": \"\\\"1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,X,Y,MT\\\"\", \"input_vcf\": \"null\", \"filterRejects\": \"\\\"False\\\"\"}", 
             "tool_version": "0.1", 
             "type": "tool", 
             "user_outputs": [], 

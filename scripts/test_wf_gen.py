@@ -242,7 +242,7 @@ def run_gen(args):
     for id, ent in docstore.filter(sampleType="normal"):
         normal_uuids[ent['participant_id']] = id
 
-    mc3_workflow = GalaxyWorkflow(ga_file="workflows/Galaxy-Workflow-MC3_Pipeline.ga")
+    mc3_workflow = GalaxyWorkflow(ga_file="workflows/Galaxy-Workflow-MC3_Pipeline_Test.ga")
 
     reference_id = None
     for a in docstore.filter(name="Homo_sapiens_assembly19.fasta"):
@@ -417,7 +417,7 @@ def run_extract(args):
     docstore = from_url(args.out_base)
     
     for id, ent in docstore.filter(file_ext="vcf", name=[
-        "muse.vcf", "pindel.vcf", "radia.vcf", "somatic_sniper.vcf", 
+        "mutect.vcf", "muse.vcf", "pindel.vcf", "radia.vcf", "somatic_sniper.vcf", 
         "varscan.indel.vcf", "varscan.snp.vcf"
     ]):
         t = Target(uuid=ent['id'])
@@ -435,6 +435,7 @@ def run_extract(args):
                 shutil.copy( docstore.get_filename(t), os.path.join(donor_dir, ent['name']) )
 
 SNP_METHOD = [
+    "mutect",
     "muse",
     "radia",
     "somatic_sniper",

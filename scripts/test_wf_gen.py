@@ -338,6 +338,41 @@ def run_gencwl(args):
             "cosmic" : { "class" : "File", "path" : os.path.abspath(os.path.join(args.data_dir, "b37_cosmic_v54_120711.vcf")) },
             "dbsnp" : { "class" : "File", "path" : os.path.abspath(os.path.join(args.data_dir, "dbsnp_132_b37.leftAligned.vcf")) },
             "tumor_lod" : 10.0
+        }, 
+        "muse" : {
+            "tumor" : lambda x, y: { 
+                "class" : "File", 
+                "path" : os.path.abspath(os.path.join(args.exome_dir, "testexome.%s.tumour.bam" % (x))) 
+            },
+            "normal" : lambda x, y: { 
+                "class" : "File", 
+                "path" : os.path.abspath(os.path.join(args.exome_dir, "testexome.%s.normal.bam" % (x)))
+            },
+            "reference" : { "class" : "File", "path" : os.path.abspath(os.path.join(args.data_dir, "Homo_sapiens_assembly19.fasta"))},
+            "known" : { "class" : "File", "path" : os.path.abspath(os.path.join(args.data_dir, "dbsnp_132_b37.leftAligned.vcf")) },
+            "mode" : "wxs"
+        },
+        "somatic_sniper" : {
+            "tumor" : lambda x, y: { 
+                "class" : "File", 
+                "path" : os.path.abspath(os.path.join(args.exome_dir, "testexome.%s.tumour.bam" % (x))) 
+            },
+            "normal" : lambda x, y: { 
+                "class" : "File", 
+                "path" : os.path.abspath(os.path.join(args.exome_dir, "testexome.%s.normal.bam" % (x)))
+            },
+            "reference" : { "class" : "File", "path" : os.path.abspath(os.path.join(args.data_dir, "Homo_sapiens_assembly19.fasta"))},            
+        },
+        "varscan" : {
+            "tumor" : lambda x, y: { 
+                "class" : "File", 
+                "path" : os.path.abspath(os.path.join(args.exome_dir, "testexome.%s.tumour.bam" % (x))) 
+            },
+            "normal" : lambda x, y: { 
+                "class" : "File", 
+                "path" : os.path.abspath(os.path.join(args.exome_dir, "testexome.%s.normal.bam" % (x)))
+            },
+            "reference" : { "class" : "File", "path" : os.path.abspath(os.path.join(args.data_dir, "Homo_sapiens_assembly19.fasta"))},                    
         }
     }
 

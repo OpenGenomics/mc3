@@ -1,0 +1,23 @@
+class: Workflow
+
+inputs:
+  - id: "#tumor"
+    type: File
+  - id: "#normal"
+    type: File
+  - id: "#reference"
+    type: File
+steps:
+    - id: "#normal_pileup"
+      run:
+        import: ../tools/samtools-pileup-tool/sam_pileup.cwl.yaml
+      inputs:
+        - id: "#input"
+          source: "#normal"
+        - id: "#reference"
+          source: "#reference"
+      
+      outputs:
+        - id: "#normal_pileup.output"
+
+outputs: []

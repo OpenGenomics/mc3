@@ -1,4 +1,5 @@
 class: Workflow
+id: varscan_workflow
 
 inputs:
   - id: "#tumor"
@@ -19,5 +20,16 @@ steps:
       
       outputs:
         - id: "#normal_pileup.output"
+    - id: "#tumor_pileup"
+      run:
+        import: ../tools/samtools-pileup-tool/sam_pileup.cwl.yaml
+      inputs:
+        - id: "#input"
+          source: "#tumor"
+        - id: "#reference"
+          source: "#reference"
+      
+      outputs:
+        - id: "#tumour_pileup.output"
 
 outputs: []

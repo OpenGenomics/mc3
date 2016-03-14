@@ -4,10 +4,19 @@ id: varscan_workflow
 inputs:
   - id: "#tumor"
     type: File
+    secondaryFiles:
+      - .bai
+
   - id: "#normal"
     type: File
+    secondaryFiles:
+      - .bai
+
   - id: "#reference"
     type: File
+    secondaryFiles:
+      - .fai
+
 steps:
     - id: "#normal_pileup"
       run:
@@ -17,7 +26,7 @@ steps:
           source: "#normal"
         - id: "#reference"
           source: "#reference"
-      
+
       outputs:
         - id: "#normal_pileup.output"
     - id: "#tumor_pileup"
@@ -28,7 +37,7 @@ steps:
           source: "#tumor"
         - id: "#reference"
           source: "#reference"
-      
+
       outputs:
         - id: "#tumour_pileup.output"
 

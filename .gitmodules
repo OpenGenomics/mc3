@@ -34,3 +34,6 @@
 [submodule "tools/mutect-tool"]
 	path = tools/mutect-tool
 	url = https://github.com/ucscCancer/mutect-tool.git
+[submodule "tools/vcf2maf"]
+	path = tools/vcf2maf
+	url = https://github.com/OpenGenomics/vcf2maf.git

@@ -25,9 +25,6 @@
 [submodule "tools/tcgavcf-tool"]
 	path = tools/tcgavcf-tool
 	url = https://github.com/OpenGenomics/tcgavcf-tool.git
-[submodule "tools/icgc-pcap-tools"]
-	path = tools/icgc-pcap-tools
-	url = https://github.com/OpenGenomics/icgc-pcap-tools.git
 [submodule "tools/mutect-tool"]
 	path = tools/mutect-tool
 	url = https://github.com/OpenGenomics/mutect-tool.git

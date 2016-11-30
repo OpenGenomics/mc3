@@ -1,0 +1,44 @@
+class: Workflow
+id: varscan_workflow
+
+inputs:
+  - id: "#tumor"
+    type: File
+    secondaryFiles:
+      - .bai
+
+  - id: "#normal"
+    type: File
+    secondaryFiles:
+      - .bai
+
+  - id: "#reference"
+    type: File
+    secondaryFiles:
+      - .fai
+
+steps:
+    - id: "#normal_pileup"
+      run:
+        import: ../tools/samtools-pileup-tool/sam_pileup.cwl.yaml
+      inputs:
+        - id: "#input"
+          source: "#normal"
+        - id: "#reference"
+          source: "#reference"
+
+      outputs:
+        - id: "#normal_pileup.output"
+    - id: "#tumor_pileup"
+      run:
+        import: ../tools/samtools-pileup-tool/sam_pileup.cwl.yaml
+      inputs:
+        - id: "#input"
+          source: "#tumor"
+        - id: "#reference"
+          source: "#reference"
+
+      outputs:
+        - id: "#tumour_pileup.output"
+
+outputs: []

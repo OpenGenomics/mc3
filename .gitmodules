@@ -1,36 +1,33 @@
 [submodule "tools/gatk-cocleaning-tool"]
 	path = tools/gatk-cocleaning-tool
-	url = https://github.com/ucscCancer/gatk-cocleaning-tool.git
+	url = https://github.com/OpenGenomics/gatk-cocleaning-tool.git
 [submodule "tools/muse-tool"]
 	path = tools/muse-tool
-	url = https://github.com/ucscCancer/muse-tool.git
+	url = https://github.com/OpenGenomics/muse-tool.git
 [submodule "tools/radia-tool"]
 	path = tools/radia-tool
-	url = https://github.com/ucscCancer/radia-tool.git
+	url = https://github.com/OpenGenomics/radia-tool.git
 [submodule "tools/somaticsniper-tool"]
 	path = tools/somaticsniper-tool
-	url = https://github.com/ucscCancer/somaticsniper-tool.git
+	url = https://github.com/OpenGenomics/somaticsniper-tool.git
 [submodule "tools/fpfilter-tool"]
 	path = tools/fpfilter-tool
-	url = https://github.com/ucscCancer/fpfilter-tool.git
+	url = https://github.com/OpenGenomics/fpfilter-tool.git
 [submodule "tools/varscan-tool"]
 	path = tools/varscan-tool
-	url = https://github.com/ucscCancer/varscan-tool.git
+	url = https://github.com/OpenGenomics/varscan-tool.git
 [submodule "tools/samtools-pileup-tool"]
 	path = tools/samtools-pileup-tool
-	url = https://github.com/ucscCancer/samtools-pileup-tool.git
+	url = https://github.com/OpenGenomics/samtools-pileup-tool.git
 [submodule "tools/pindel-tool"]
 	path = tools/pindel-tool
-	url = https://github.com/ucscCancer/pindel-tool.git
-[submodule "tools/genetorrent-tool"]
-	path = tools/genetorrent-tool
-	url = https://github.com/ucscCancer/genetorrent-tool.git
+	url = https://github.com/OpenGenomics/pindel-tool.git
 [submodule "tools/tcgavcf-tool"]
 	path = tools/tcgavcf-tool
-	url = https://github.com/ucscCancer/tcgavcf-tool.git
+	url = https://github.com/OpenGenomics/tcgavcf-tool.git
 [submodule "tools/icgc-pcap-tools"]
 	path = tools/icgc-pcap-tools
-	url = https://github.com/ucscCancer/icgc-pcap-tools.git
+	url = https://github.com/OpenGenomics/icgc-pcap-tools.git
 [submodule "tools/mutect-tool"]
 	path = tools/mutect-tool
-	url = https://github.com/ucscCancer/mutect-tool.git
+	url = https://github.com/OpenGenomics/mutect-tool.git

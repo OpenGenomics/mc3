@@ -15,6 +15,12 @@ inputs:
     type: File
     secondaryFiles:
       - .fai
+  dbsnp:
+    type: File
+  cosmic:
+    type: File
+  centromere:
+    type: File
 
 steps:
     normal_pileup:
@@ -48,6 +54,8 @@ steps:
         tumor: tumor
         normal: normal
         reference: reference
+        known: dbsnp
+        mode: { default: wxs }
       out:
         - mutations
     
@@ -57,17 +65,20 @@ steps:
         tumor: tumor
         normal: normal
         reference: reference
+        cosmic: cosmic
+        dbsnp: dbsnp
+
       out:
         - mutations
 
-    radia:
-      run: ../tools/radia-tool/radia.cwl.yaml
-      in: 
-        tumor: tumor
-        normal: normal
-        reference: reference
-      out:
-        - mutations
+    #radia:
+    #  run: ../tools/radia-tool/radia.cwl.yaml
+    #  in: 
+    #    tumor: tumor
+    #    normal: normal
+    #    reference: reference
+    #  out:
+    #    - mutations
     
     somaticsniper:
       run: ../tools/somaticsniper-tool/somatic_sniper.cwl.yaml
@@ -84,8 +95,9 @@ steps:
         tumor: tumor
         normal: normal
         reference: reference
+        centromere: centromere
       out:
-        - mutations
+        - somatic_vcf
 
     somaticsniper-fpfilter:
       run: ../tools/fpfilter-tool/fpfilter.cwl.yaml
@@ -107,7 +119,7 @@ steps:
 outputs:
   pindel-out:
     type: File
-    outputSource: pindel/mutations
+    outputSource: pindel/somatic_vcf
   varscan-out: 
     type: File
     outputSource: somaticsniper-fpfilter/output

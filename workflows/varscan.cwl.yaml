@@ -1,44 +1,48 @@
+cwlVersion: v1.0
 class: Workflow
-id: varscan_workflow
 
 inputs:
-  - id: "#tumor"
+  tumor:
     type: File
     secondaryFiles:
       - .bai
 
-  - id: "#normal"
+  normal:
     type: File
     secondaryFiles:
       - .bai
 
-  - id: "#reference"
+  reference:
     type: File
     secondaryFiles:
       - .fai
 
+outputs: 
+    snp_vcf:
+       type: File
+       outputSource: varscan/snp_vcf
+    indel_vcf:
+       type: File
+       outputSource: varscan/indel_vcf
+
 steps:
-    - id: "#normal_pileup"
-      run:
-        import: ../tools/samtools-pileup-tool/sam_pileup.cwl.yaml
-      inputs:
-        - id: "#input"
-          source: "#normal"
-        - id: "#reference"
-          source: "#reference"
+  pileup1:
+    run: ../tools/samtools-pileup-tool/sam_pileup.cwl.yaml
+    in:
+      input: normal
+      reference: reference
+    out: [output]
 
-      outputs:
-        - id: "#normal_pileup.output"
-    - id: "#tumor_pileup"
-      run:
-        import: ../tools/samtools-pileup-tool/sam_pileup.cwl.yaml
-      inputs:
-        - id: "#input"
-          source: "#tumor"
-        - id: "#reference"
-          source: "#reference"
-
-      outputs:
-        - id: "#tumour_pileup.output"
-
-outputs: []
+  pileup2:
+    run: ../tools/samtools-pileup-tool/sam_pileup.cwl.yaml
+    in:
+      input: tumor
+      reference: reference
+    out: [output]
+      
+  varscan:
+    run: ../tools/varscan-tool/varscan_somatic.cwl.yaml
+    in:
+      normal_pileup: pileup1/output
+      tumor_pileup: pileup2/output
+    out: [snp_vcf,indel_vcf]

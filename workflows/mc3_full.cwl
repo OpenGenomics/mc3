@@ -104,6 +104,7 @@ steps:
       in: 
         vcf-file: somaticsniper/mutations
         bam-file: tumor
+        reference: reference
       out:
         - output 
 
@@ -112,6 +113,7 @@ steps:
       in: 
         vcf-file: varscan/snp_vcf
         bam-file: tumor
+        reference: reference
       out:
         - output 
 

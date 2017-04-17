@@ -75,14 +75,26 @@ steps:
       out:
         - mutations
 
-    # radia:
-    #  run: ../tools/radia-tool/radia.cwl.yaml
-    #  in: 
-    #    tumor: tumor
-    #    normal: normal
-    #    reference: reference
-    #  out:
-    #    - mutations
+    radia:
+     run: ../tools/radia-tool/radia.cwl
+     in: 
+       dnaTumorFilename: tumor
+       dnaNormalFilename: normal
+       refseq: reference
+     out:
+       - mutations
+
+    radia-filter:
+     run: ../tools/radia-tool/radia_filter.cwl
+     in: 
+       inputVCF: radia/mutations
+       dnaTumorFilename: tumor
+       dnaNormalFilename: normal
+       patientId: 
+         valueFrom: tumor.nameroot
+       refseq: reference
+     out:
+       - mutations
     
     somaticsniper:
       run: ../tools/somaticsniper-tool/somatic_sniper.cwl.yaml
@@ -121,7 +133,6 @@ steps:
       out:
         - filtered_vcf 
 
-
 outputs:
   pindel-out:
     type: File
@@ -138,6 +149,6 @@ outputs:
   mutect-out:
     type: File
     outputSource: mutect/mutations
-  # radia-out:
-  #   type: File
-  #   outputSource: radia/mutations
+  radia-out:
+    type: File
+    outputSource: radia-filter/mutations

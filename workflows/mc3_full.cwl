@@ -17,8 +17,12 @@ inputs:
       - .fai
   dbsnp:
     type: File
+    secondaryFiles:
+      - .tbi
   cosmic:
     type: File
+    secondaryFiles:
+      - .tbi
   centromere:
     type: File
 
@@ -71,14 +75,26 @@ steps:
       out:
         - mutations
 
-    #radia:
-    #  run: ../tools/radia-tool/radia.cwl.yaml
-    #  in: 
-    #    tumor: tumor
-    #    normal: normal
-    #    reference: reference
-    #  out:
-    #    - mutations
+    radia:
+     run: ../tools/radia-tool/radia.cwl
+     in: 
+       dnaTumorFilename: tumor
+       dnaNormalFilename: normal
+       refseq: reference
+     out:
+       - mutations
+
+    radia-filter:
+     run: ../tools/radia-tool/radia_filter.cwl
+     in: 
+       inputVCF: radia/mutations
+       dnaTumorFilename: tumor
+       dnaNormalFilename: normal
+       patientId: 
+         valueFrom: tumor.nameroot
+       refseq: reference
+     out:
+       - mutations
     
     somaticsniper:
       run: ../tools/somaticsniper-tool/somatic_sniper.cwl.yaml
@@ -104,31 +120,35 @@ steps:
       in: 
         vcf-file: somaticsniper/mutations
         bam-file: tumor
+        reference: reference
       out:
-        - output 
+        - filtered_vcf 
 
     varscan-fpfilter:
       run: ../tools/fpfilter-tool/fpfilter.cwl.yaml
       in: 
         vcf-file: varscan/snp_vcf
         bam-file: tumor
+        reference: reference
       out:
-        - output 
-
+        - filtered_vcf 
 
 outputs:
   pindel-out:
     type: File
     outputSource: pindel/somatic_vcf
+  somaticsniper-out: 
+    type: File
+    outputSource: somaticsniper-fpfilter/filtered_vcf
   varscan-out: 
     type: File
-    outputSource: somaticsniper-fpfilter/output
+    outputSource: varscan-fpfilter/filtered_vcf
   muse-out:
     type: File
     outputSource: muse/mutations
   mutect-out:
     type: File
     outputSource: mutect/mutations
-
-
-
+  radia-out:
+    type: File
+    outputSource: radia-filter/mutations

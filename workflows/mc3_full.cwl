@@ -2,6 +2,9 @@ cwlVersion: v1.0
 class: Workflow
 id: full_mc3
 
+requirements:
+  - class: StepInputExpressionRequirement
+
 inputs:
   tumor:
     type: File

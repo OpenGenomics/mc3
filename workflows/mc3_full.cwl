@@ -112,6 +112,8 @@ steps:
         normal: normal
         reference: reference
         centromere: centromere
+        windowsize:
+          valueFrome: 0.1
       out:
         - somatic_vcf
 

@@ -118,12 +118,12 @@ steps:
         normal: normal
         reference: reference
         centromere: centromere
-				balance_cutoff:
-					default: 0
+        balance_cutoff:
+          default: 0
         window_size:
           default: 0.1
-				min_perfect_match_around_BP:
-					default: 6
+        min_perfect_match_around_BP:
+          default: 6
       out:
         - somatic_vcf
 
@@ -133,8 +133,8 @@ steps:
         vcf-file: somaticsniper/mutations
         bam-file: tumor
         reference: reference
-				output:
-					default: somatic_sniper_fpfilter.vcf
+        output:
+          default: somatic_sniper_fpfilter.vcf
       out:
         - filtered_vcf 
 
@@ -144,8 +144,8 @@ steps:
         vcf-file: varscan/snp_vcf
         bam-file: tumor
         reference: reference
-				output:
-					default: varscan_fpfilter.vcf
+        output:
+          default: varscan_fpfilter.vcf
       out:
         - filtered_vcf 
 

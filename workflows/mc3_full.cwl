@@ -74,7 +74,8 @@ steps:
         reference: reference
         cosmic: cosmic
         dbsnp: dbsnp
-
+        tumor_lod:
+          default: 10
       out:
         - mutations
 
@@ -105,6 +106,8 @@ steps:
         tumor: tumor
         normal: normal
         reference: reference
+        mapq:
+          default: 1
       out:
         - mutations
       
@@ -115,8 +118,12 @@ steps:
         normal: normal
         reference: reference
         centromere: centromere
-        windowsize:
-          valueFrome: 0.1
+				balance_cutoff:
+					default: 0
+        window_size:
+          default: 0.1
+				min_perfect_match_around_BP:
+					default: 6
       out:
         - somatic_vcf
 
@@ -126,6 +133,8 @@ steps:
         vcf-file: somaticsniper/mutations
         bam-file: tumor
         reference: reference
+				output:
+					default: somatic_sniper_fpfilter.vcf
       out:
         - filtered_vcf 
 
@@ -135,6 +144,8 @@ steps:
         vcf-file: varscan/snp_vcf
         bam-file: tumor
         reference: reference
+				output:
+					default: varscan_fpfilter.vcf
       out:
         - filtered_vcf 
 

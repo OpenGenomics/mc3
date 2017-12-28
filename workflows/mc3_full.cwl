@@ -45,7 +45,7 @@ steps:
         reference: reference
       out:
         - output
-    
+
     varscan:
       run: ../tools/varscan-tool/varscan_somatic.cwl.yaml
       in:
@@ -54,10 +54,10 @@ steps:
       out:
         - snp_vcf
         - indel_vcf
-    
+
     muse:
       run: ../tools/muse-tool/muse.cwl.yaml
-      in: 
+      in:
         tumor: tumor
         normal: normal
         reference: reference
@@ -65,10 +65,10 @@ steps:
         mode: { default: wxs }
       out:
         - mutations
-    
+
     mutect:
       run: ../tools/mutect-tool/mutect.cwl.yaml
-      in: 
+      in:
         tumor: tumor
         normal: normal
         reference: reference
@@ -81,7 +81,7 @@ steps:
 
     radia:
      run: ../tools/radia-tool/radia.cwl
-     in: 
+     in:
        dnaTumorFilename: tumor
        dnaNormalFilename: normal
        refseq: reference
@@ -90,19 +90,19 @@ steps:
 
     radia-filter:
      run: ../tools/radia-tool/radia_filter.cwl
-     in: 
+     in:
        inputVCF: radia/mutations
        dnaTumorFilename: tumor
        dnaNormalFilename: normal
-       patientId: 
+       patientId:
          valueFrom: tumor.nameroot
        refseq: reference
      out:
        - mutations
-    
+
     somaticsniper:
       run: ../tools/somaticsniper-tool/somatic_sniper.cwl.yaml
-      in: 
+      in:
         tumor: tumor
         normal: normal
         reference: reference
@@ -110,10 +110,10 @@ steps:
           default: 1
       out:
         - mutations
-      
+
     pindel:
       run: ../tools/pindel-tool/pindel-somatic.cwl.yaml
-      in: 
+      in:
         tumor: tumor
         normal: normal
         reference: reference
@@ -129,34 +129,34 @@ steps:
 
     somaticsniper-fpfilter:
       run: ../tools/fpfilter-tool/fpfilter.cwl.yaml
-      in: 
+      in:
         vcf-file: somaticsniper/mutations
         bam-file: tumor
         reference: reference
         output:
           default: somatic_sniper_fpfilter.vcf
       out:
-        - filtered_vcf 
+        - filtered_vcf
 
     varscan-fpfilter:
       run: ../tools/fpfilter-tool/fpfilter.cwl.yaml
-      in: 
+      in:
         vcf-file: varscan/snp_vcf
         bam-file: tumor
         reference: reference
         output:
           default: varscan_fpfilter.vcf
       out:
-        - filtered_vcf 
+        - filtered_vcf
 
 outputs:
   pindel-out:
     type: File
     outputSource: pindel/somatic_vcf
-  somaticsniper-out: 
+  somaticsniper-out:
     type: File
     outputSource: somaticsniper-fpfilter/filtered_vcf
-  varscan-out: 
+  varscan-out:
     type: File
     outputSource: varscan-fpfilter/filtered_vcf
   muse-out:

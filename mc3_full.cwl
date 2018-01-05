@@ -4,7 +4,7 @@ id: full_mc3
 
 requirements:
   - class: StepInputExpressionRequirement
-
+  
 inputs:
   tumor:
     type: File
@@ -31,7 +31,7 @@ inputs:
 
 steps:
     normal_pileup:
-      run: ../tools/samtools-pileup-tool/sam_pileup.cwl.yaml
+      run: ./tools/samtools-pileup-tool/sam_pileup.cwl.yaml
       in:
         input: normal
         reference: reference
@@ -39,7 +39,7 @@ steps:
         - output
 
     tumor_pileup:
-      run: ../tools/samtools-pileup-tool/sam_pileup.cwl.yaml
+      run: ./tools/samtools-pileup-tool/sam_pileup.cwl.yaml
       in:
         input: tumor
         reference: reference
@@ -47,7 +47,7 @@ steps:
         - output
 
     varscan:
-      run: ../tools/varscan-tool/varscan_somatic.cwl.yaml
+      run: ./tools/varscan-tool/varscan_somatic.cwl.yaml
       in:
         tumor_pileup: tumor_pileup/output
         normal_pileup: normal_pileup/output
@@ -56,7 +56,7 @@ steps:
         - indel_vcf
 
     muse:
-      run: ../tools/muse-tool/muse.cwl.yaml
+      run: ./tools/muse-tool/muse.cwl.yaml
       in:
         tumor: tumor
         normal: normal
@@ -67,7 +67,7 @@ steps:
         - mutations
 
     mutect:
-      run: ../tools/mutect-tool/mutect.cwl.yaml
+      run: ./tools/mutect-tool/mutect.cwl.yaml
       in:
         tumor: tumor
         normal: normal
@@ -80,16 +80,18 @@ steps:
         - mutations
 
     radia:
-     run: ../tools/radia-tool/radia.cwl
+     run: ./tools/radia-tool/radia.cwl
      in:
        dnaTumorFilename: tumor
        dnaNormalFilename: normal
        refseq: reference
+       number_of_procs:
+         default: 12
      out:
        - mutations
 
     radia-filter:
-     run: ../tools/radia-tool/radia_filter.cwl
+     run: ./tools/radia-tool/radia_filter.cwl
      in:
        inputVCF: radia/mutations
        dnaTumorFilename: tumor
@@ -101,7 +103,7 @@ steps:
        - mutations
 
     somaticsniper:
-      run: ../tools/somaticsniper-tool/somatic_sniper.cwl.yaml
+      run: ./tools/somaticsniper-tool/somatic_sniper.cwl.yaml
       in:
         tumor: tumor
         normal: normal
@@ -112,7 +114,7 @@ steps:
         - mutations
 
     pindel:
-      run: ../tools/pindel-tool/pindel-somatic.cwl.yaml
+      run: ./tools/pindel-tool/pindel-somatic.cwl.yaml
       in:
         tumor: tumor
         normal: normal
@@ -124,11 +126,15 @@ steps:
           default: 0.1
         min_perfect_match_around_BP:
           default: 6
+        max_range_index:
+          default: 1
+        procs:
+          default: 12
       out:
         - somatic_vcf
 
     somaticsniper-fpfilter:
-      run: ../tools/fpfilter-tool/fpfilter.cwl.yaml
+      run: ./tools/fpfilter-tool/fpfilter.cwl.yaml
       in:
         vcf-file: somaticsniper/mutations
         bam-file: tumor
@@ -139,7 +145,7 @@ steps:
         - filtered_vcf
 
     varscan-fpfilter:
-      run: ../tools/fpfilter-tool/fpfilter.cwl.yaml
+      run: ./tools/fpfilter-tool/fpfilter.cwl.yaml
       in:
         vcf-file: varscan/snp_vcf
         bam-file: tumor

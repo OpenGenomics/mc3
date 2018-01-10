@@ -4,7 +4,7 @@ id: full_mc3
 
 requirements:
   - class: StepInputExpressionRequirement
-  
+
 inputs:
   tumor:
     type: File
@@ -35,6 +35,8 @@ steps:
       in:
         input: normal
         reference: reference
+        noBaq:
+          default: true
       out:
         - output
 
@@ -43,6 +45,8 @@ steps:
       in:
         input: tumor
         reference: reference
+        noBaq:
+          default: true
       out:
         - output
 
@@ -51,6 +55,12 @@ steps:
       in:
         tumor_pileup: tumor_pileup/output
         normal_pileup: normal_pileup/output
+        min_coverage:
+          default: 3
+        min_var_freq:
+          default: 0.08
+        p_value:
+          default: 0.10
       out:
         - snp_vcf
         - indel_vcf
@@ -74,8 +84,6 @@ steps:
         reference: reference
         cosmic: cosmic
         dbsnp: dbsnp
-        tumor_lod:
-          default: 10
       out:
         - mutations
 
@@ -110,6 +118,10 @@ steps:
         reference: reference
         mapq:
           default: 1
+        gor:
+          default: true
+        loh:
+          default: true
       out:
         - mutations
 

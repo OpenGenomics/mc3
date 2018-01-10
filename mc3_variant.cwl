@@ -28,6 +28,9 @@ inputs:
       - .tbi
   centromere:
     type: File
+  number_of_procs:
+    type: int
+    default: 6
 
 steps:
     normal_pileup:
@@ -73,6 +76,7 @@ steps:
         reference: reference
         known: dbsnp
         mode: { default: wxs }
+        ncpus: number_of_procs
       out:
         - mutations
 
@@ -84,6 +88,7 @@ steps:
         reference: reference
         cosmic: cosmic
         dbsnp: dbsnp
+        ncpus: number_of_procs
       out:
         - mutations
 
@@ -93,8 +98,7 @@ steps:
        dnaTumorFilename: tumor
        dnaNormalFilename: normal
        refseq: reference
-       number_of_procs:
-         default: 12
+       number_of_procs: number_of_procs
      out:
        - mutations
 
@@ -140,8 +144,7 @@ steps:
           default: 6
         max_range_index:
           default: 1
-        procs:
-          default: 12
+        procs: number_of_procs
       out:
         - somatic_vcf
 

@@ -95,9 +95,9 @@ steps:
     radia:
      run: ./tools/radia-tool/radia.cwl
      in:
-       dnaTumorFilename: tumor
-       dnaNormalFilename: normal
-       refseq: reference
+       tumor: tumor
+       normal: normal
+       reference: reference
        number_of_procs: number_of_procs
      out:
        - mutations
@@ -106,11 +106,11 @@ steps:
      run: ./tools/radia-tool/radia_filter.cwl
      in:
        inputVCF: radia/mutations
-       dnaTumorFilename: tumor
-       dnaNormalFilename: normal
+       tumor: tumor
+       normal: normal
        patientId:
-         valueFrom: tumor.nameroot
-       refseq: reference
+         default: tumor.nameroot
+       reference: reference
      out:
        - mutations
 
@@ -171,21 +171,24 @@ steps:
         - filtered_vcf
 
 outputs:
-  pindel-out:
+  pindelVCF:
     type: File
     outputSource: pindel/somatic_vcf
-  somaticsniper-out:
+  somaticsniperVCF:
     type: File
     outputSource: somaticsniper-fpfilter/filtered_vcf
-  varscan-out:
+  varscansVCF:
     type: File
     outputSource: varscan-fpfilter/filtered_vcf
-  muse-out:
+  varscaniVCF:
+    type: File
+    outputSource: varscan/indel_vcf
+  museVCF:
     type: File
     outputSource: muse/mutations
-  mutect-out:
+  mutectVCF:
     type: File
     outputSource: mutect/mutations
-  radia-out:
+  radiaVCF:
     type: File
     outputSource: radia-filter/mutations

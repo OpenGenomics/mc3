@@ -169,7 +169,7 @@ steps:
 
   normalize_pindel:
     in:
-      inputVCF: sort_indelocator/output_vcf
+      inputVCF: sort_pindel/output_vcf
       refFasta: refFasta
       addFilters:
         default: true

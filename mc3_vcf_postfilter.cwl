@@ -19,7 +19,7 @@ steps:
     out:
       - output_vcf
   filterPindel:
-    run: tools/vcftools-tools/filter_vcf.cwl
+    run: tools/vcf-tools/filter_vcf.cwl
     in:
       vcf: pindelVCF
       output_name:
@@ -38,4 +38,3 @@ outputs:
     type: File
     outputSource:
       filterPindel/output_vcf
-      

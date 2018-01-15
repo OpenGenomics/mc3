@@ -5,7 +5,7 @@ requirements:
   - class: InlineJavascriptRequirement
   - class: StepInputExpressionRequirement
   - class: MultipleInputFeatureRequirement
- 
+
 inputs:
   normalID:
     type: string
@@ -39,7 +39,7 @@ steps:
       vcf: museVCF
     out:
       - output_vcf
-    run: tools/vcftools-tools/vcfsort.cwl
+    run: tools/vcf-tools/vcfsort.cwl
 
   normalize_muse:
     in:
@@ -57,7 +57,7 @@ steps:
       vcf: mutectVCF
     out:
       - output_vcf
-    run: tools/vcftools-tools/vcfsort.cwl
+    run: tools/vcf-tools/vcfsort.cwl
 
   normalize_mutect:
     in:
@@ -75,7 +75,7 @@ steps:
       vcf: somaticsniperVCF
     out:
       - output_vcf
-    run: tools/vcftools-tools/vcfsort.cwl
+    run: tools/vcf-tools/vcfsort.cwl
 
   normalize_somaticsniper:
     in:
@@ -93,7 +93,7 @@ steps:
       vcf: varscansVCF
     out:
       - output_vcf
-    run: tools/vcftools-tools/vcfsort.cwl
+    run: tools/vcf-tools/vcfsort.cwl
 
   normalize_varscans:
     in:
@@ -111,7 +111,7 @@ steps:
       vcf: varscaniVCF
     out:
       - output_vcf
-    run: tools/vcftools-tools/vcfsort.cwl
+    run: tools/vcf-tools/vcfsort.cwl
 
   normalize_varscani:
     in:
@@ -129,7 +129,7 @@ steps:
       vcf: radiaVCF
     out:
       - output_vcf
-    run: tools/vcftools-tools/vcfsort.cwl
+    run: tools/vcf-tools/vcfsort.cwl
 
   normalize_radia:
     in:
@@ -147,7 +147,7 @@ steps:
       vcf: indelocatorVCF
     out:
       - output_vcf
-    run: tools/vcftools-tools/vcfsort.cwl
+    run: tools/vcf-tools/vcfsort.cwl
 
   normalize_indelocator:
     in:
@@ -165,7 +165,7 @@ steps:
       vcf: pindelVCF
     out:
       - output_vcf
-    run: tools/vcftools-tools/vcfsort.cwl
+    run: tools/vcf-tools/vcfsort.cwl
 
   normalize_pindel:
     in:
@@ -202,7 +202,7 @@ steps:
 
       vepData: vepData
     out: [output_vcf]
-    run: tools/vcftools-tools/merge_vcfs.cwl
+    run: tools/vcf-tools/merge_vcfs.cwl
 
   vcf2maf:
     in:

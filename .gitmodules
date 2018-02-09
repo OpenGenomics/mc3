@@ -34,6 +34,3 @@
 [submodule "tools/vcf2maf-tools"]
 	path = tools/vcf2maf-tools
 	url = https://github.com/OpenGenomics/vcf2maf-tools.git
-[submodule "tools/vcf-tools"]
-	path = tools/vcf-tools
-	url = git@github.com:OpenGenomics/vcf-tools.git

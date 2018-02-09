@@ -1,7 +1,7 @@
 cwlVersion: v1.0
 class: CommandLineTool
 label: "bgzip VCF"
-baseCommand: ["/opt/samtools-1.3.1/htslib-1.3.1/bgzip"]
+baseCommand: ["bgzip"]
 requirements:
     - class: DockerRequirement
       dockerImageId: "samtools-1.3.1"

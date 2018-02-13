@@ -37,3 +37,6 @@
 [submodule "tools/vcf-tools"]
 	path = tools/vcf-tools
 	url = https://github.com/OpenGenomics/vcf-tools.git
+[submodule "tools/indelocator-tool"]
+	path = tools/indelocator-tool
+	url = https://github.com/kamichiotti/indelocator-tool

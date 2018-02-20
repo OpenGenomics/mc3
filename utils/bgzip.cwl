@@ -5,6 +5,8 @@ baseCommand: ["bgzip"]
 requirements:
     - class: DockerRequirement
       dockerImageId: "samtools:1.3.1"
+    - class: InitialWorkDirRequirement
+      listing: [ $(inputs.file) ]
 stdout: $(inputs.file.basename).gz
 
 inputs:

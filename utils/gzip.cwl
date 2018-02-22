@@ -2,9 +2,8 @@ cwlVersion: v1.0
 class: CommandLineTool
 label: "unzip dbsnp.vcf.gz"
 baseCommand: [gzip]
-stdout: $(inputs.output_filename)
-arguments: ["-d"]
-
+stdout: $(inputs.dbsnp.nameroot)
+arguments: ["-c","-d"]
 
 inputs:
 
@@ -18,4 +17,4 @@ outputs:
   output:
     type: File
     outputBinding:
-      glob: $(inputs.output_filename)
+      glob: $(inputs.dbsnp.nameroot)

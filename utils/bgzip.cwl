@@ -2,6 +2,7 @@ cwlVersion: v1.0
 class: CommandLineTool
 label: "bgzip VCF"
 baseCommand: ["bgzip"]
+arguments: ["-c"]
 requirements:
     - class: DockerRequirement
       dockerImageId: "samtools:1.3.1"

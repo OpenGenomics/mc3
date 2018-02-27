@@ -4,6 +4,7 @@ id: full_mc3
 
 requirements:
   - class: StepInputExpressionRequirement
+  - class: SubworkflowFeatureRequirement
 
 inputs:
   tumor:
@@ -102,12 +103,55 @@ steps:
       out:
         - mutations
 
+    prep_ref:
+      in:
+        zipped: reference
+
+      run:
+        class: Workflow
+        requirements:
+          - class: StepInputExpressionRequirement
+
+        inputs:
+          zipped:
+            type: File
+
+        steps:
+          unzip_ref:
+            run: ./utils/gzip.cwl
+            in:
+              zipped: zipped
+            out:
+              - unzipped
+          index_ref:
+            run: ./utils/fai.cwl
+            in:
+              to_index: unzip_ref/unzipped
+            out:
+              - faidx
+          dict_ref:
+            run: ./utils/dict.cwl
+            in:
+              to_dict: index_ref/faidx
+            out:
+              - dict
+
+        outputs:
+          prepped_ref:
+            type: File
+            secondaryFiles:
+              - ^.fai
+              - .dict
+            outputSource: dict_ref/dict
+      out:
+        - prepped_ref
+
     mutect:
       run: ./tools/mutect-tool/mutect.cwl.yaml
       in:
         tumor: tumor
         normal: normal
-        reference: reference
+        reference: prep_ref/prepped_ref
         cosmic: cosmic
         dbsnp: dbsnp
         ncpus: number_of_procs

@@ -42,7 +42,7 @@ Example Variant Calling input
     },
     "reference" : {
         "class" : "File",
-        "path"  :  "/mnt/mc3/mc3/test_in/data/Homo_sapiens_assembly19.fasta"
+        "path"  :  "/mnt/mc3/mc3/test_in/data/Homo_sapiens_assembly19.fasta.gz"
     }
 }
 ```

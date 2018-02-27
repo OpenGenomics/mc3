@@ -1,26 +1,25 @@
 cwlVersion: v1.0
 class: CommandLineTool
-label: "index gzip tabix"
-baseCommand: "tabix"
-arguments: ["-p", "vcf"]
-
+label: "index bgzip vcf"
+baseCommand: ["tabix"]
+arguments: ["-p","vcf"]
 requirements:
     - class: DockerRequirement
       dockerImageId: "samtools:1.3.1"
     - class: InitialWorkDirRequirement
-      listing: [ $(inputs.vcf) ]
-#/opt/samtools-1.3.1/htslib-1.3.1/tabix -p vcf dbsnpfile.gz > dbsnpfile.gz.tbi
-    
+      listing: 
+        - entry: $(inputs.vcf)
+          writable: true
+
 inputs:
     vcf:
         type: File
         inputBinding:
-            valueFrom:
-                $(self.basename)
-            position: 1
+          position: 1
 outputs:
-    indexed_vcf:
+    tabix:
         type: File
-        secondaryFiles: .tbi
+        secondaryFiles:
+          - .tbi
         outputBinding:
-            glob: $(inputs.vcf.basename)
+          glob: $(inputs.vcf.basename)

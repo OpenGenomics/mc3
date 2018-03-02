@@ -1,22 +1,26 @@
 cwlVersion: v1.0
 class: CommandLineTool
-label: "bgzip VCF"
-baseCommand: ["bgzip"]
-arguments: ["-c"]
+label: "gzi file"
+baseCommand: ["samtools"]
+arguments: ["faidx"]
 requirements:
     - class: DockerRequirement
       dockerImageId: "samtools:1.3.1"
     - class: InitialWorkDirRequirement
-      listing: [ $(inputs.unzipped) ]
-stdout: $(inputs.unzipped.basename).gz
+      listing: 
+        - entry: $(inputs.to_gzi)
+          writable: true
 
 inputs:
-    unzipped:
+    to_gzi:
         type: File
         inputBinding:
             position: 1
 outputs:
-    bgzipped:
+    gzi:
         type: File
+        secondaryFiles:
+          - .fai
+          - .gzi
         outputBinding:
-          glob: $(inputs.unzipped.basename).gz
+          glob: $(inputs.to_gzi.basename)

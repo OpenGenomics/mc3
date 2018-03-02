@@ -1,21 +1,20 @@
 cwlVersion: v1.0
 class: CommandLineTool
-label: "unzip dbsnp.vcf.gz"
+label: "unzip file"
 baseCommand: [gzip]
-stdout: $(inputs.output_filename)
-arguments: ["-d"]
-
+stdout: $(inputs.zipped.nameroot)
+arguments: ["-c","-d"]
 
 inputs:
 
-  dbsnp:
+  zipped:
     type: File
     inputBinding:
       position: 1
 
 outputs:
 
-  output:
+  unzipped:
     type: File
     outputBinding:
-      glob: $(inputs.output_filename)
+      glob: $(inputs.zipped.nameroot)

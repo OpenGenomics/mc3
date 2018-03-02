@@ -7,6 +7,8 @@ arguments: ["-p", "vcf"]
 requirements:
     - class: DockerRequirement
       dockerImageId: "samtools:1.3.1"
+    - class: InitialWorkDirRequirement
+      listing: [ $(inputs.vcf) ]
 #/opt/samtools-1.3.1/htslib-1.3.1/tabix -p vcf dbsnpfile.gz > dbsnpfile.gz.tbi
     
 inputs:

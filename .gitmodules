@@ -36,7 +36,10 @@
 	url = https://github.com/OpenGenomics/vcf-tools.git
 [submodule "tools/samtools-tool"]
 	path = tools/samtools-tool
-	url = https://github.com/kamichiotti/samtools-tool
+	url = https://github.com/OpenGenomics/samtools-tool
 [submodule "tools/picard-tool"]
 	path = tools/picard-tool
-	url = https://github.com/kamichiotti/picard-tool
+	url = https://github.com/OpenGenomics/picard-tool
+[submodule "tools/picard-tool"]
+        path = tools/indelocator-tool
+        url = https://github.com/OpenGenomics/indelocator-tool

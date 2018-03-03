@@ -5,7 +5,7 @@ baseCommand: ["samtools"]
 arguments: ["faidx"]
 requirements:
     - class: DockerRequirement
-      dockerImageId: "samtools:1.3.1"
+      dockerPull: "opengenomics/samtools:1.3.1"
     - class: InitialWorkDirRequirement
       listing: 
         - entry: $(inputs.to_index)

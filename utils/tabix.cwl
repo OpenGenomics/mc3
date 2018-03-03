@@ -5,7 +5,7 @@ baseCommand: ["tabix"]
 arguments: ["-p","vcf"]
 requirements:
     - class: DockerRequirement
-      dockerImageId: "samtools:1.3.1"
+      dockerPull: "opengenomics/samtools:1.3.1"
     - class: InitialWorkDirRequirement
       listing: 
         - entry: $(inputs.vcf)

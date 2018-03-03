@@ -1,11 +1,11 @@
 cwlVersion: v1.0
 class: CommandLineTool
-label: ".fai file"
+label: ".bai file"
 baseCommand: ["samtools"]
 arguments: ["index"]
 requirements:
     - class: DockerRequirement
-      dockerImageId: "samtools:1.3.1"
+      dockerPull: "opengenomics/samtools:1.3.1"
     - class: InitialWorkDirRequirement
       listing: 
         - entry: $(inputs.to_index)

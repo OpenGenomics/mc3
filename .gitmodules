@@ -28,15 +28,18 @@
 [submodule "tools/mutect-tool"]
 	path = tools/mutect-tool
 	url = https://github.com/OpenGenomics/mutect-tool.git
-[submodule "vcf2maf-tools"]
-	path = vcf2maf-tools
-	url = https://github.com/OpenGenomics/vcf2maf-tools.git
 [submodule "tools/vcf2maf-tools"]
 	path = tools/vcf2maf-tools
 	url = https://github.com/OpenGenomics/vcf2maf-tools.git
 [submodule "tools/vcf-tools"]
 	path = tools/vcf-tools
 	url = https://github.com/OpenGenomics/vcf-tools.git
-[submodule "tools/indelocator-tool"]
-	path = tools/indelocator-tool
-	url = https://github.com/kamichiotti/indelocator-tool
+[submodule "tools/samtools-tool"]
+	path = tools/samtools-tool
+	url = https://github.com/OpenGenomics/samtools-tool
+[submodule "tools/picard-tool"]
+	path = tools/picard-tool
+	url = https://github.com/OpenGenomics/picard-tool
+[submodule "tools/picard-tool"]
+        path = tools/indelocator-tool
+        url = https://github.com/OpenGenomics/indelocator-tool

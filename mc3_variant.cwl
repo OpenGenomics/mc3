@@ -1,6 +1,6 @@
 cwlVersion: v1.0
 class: Workflow
-id: full_mc3
+id: variant_mc3
 
 requirements:
   - class: StepInputExpressionRequirement
@@ -29,6 +29,8 @@ inputs:
       - .tbi
   centromere:
     type: File
+  bed_file:
+    type: File
   number_of_procs:
     type: int
     default: 6
@@ -56,53 +58,6 @@ inputs:
     type: string
 
 steps:
-    normal_pileup:
-      run: ./tools/samtools-pileup-tool/sam_pileup.cwl.yaml
-      in:
-        input: normal
-        reference: reference
-        noBaq:
-          default: true
-      out:
-        - output
-
-    tumor_pileup:
-      run: ./tools/samtools-pileup-tool/sam_pileup.cwl.yaml
-      in:
-        input: tumor
-        reference: reference
-        noBaq:
-          default: true
-      out:
-        - output
-
-    varscan:
-      run: ./tools/varscan-tool/varscan_somatic.cwl.yaml
-      in:
-        tumor_pileup: tumor_pileup/output
-        normal_pileup: normal_pileup/output
-        min_coverage:
-          default: 3
-        min_var_freq:
-          default: 0.08
-        p_value:
-          default: 0.10
-      out:
-        - snp_vcf
-        - indel_vcf
-
-    muse:
-      run: ./tools/muse-tool/muse.cwl.yaml
-      in:
-        tumor: tumor
-        normal: normal
-        reference: reference
-        known: dbsnp
-        mode: { default: wxs }
-        ncpus: number_of_procs
-      out:
-        - mutations
-
     prep_ref:
       in:
         zipped: reference
@@ -146,6 +101,53 @@ steps:
       out:
         - prepped_ref
 
+    normal_pileup:
+      run: ./tools/samtools-pileup-tool/sam_pileup.cwl.yaml
+      in:
+        input: normal
+        reference: prep_ref/prepped_ref
+        noBaq:
+          default: true
+      out:
+        - output
+
+    tumor_pileup:
+      run: ./tools/samtools-pileup-tool/sam_pileup.cwl.yaml
+      in:
+        input: tumor
+        reference: prep_ref/prepped_ref
+        noBaq:
+          default: true
+      out:
+        - output
+
+    varscan:
+      run: ./tools/varscan-tool/varscan_somatic.cwl.yaml
+      in:
+        tumor_pileup: tumor_pileup/output
+        normal_pileup: normal_pileup/output
+        min_coverage:
+          default: 3
+        min_var_freq:
+          default: 0.08
+        p_value:
+          default: 0.10
+      out:
+        - snp_vcf
+        - indel_vcf
+
+    muse:
+      run: ./tools/muse-tool/muse.cwl.yaml
+      in:
+        tumor: tumor
+        normal: normal
+        reference: prep_ref/prepped_ref
+        known: dbsnp
+        mode: { default: wxs }
+        ncpus: number_of_procs
+      out:
+        - mutations
+
     mutect:
       run: ./tools/mutect-tool/mutect.cwl.yaml
       in:
@@ -163,7 +165,7 @@ steps:
      in:
        tumor: tumor
        normal: normal
-       reference: reference
+       reference: prep_ref/prepped_ref
        number_of_procs: number_of_procs
      out:
        - mutations
@@ -176,7 +178,7 @@ steps:
        normal: normal
        patientId:
          default: tumor.nameroot
-       reference: reference
+       reference: prep_ref/prepped_ref
      out:
        - mutations
 
@@ -185,7 +187,7 @@ steps:
       in:
         tumor: tumor
         normal: normal
-        reference: reference
+        reference: prep_ref/prepped_ref
         mapq:
           default: 1
         gor:
@@ -200,7 +202,7 @@ steps:
       in:
         tumor: tumor
         normal: normal
-        reference: reference
+        reference: prep_ref/prepped_ref
         centromere: centromere
         balance_cutoff:
           default: 0
@@ -214,12 +216,22 @@ steps:
       out:
         - somatic_vcf
 
+  indelocator:
+    run: ./tools/indelocator-tool/indelocator.cwl
+    in:
+      tumor: tumor
+      normal: normal
+      reference: prep_ref/prepped_ref
+      bed_file: bedfile
+    out:
+      - mutations
+
     somaticsniper-fpfilter:
       run: ./tools/fpfilter-tool/fpfilter.cwl.yaml
       in:
         vcf-file: somaticsniper/mutations
         bam-file: tumor
-        reference: reference
+        reference: prep_ref/prepped_ref
         output:
           default: somatic_sniper_fpfilter.vcf
       out:
@@ -230,7 +242,7 @@ steps:
       in:
         vcf-file: varscan/snp_vcf
         bam-file: tumor
-        reference: reference
+        reference: prep_ref/prepped_ref
         output:
           default: varscan_fpfilter.vcf
       out:

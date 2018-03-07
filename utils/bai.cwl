@@ -5,7 +5,7 @@ baseCommand: ["samtools"]
 arguments: ["index"]
 requirements:
     - class: DockerRequirement
-      dockerPull: "opengenomics/samtools:1.3.1"
+      dockerPull: "opengenomics/samtools"
     - class: InitialWorkDirRequirement
       listing: 
         - entry: $(inputs.to_index)

@@ -5,7 +5,7 @@ baseCommand: ["bgzip"]
 arguments: ["-c"]
 requirements:
     - class: DockerRequirement
-      dockerPull: "opengenomics/samtools"
+      dockerPull: "opengenomics/samtools:1.3.1"
     - class: InitialWorkDirRequirement
       listing: [ $(inputs.unzipped) ]
 stdout: $(inputs.unzipped.basename).gz

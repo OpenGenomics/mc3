@@ -216,15 +216,15 @@ steps:
       out:
         - somatic_vcf
 
-  indelocator:
-    run: ./tools/indelocator-tool/indelocator.cwl
-    in:
-      tumor: tumor
-      normal: normal
-      reference: prep_ref/prepped_ref
-      bed_file: bedfile
-    out:
-      - mutations
+    indelocator:
+      run: ./tools/indelocator-tool/indelocator.cwl
+      in:
+        tumor: tumor
+        normal: normal
+        reference: prep_ref/prepped_ref
+        bed_file: bed_file
+      out:
+        - mutations
 
     somaticsniper-fpfilter:
       run: ./tools/fpfilter-tool/fpfilter.cwl.yaml

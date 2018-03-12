@@ -5,7 +5,7 @@ baseCommand: ["java","-jar", "/opt/picard/CreateSequenceDictionary.jar"]
 arguments: ["OUTPUT=$(inputs.to_dict.nameroot).dict"]
 requirements:
     - class: DockerRequirement
-      dockerPull: "opengenomics/picard:1.122"
+      dockerPull: "opengenomics/picard-tool:1.122"
     - class: InitialWorkDirRequirement
       listing: 
         - entry: $(inputs.to_dict)

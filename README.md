@@ -22,28 +22,40 @@ Example Variant Calling input
 {
     "tumor" : {
       "class" : "File",
-      "path" : "/mnt/mc3/mc3/test_in/ded8b01f-5301-49c8-bfdc-fc8343291e6d/C317.TCGA-AB-2901-03A-01W-0733-08.4.bam"
+      "path" : "/mnt/mc3/mc3/seq/ded8b01f-5301-49c8-bfdc-fc8343291e6d/C317.TCGA-AB-2901-03A-01W-0733-08.4.bam"
     },
     "normal" : {
       "class" : "File",
-       "path" : "/mnt/mc3/mc3/test_in/fb0bed68-4f2c-400d-8460-a62310fa95bf/C317.TCGA-AB-2901-11A-01W-0732-08.4.bam"
+       "path" : "/mnt/mc3/mc3/seq/fb0bed68-4f2c-400d-8460-a62310fa95bf/C317.TCGA-AB-2901-11A-01W-0732-08.4.bam"
     },
     "centromere" : {
       "class" : "File",
-      "path" : "/mnt/mc3/mc3/test_in/data/centromere_hg19.bed"
+      "path" : "/mnt/mc3/mc3/vcfs//centromere_hg19.bed"
     },
     "cosmic" : {
       "class" : "File",
-        "path" : "/mnt/mc3/mc3/test_in/data/b37_cosmic_v54_120711.vcf.gz"
+        "path" : "/mnt/mc3/mc3/ref/b37_cosmic_v54_120711.vcf.gz"
     },
     "dbsnp" : {
         "class" : "File",
-        "path" : "/mnt/mc3/mc3/test_in/data/dbsnp_132_b37.leftAligned.vcf.gz"
+        "path" : "/mnt/mc3/mc3/ref/dbsnp_132_b37.leftAligned.vcf.gz"
     },
     "reference" : {
         "class" : "File",
-        "path"  :  "/mnt/mc3/mc3/test_in/data/Homo_sapiens_assembly19.fasta.gz"
-    }
+        "path"  :  "/mnt/mc3/mc3/ref/Homo_sapiens_assembly19.fasta.gz"
+    },
+    "bed_file" : {
+        "class" : "File",
+        "path" : "/mnt/mc3/mc3/vcfs/gaf_20111020+broad_wex_1.1_hg19.bed"
+    },
+    "tumor_analysis_uuid" : "cf8c9b38-246d-46aa-b557-6c882e438161",
+    "tumor_aliquot_uuid" : "bac6a6d2-8c40-43cd-ab4c-16d3f8a06eb6",
+    "tumor_aliquot_name" : "TCGA-AB-2901-03A-01W-0733-08",
+    "normal_analysis_uuid" : "c404dcfb-e580-4cf2-8fe6-6990ce2ce03a",
+    "normal_aliquot_uuid" : "22f3f166-41a7-4058-a315-d72e1d7becd6",
+    "normal_aliquot_name" : "TCGA-AB-2901-11A-01W-0732-08",
+    "platform" : "illumina",
+    "center" : "OHSU"
 }
 ```
 
@@ -84,6 +96,10 @@ Example Vcf2Maf input
    "pindelVCF" : {
        "class" : "File",
        "path" : "/mnt/mc3/mc3/test/C317.TCGA-AB-2901-03A-01W-0733-08.4.pindel.somatic.tcga_filtered.reheadered.vcf"
+   },
+   "indelocatorVCF" : {
+       "class" : "File",
+       "path" : "/mnt/mc3/mc3/test/indelocator_filtered.reheadered.vcf"
    },
    "vepData" : {
        "class" : "Directory",

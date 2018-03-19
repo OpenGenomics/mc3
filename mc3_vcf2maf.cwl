@@ -48,7 +48,7 @@ steps:
       addFilters:
         default: false
       vcfTumorID:
-        default: PRIMARY
+        default: TUMOR
     out: [vcf]
     run: tools/vcf2maf-tools/vcf2vcf.cwl
 
@@ -66,7 +66,7 @@ steps:
       addFilters:
         default: false
       vcfTumorID:
-        default: PRIMARY
+        default: TUMOR
     out: [vcf]
     run: tools/vcf2maf-tools/vcf2vcf.cwl
 
@@ -84,7 +84,7 @@ steps:
       addFilters:
         default: true
       vcfTumorID:
-        default: PRIMARY
+        default: TUMOR
     out: [vcf]
     run: tools/vcf2maf-tools/vcf2vcf.cwl
 
@@ -102,7 +102,7 @@ steps:
       addFilters:
         default: true
       vcfTumorID:
-        default: PRIMARY
+        default: TUMOR
     out: [vcf]
     run: tools/vcf2maf-tools/vcf2vcf.cwl
 
@@ -120,7 +120,7 @@ steps:
       addFilters:
         default: true
       vcfTumorID:
-        default: PRIMARY
+        default: TUMOR
     out: [vcf]
     run: tools/vcf2maf-tools/vcf2vcf.cwl
 
@@ -138,7 +138,7 @@ steps:
       addFilters:
         default: false
       vcfTumorID:
-        default: PRIMARY
+        default: TUMOR
     out: [vcf]
     run: tools/vcf2maf-tools/vcf2vcf.cwl
 
@@ -156,7 +156,7 @@ steps:
       addFilters:
         default: false
       vcfTumorID:
-        default: PRIMARY
+        default: TUMOR
     out: [vcf]
     run: tools/vcf2maf-tools/vcf2vcf.cwl
 
@@ -174,7 +174,7 @@ steps:
       addFilters:
         default: true
       vcfTumorID:
-        default: PRIMARY
+        default: TUMOR
     out: [vcf]
     run: tools/vcf2maf-tools/vcf2vcf.cwl
 

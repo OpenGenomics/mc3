@@ -37,9 +37,11 @@ steps:
     in:
       museVCF: museVCF
       pindelVCF: pindelVCF
+      indelocatorVCF: indelocatorVCF
     out:
       - filteredMuseVCF
       - filteredPindelVCF
+      - filteredIndelocatorVCF
     
   convert:
     run: mc3_vcf2maf.cwl

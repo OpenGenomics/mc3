@@ -4,6 +4,7 @@ id: variant_mc3
 
 requirements:
   - class: StepInputExpressionRequirement
+  - class: SubworkflowFeatureRequirement
 
 inputs:
   tumor:

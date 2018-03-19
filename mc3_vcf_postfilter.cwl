@@ -8,6 +8,8 @@ inputs:
     type: File
   pindelVCF:
     type: File
+  indelocatorVCF:
+    type: File
 
 steps:
   filterMuse:
@@ -24,7 +26,17 @@ steps:
       vcf: pindelVCF
       output_name:
         default: pindel.filtered.vcf
-      ad:
+      cutoff:
+        default: 3
+    out:
+      - output_vcf
+  filterIndelocator:
+    run: tools/vcf-tools/filter_vcf.cwl
+    in:
+      vcf: indelocatorVCF
+      output_name:
+        default: indelocator.filtered.vcf
+      cutoff:
         default: 3
     out:
       - output_vcf
@@ -38,3 +50,7 @@ outputs:
     type: File
     outputSource:
       filterPindel/output_vcf
+  filteredIndelocatorVCF:
+    type: File
+    outputSource:
+      filterIndelocator/output_vcf

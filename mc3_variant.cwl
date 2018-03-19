@@ -4,7 +4,6 @@ id: variant_mc3
 
 requirements:
   - class: StepInputExpressionRequirement
-  - class: SubworkflowFeatureRequirement
 
 inputs:
   tumor:
@@ -59,45 +58,11 @@ inputs:
 
 steps:
     prep_ref:
-      in:
-        zipped: reference
-
-      run:
-        class: Workflow
-        requirements:
-          - class: StepInputExpressionRequirement
-
-        inputs:
+      run: ./utils/reference_prep.cwl
           zipped:
             type: File
-
-        steps:
-          unzip_ref:
-            run: ./utils/gzip.cwl
-            in:
-              zipped: zipped
-            out:
-              - unzipped
-          index_ref:
-            run: ./utils/fai.cwl
-            in:
-              to_index: unzip_ref/unzipped
-            out:
-              - faidx
-          dict_ref:
-            run: ./utils/dict.cwl
-            in:
-              to_dict: index_ref/faidx
-            out:
-              - dict
-
-        outputs:
-          prepped_ref:
-            type: File
-            secondaryFiles:
-              - ^.fai
-              - .dict
-            outputSource: dict_ref/dict
+      in:
+        zipped: reference
       out:
         - prepped_ref
 
@@ -248,10 +213,17 @@ steps:
       out:
         - filtered_vcf
 
-    rehead_varscani:
+    rehead_vcfs:
       run: ./tools/tcgavcf-tool/tcga-vcf-reheader.cwl
       in:
-        input_vcf: varscan/indel_vcf
+        varscani_vcf: varscan/indel_vcf
+        varscans_vcf: varscan-fpfilter/filtered_vcf
+        muse_vcf: muse/mutations
+        mutect_vcf: mutect/mutations
+        somsniper_vcf: somaticsniper-fpfilter/filtered_vcf
+        radia_vcf: radia-filter/mutations
+        pindel_vcf: pindel/somatic_vcf
+        indelocator_vcf: indelocator/mutations
         tumor_analysis_uuid: tumor_analysis_uuid
         tumor_bam_name: tumor_bam_name
         tumor_aliquot_uuid: tumor_aliquot_uuid
@@ -263,150 +235,37 @@ steps:
         platform: platform
         center: center
       out:
-        - rehead_vcf
-
-    rehead_varscans:
-      run: ./tools/tcgavcf-tool/tcga-vcf-reheader.cwl
-      in:
-        input_vcf: varscan-fpfilter/filtered_vcf
-        tumor_analysis_uuid: tumor_analysis_uuid
-        tumor_bam_name: tumor_bam_name
-        tumor_aliquot_uuid: tumor_aliquot_uuid
-        tumor_aliquot_name: tumor_aliquot_name
-        normal_analysis_uuid: normal_analysis_uuid
-        normal_bam_name: normal_bam_name
-        normal_aliquot_uuid: normal_aliquot_uuid
-        normal_aliquot_name: normal_aliquot_name
-        platform: platform
-        center: center
-      out:
-        - rehead_vcf
-
-    rehead_muse:
-      run: ./tools/tcgavcf-tool/tcga-vcf-reheader.cwl
-      in:
-        input_vcf: muse/mutations
-        tumor_analysis_uuid: tumor_analysis_uuid
-        tumor_bam_name: tumor_bam_name
-        tumor_aliquot_uuid: tumor_aliquot_uuid
-        tumor_aliquot_name: tumor_aliquot_name
-        normal_analysis_uuid: normal_analysis_uuid
-        normal_bam_name: normal_bam_name
-        normal_aliquot_uuid: normal_aliquot_uuid
-        normal_aliquot_name: normal_aliquot_name
-        platform: platform
-        center: center
-      out:
-        - rehead_vcf
-
-    rehead_mutect:
-      run: ./tools/tcgavcf-tool/tcga-vcf-reheader.cwl
-      in:
-        input_vcf: mutect/mutations
-        tumor_analysis_uuid: tumor_analysis_uuid
-        tumor_bam_name: tumor_bam_name
-        tumor_aliquot_uuid: tumor_aliquot_uuid
-        tumor_aliquot_name: tumor_aliquot_name
-        normal_analysis_uuid: normal_analysis_uuid
-        normal_bam_name: normal_bam_name
-        normal_aliquot_uuid: normal_aliquot_uuid
-        normal_aliquot_name: normal_aliquot_name
-        platform: platform
-        center: center
-      out:
-        - rehead_vcf
-
-    rehead_radia:
-      run: ./tools/tcgavcf-tool/tcga-vcf-reheader.cwl
-      in:
-        input_vcf: radia-filter/mutations
-        tumor_analysis_uuid: tumor_analysis_uuid
-        tumor_bam_name: tumor_bam_name
-        tumor_aliquot_uuid: tumor_aliquot_uuid
-        tumor_aliquot_name: tumor_aliquot_name
-        normal_analysis_uuid: normal_analysis_uuid
-        normal_bam_name: normal_bam_name
-        normal_aliquot_uuid: normal_aliquot_uuid
-        normal_aliquot_name: normal_aliquot_name
-        platform: platform
-        center: center
-      out:
-        - rehead_vcf
-
-    rehead_somaticsniper:
-      run: ./tools/tcgavcf-tool/tcga-vcf-reheader.cwl
-      in:
-        input_vcf: somaticsniper-fpfilter/filtered_vcf
-        tumor_analysis_uuid: tumor_analysis_uuid
-        tumor_bam_name: tumor_bam_name
-        tumor_aliquot_uuid: tumor_aliquot_uuid
-        tumor_aliquot_name: tumor_aliquot_name
-        normal_analysis_uuid: normal_analysis_uuid
-        normal_bam_name: normal_bam_name
-        normal_aliquot_uuid: normal_aliquot_uuid
-        normal_aliquot_name: normal_aliquot_name
-        platform: platform
-        center: center
-      out:
-        - rehead_vcf
-
-    rehead_pindel:
-      run: ./tools/tcgavcf-tool/tcga-vcf-reheader.cwl
-      in:
-        input_vcf: pindel/somatic_vcf
-        tumor_analysis_uuid: tumor_analysis_uuid
-        tumor_bam_name: tumor_bam_name
-        tumor_aliquot_uuid: tumor_aliquot_uuid
-        tumor_aliquot_name: tumor_aliquot_name
-        normal_analysis_uuid: normal_analysis_uuid
-        normal_bam_name: normal_bam_name
-        normal_aliquot_uuid: normal_aliquot_uuid
-        normal_aliquot_name: normal_aliquot_name
-        platform: platform
-        center: center
-      out:
-        - rehead_vcf
+        - reheaded_varscani
+        - reheaded_varscans
+        - reheaded_muse
+        - reheaded_mutect
+        - reheaded_radia
+        - reheaded_somsniper
+        - reheaded_pindel
+        - reheaded_indelocator
 
 outputs:
   pindelVCF:
     type: File
-    outputSource: pindel/somatic_vcf
+    outputSource: rehead_vcfs/reheaded_pindel
   somaticsniperVCF:
     type: File
-    outputSource: somaticsniper-fpfilter/filtered_vcf
+    outputSource: rehead_vcfs/reheaded_somsniper
   varscansVCF:
     type: File
-    outputSource: varscan-fpfilter/filtered_vcf
+    outputSource: rehead_vcfs/reheaded_varscans
   varscaniVCF:
     type: File
-    outputSource: varscan/indel_vcf
+    outputSource: rehead_vcfs/reheaded_varscani
   museVCF:
     type: File
-    outputSource: muse/mutations
+    outputSource: rehead_vcfs/reheaded_muse
   mutectVCF:
     type: File
-    outputSource: mutect/mutations
+    outputSource: rehead_vcfs/reheaded_mutect
   radiaVCF:
     type: File
-    outputSource: radia-filter/mutations
-  pindelVCF_rehead:
+    outputSource: rehead_vcfs/reheaded_radia
+  indelocatorVCF:
     type: File
-    outputSource: rehead_pindel/rehead_vcf
-  somaticsniperVCF_rehead:
-    type: File
-    outputSource: rehead_somaticsniper/rehead_vcf
-  varscansVCF_rehead:
-    type: File
-    outputSource: rehead_varscans/rehead_vcf
-  varscaniVCF_rehead:
-    type: File
-    outputSource: rehead_varscani/rehead_vcf
-  museVCF_rehead:
-    type: File
-    outputSource: rehead_muse/rehead_vcf
-  mutectVCF_rehead:
-    type: File
-    outputSource: rehead_mutect/rehead_vcf
-  radiaVCF_rehead:
-    type: File
-    outputSource: rehead_radia/rehead_vcf
+    outputSource: rehead_vcfs/reheaded_indelocator

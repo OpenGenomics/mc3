@@ -4,6 +4,7 @@ id: variant_mc3
 
 requirements:
   - class: StepInputExpressionRequirement
+  - class: SubworkflowFeatureRequirement
 
 inputs:
   tumor:
@@ -59,8 +60,6 @@ inputs:
 steps:
     prep_ref:
       run: ./utils/reference_prep.cwl
-          zipped:
-            type: File
       in:
         zipped: reference
       out:

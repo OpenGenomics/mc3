@@ -59,8 +59,6 @@ inputs:
 steps:
     prep_ref:
       run: ./utils/reference_prep.cwl
-          zipped:
-            type: File
       in:
         zipped: reference
       out:

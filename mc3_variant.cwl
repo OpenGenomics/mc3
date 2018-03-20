@@ -134,18 +134,6 @@ steps:
      out:
        - mutations
 
-    radia-filter:
-     run: ./tools/radia-tool/radia_filter.cwl
-     in:
-       inputVCF: radia/mutations
-       tumor: tumor
-       normal: normal
-       patientId:
-         default: tumor.nameroot
-       reference: prep_ref/prepped_ref
-     out:
-       - mutations
-
     somaticsniper:
       run: ./tools/somaticsniper-tool/somatic_sniper.cwl.yaml
       in:
@@ -190,39 +178,37 @@ steps:
       out:
         - mutations
 
-    somaticsniper-fpfilter:
-      run: ./tools/fpfilter-tool/fpfilter.cwl.yaml
+    fpfilter:
+      run: mc3_vcf_postfilter.cwl
       in:
-        vcf-file: somaticsniper/mutations
-        bam-file: tumor
+        rawRadia: radia/mutations
+        rawVarscans: varscan/snp_vcf
+        rawSomsniper: somaticsniper/mutations
+        rawMuse: muse/mutations
+        rawPindel: pindel/somatic_vcf
+        rawIndelocator: indelocator/mutations
+        tumor: tumor
+        normal: normal
         reference: prep_ref/prepped_ref
-        output:
-          default: somatic_sniper_fpfilter.vcf
       out:
-        - filtered_vcf
-
-    varscan-fpfilter:
-      run: ./tools/fpfilter-tool/fpfilter.cwl.yaml
-      in:
-        vcf-file: varscan/snp_vcf
-        bam-file: tumor
-        reference: prep_ref/prepped_ref
-        output:
-          default: varscan_fpfilter.vcf
-      out:
-        - filtered_vcf
+        - filteredRadiaVCF
+        - fpfilteredSomaticsniperVCF
+        - fpfilteredVarscansVCF
+        - filteredMuseVCF
+        - filteredPindelVCF
+        - filteredIndelocatorVCF
 
     rehead_vcfs:
       run: ./tools/tcgavcf-tool/tcga-vcf-reheader.cwl
       in:
         varscani_vcf: varscan/indel_vcf
-        varscans_vcf: varscan-fpfilter/filtered_vcf
-        muse_vcf: muse/mutations
+        varscans_vcf: fpfilter/fpfilteredVarscansVCF
+        muse_vcf: fpfilter/filteredMuseVCF
         mutect_vcf: mutect/mutations
-        somsniper_vcf: somaticsniper-fpfilter/filtered_vcf
-        radia_vcf: radia-filter/mutations
-        pindel_vcf: pindel/somatic_vcf
-        indelocator_vcf: indelocator/mutations
+        somsniper_vcf: fpfilter/fpfilteredSomaticsniperVCF
+        radia_vcf: fpfilter/filteredRadiaVCF
+        pindel_vcf: fpfilter/filteredPindelVCF
+        indelocator_vcf: fpfilter/filteredIndelocatorVCF
         tumor_analysis_uuid: tumor_analysis_uuid
         tumor_bam_name: tumor_bam_name
         tumor_aliquot_uuid: tumor_aliquot_uuid

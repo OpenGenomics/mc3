@@ -32,29 +32,18 @@ inputs:
 
 
 steps:
-  filter:
-    run: mc3_vcf_postfilter.cwl
-    in:
-      museVCF: museVCF
-      pindelVCF: pindelVCF
-      indelocatorVCF: indelocatorVCF
-    out:
-      - filteredMuseVCF
-      - filteredPindelVCF
-      - filteredIndelocatorVCF
-    
   convert:
     run: mc3_vcf2maf.cwl
     in:
       normalID: normalID
       tumorID: tumorID
-      museVCF: filter/filteredMuseVCF
+      museVCF: museVCF
       mutectVCF: mutectVCF
       somaticsniperVCF: somaticsniperVCF
       varscansVCF: varscansVCF
       varscaniVCF: varscaniVCF
       radiaVCF: radiaVCF
-      pindelVCF: filter/filteredPindelVCF
+      pindelVCF: pindelVCF
       indelocatorVCF: indelocatorVCF
       refFasta: refFasta
       vepData: vepData
@@ -64,6 +53,4 @@ steps:
 outputs:
   outmaf:
     type: File
-    outputSource: convert/outmaf
-
-      
+    outputSource: convert/outmaf    

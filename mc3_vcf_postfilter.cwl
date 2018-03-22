@@ -63,7 +63,7 @@ steps:
     in:
       vcf: rawMuse
       output_name:
-        default: muse.filtered.vcf
+        default: muse_filtered.vcf
     out:
       - output_vcf
 
@@ -72,7 +72,7 @@ steps:
     in:
       vcf: rawPindel
       output_name:
-        default: pindel.filtered.vcf
+        default: pindel_filtered.vcf
       cutoff:
         default: 3
     out:
@@ -83,7 +83,7 @@ steps:
     in:
       vcf: rawIndelocator
       output_name:
-        default: indelocator.filtered.vcf
+        default: indelocator_filtered.vcf
       cutoff:
         default: 3
     out:

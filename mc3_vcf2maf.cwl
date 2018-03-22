@@ -1,3 +1,4 @@
+
 cwlVersion: v1.0
 class: Workflow
 
@@ -199,8 +200,6 @@ steps:
         - normalize_radia/vcf
         - normalize_indelocator/vcf
         - sort_pindel/output_vcf
-
-      vepData: vepData
     out: [output_vcf]
     run: tools/vcf-tools/merge_vcfs.cwl
 
@@ -214,7 +213,7 @@ steps:
       vcfNormalID:
         default: NORMAL
       vcfTumorID:
-        default: PRIMARY
+        default: TUMOR
       retainInfo:
         default:
           - COSMIC

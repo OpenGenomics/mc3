@@ -43,3 +43,6 @@
 [submodule "tools/picard-tool"]
         path = tools/indelocator-tool
         url = https://github.com/OpenGenomics/indelocator-tool
+[submodule "tools/markfiles-tool"]
+	path = tools/markfiles-tool
+	url = https://github.com/kamichiotti/markfiles-tool

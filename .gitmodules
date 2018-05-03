@@ -37,9 +37,12 @@
 [submodule "tools/samtools-tool"]
 	path = tools/samtools-tool
 	url = https://github.com/OpenGenomics/samtools-tool
-[submodule "tools/picard-tool"]
-	path = tools/picard-tool
-	url = https://github.com/OpenGenomics/picard-tool
-[submodule "tools/picard-tool"]
+[submodule "tools/indelocator-tool"]
         path = tools/indelocator-tool
         url = https://github.com/OpenGenomics/indelocator-tool
+[submodule "tools/markfiles-tool"]
+	path = tools/markfiles-tool
+	url = https://github.com/kamichiotti/markfiles-tool
+[submodule "tools/picard-tool"]
+        path = tools/picard-tool
+        url = https://github.com/OpenGenomics/picard-tool

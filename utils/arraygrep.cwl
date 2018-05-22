@@ -10,17 +10,14 @@ inputs:
   pattern:
     type: string
     inputBinding:
-      shellQuote: true
       position: 1
-  infile:
-    type: File
+  infiles:
+    type: File[]
     inputBinding:
-      shellQuote: false
       position: 2
   outfile:
     type: string
     default: grepout.txt
-
 
 outputs:
   grepout:

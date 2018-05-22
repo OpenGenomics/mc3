@@ -10,17 +10,15 @@ inputs:
   pattern:
     type: string
     inputBinding:
-      shellQuote: true
       position: 1
-  infile:
-    type: File
+  infiles:
+    type: Directory
     inputBinding:
-      shellQuote: false
       position: 2
+      valueFrom: $(inputs.infiles.listing)
   outfile:
     type: string
     default: grepout.txt
-
 
 outputs:
   grepout:

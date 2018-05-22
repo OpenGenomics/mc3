@@ -34,28 +34,6 @@ inputs:
   number_of_procs:
     type: int
     default: 6
-  tumor_analysis_uuid:
-    type: string
-  tumor_bam_name:
-    type: string
-    default: tumor.nameroot
-  tumor_aliquot_uuid:
-    type: string
-  tumor_aliquot_name:
-    type: string
-  normal_analysis_uuid:
-    type: string
-  normal_bam_name:
-    type: string
-    default: normal.nameroot
-  normal_aliquot_uuid:
-    type: string
-  normal_aliquot_name:
-    type: string
-  platform:
-    type: string
-  center:
-    type: string
 
 steps:
     prep_ref:
@@ -198,59 +176,28 @@ steps:
         - filteredPindelVCF
         - filteredIndelocatorVCF
 
-    rehead_vcfs:
-      run: ./tools/tcgavcf-tool/tcga-vcf-reheader.cwl
-      in:
-        varscani_vcf: varscan/indel_vcf
-        varscans_vcf: fpfilter/fpfilteredVarscansVCF
-        muse_vcf: fpfilter/filteredMuseVCF
-        mutect_vcf: mutect/mutations
-        somsniper_vcf: fpfilter/fpfilteredSomaticsniperVCF
-        radia_vcf: fpfilter/filteredRadiaVCF
-        pindel_vcf: fpfilter/filteredPindelVCF
-        indelocator_vcf: fpfilter/filteredIndelocatorVCF
-        tumor_analysis_uuid: tumor_analysis_uuid
-        tumor_bam_name: tumor_bam_name
-        tumor_aliquot_uuid: tumor_aliquot_uuid
-        tumor_aliquot_name: tumor_aliquot_name
-        normal_analysis_uuid: normal_analysis_uuid
-        normal_bam_name: normal_bam_name
-        normal_aliquot_uuid: normal_aliquot_uuid
-        normal_aliquot_name: normal_aliquot_name
-        platform: platform
-        center: center
-      out:
-        - reheaded_varscani
-        - reheaded_varscans
-        - reheaded_muse
-        - reheaded_mutect
-        - reheaded_radia
-        - reheaded_somsniper
-        - reheaded_pindel
-        - reheaded_indelocator
-
 outputs:
   pindelVCF:
     type: File
-    outputSource: rehead_vcfs/reheaded_pindel
+    outputSource: fpfilter/filteredPindelVCF
   somaticsniperVCF:
     type: File
-    outputSource: rehead_vcfs/reheaded_somsniper
+    outputSource: fpfilter/fpfilteredSomaticsniperVCF
   varscansVCF:
     type: File
-    outputSource: rehead_vcfs/reheaded_varscans
+    outputSource: fpfilter/fpfilteredVarscansVCF
   varscaniVCF:
     type: File
-    outputSource: rehead_vcfs/reheaded_varscani
+    outputSource: varscan/indel_vcf
   museVCF:
     type: File
-    outputSource: rehead_vcfs/reheaded_muse
+    outputSource: fpfilter/filteredMuseVCF
   mutectVCF:
     type: File
-    outputSource: rehead_vcfs/reheaded_mutect
+    outputSource: mutect/mutations
   radiaVCF:
     type: File
-    outputSource: rehead_vcfs/reheaded_radia
+    outputSource: fpfilter/filteredRadiaVCF
   indelocatorVCF:
     type: File
-    outputSource: rehead_vcfs/reheaded_indelocator
+    outputSource: fpfilter/filteredIndelocatorVCF

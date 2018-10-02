@@ -33,21 +33,21 @@ inputs:
   vepData:
     type: Directory
   tumor_analysis_uuid:
-    type: string
+    type: string?
   tumor_bam_name:
     type: string
   tumor_aliquot_uuid:
-    type: string
+    type: string?
   normal_analysis_uuid:
-    type: string
+    type: string?
   normal_bam_name:
     type: string
   normal_aliquot_uuid:
-    type: string
+    type: string?
   platform:
-    type: string
+    type: string?
   center:
-    type: string
+    type: string?
 
 steps:
 
@@ -60,7 +60,7 @@ steps:
       - output_vcf
     run: tools/vcf-tools/vcfsort.cwl
 
-  normalize_muse:
+  standardize_muse:
     in:
       inputVCF: sort_muse/output_vcf
       outputVCF:
@@ -86,7 +86,7 @@ steps:
       - output_vcf
     run: tools/vcf-tools/vcfsort.cwl
 
-  normalize_mutect:
+  standardize_mutect:
     in:
       inputVCF: sort_mutect/output_vcf
       refFasta: refFasta
@@ -108,7 +108,7 @@ steps:
       - output_vcf
     run: tools/vcf-tools/vcfsort.cwl
 
-  normalize_somaticsniper:
+  standardize_somaticsniper:
     in:
       inputVCF: sort_somaticsniper/output_vcf
       outputVCF:
@@ -134,7 +134,7 @@ steps:
       - output_vcf
     run: tools/vcf-tools/vcfsort.cwl
 
-  normalize_varscans:
+  standardize_varscans:
     in:
       inputVCF: sort_varscans/output_vcf
       outputVCF:
@@ -160,7 +160,7 @@ steps:
       - output_vcf
     run: tools/vcf-tools/vcfsort.cwl
 
-  normalize_varscani:
+  standardize_varscani:
     in:
       inputVCF: sort_varscani/output_vcf
       outputVCF:
@@ -186,7 +186,7 @@ steps:
       - output_vcf
     run: tools/vcf-tools/vcfsort.cwl
 
-  normalize_radia:
+  standardize_radia:
     in:
       inputVCF: sort_radia/output_vcf
       outputVCF:
@@ -212,7 +212,7 @@ steps:
       - output_vcf
     run: tools/vcf-tools/vcfsort.cwl
 
-  normalize_indelocator:
+  standardize_indelocator:
     in:
       inputVCF: sort_indelocator/output_vcf
       outputVCF:
@@ -234,7 +234,7 @@ steps:
       - output_vcf
     run: tools/vcf-tools/vcfsort.cwl
 
-  normalize_pindel:
+  standardize_pindel:
     in:
       inputVCF: sort_pindel/output_vcf
       outputVCF:
@@ -254,14 +254,14 @@ steps:
   rehead_vcfs:
     run: ./tools/tcgavcf-tool/tcga-vcf-reheader.cwl
     in:
-      muse_vcf: normalize_muse/vcf
-      mutect_vcf: normalize_mutect/vcf
-      somsniper_vcf: normalize_somaticsniper/vcf
-      varscani_vcf: normalize_varscani/vcf
-      varscans_vcf: normalize_varscans/vcf
-      radia_vcf: normalize_radia/vcf
-      pindel_vcf: normalize_pindel/vcf
-      indelocator_vcf: normalize_indelocator/vcf
+      muse_vcf: standardize_muse/vcf
+      mutect_vcf: standardize_mutect/vcf
+      somsniper_vcf: standardize_somaticsniper/vcf
+      varscani_vcf: standardize_varscani/vcf
+      varscans_vcf: standardize_varscans/vcf
+      radia_vcf: standardize_radia/vcf
+      pindel_vcf: standardize_pindel/vcf
+      indelocator_vcf: standardize_indelocator/vcf
       tumor_analysis_uuid: tumor_analysis_uuid
       tumor_bam_name: tumor_bam_name
       tumor_aliquot_uuid: tumor_aliquot_uuid
@@ -313,6 +313,10 @@ steps:
       vepData: vepData
       tumorID: tumorID
       normalID: normalID
+      vcfTumorID:
+        valueFrom: PRIMARY
+      vcfNormalID:
+        valueFrom: NORMAL
       retainInfo:
         default:
           - COSMIC

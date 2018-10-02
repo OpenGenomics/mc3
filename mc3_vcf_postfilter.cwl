@@ -22,6 +22,10 @@ inputs:
     type: File
   reference:
     type: File
+  tumorID:
+    type: string
+  normalID:
+    type: string
 
 steps:
   filterRadia:
@@ -31,7 +35,7 @@ steps:
       tumor: tumor
       normal: normal
       patientId:
-        default: tumor.nameroot
+        default: tumorID
       reference: reference
     out:
       - mutations
@@ -86,6 +90,8 @@ steps:
         default: indelocator_filtered.vcf
       cutoff:
         default: 3
+      tumorID: tumorID
+      normalID: normalID
     out:
       - output_vcf
 

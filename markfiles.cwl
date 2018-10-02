@@ -88,6 +88,8 @@ steps:
     in:
       markList: secondMarkPrep/grepout
       mergedMAF: firstReduce/reducedMAF
+      useNorm: 
+        default: 1
       outMAF:
         valueFrom: $(inputs.mergedMAF.nameroot).map2.maf
     out:

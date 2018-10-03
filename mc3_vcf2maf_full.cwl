@@ -27,7 +27,9 @@ inputs:
     type: File
   vepData:
     type: Directory
-  markDir:
+  markSamples:
+    type: Directory
+  markVariants:
     type: Directory
   tumor_analysis_uuid:
     type: string?
@@ -81,11 +83,11 @@ steps:
       refFasta: refFasta
       vepData: vepData
       tumor_bam_name:
-        valueFrom: $(inputs.tumor.basename)
+        source: tumor
+        valueFrom: $(self.basename)
       normal_bam_name:
-        valueFrom: $(inputs.normal.basename)
-      tumor_aliquot_name: tumorID
-      normal_aiquot_name: normalID
+        source: normal
+        valueFrom: $(self.basename)
       tumor_aliquot_uuid: tumor_aliquot_uuid
       normal_aliquot_uuid: normal_aliquot_uuid
       tumor_analysis_uuid: tumor_analysis_uuid
@@ -101,10 +103,8 @@ steps:
     in:
       sampleID: tumorID
       mergedMAF: convert/outmaf
-      mark1dir:
-        valueFrom: $(inputs.markDir.path)/mark1
-      mark2dir:
-        valueFrom: $(inputs.markDir.path)/mark2
+      markSamples: markSamples
+      markVariants: markVariants
     out:
       - markedMAF
 

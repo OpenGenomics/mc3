@@ -11,9 +11,9 @@ inputs:
     type: string
   mergedMAF:
     type: File
-  mark1dir:
+  markSamples:
     type: Directory
-  mark2dir:
+  markVariants:
     type: Directory
 
 steps:
@@ -21,7 +21,7 @@ steps:
     run: ./utils/dirgrep.cwl
     in:
       pattern: sampleID
-      infiles: mark1dir
+      infiles: markSamples
     out:
       - grepout
 
@@ -79,7 +79,7 @@ steps:
     run: ./utils/dirgrep.cwl
     in:
       pattern: sampleID
-      infiles: mark2dir
+      infiles: markVariants
     out:
       - grepout
 

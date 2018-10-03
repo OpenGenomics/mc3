@@ -265,11 +265,9 @@ steps:
       tumor_analysis_uuid: tumor_analysis_uuid
       tumor_bam_name: tumor_bam_name
       tumor_aliquot_uuid: tumor_aliquot_uuid
-      tumor_aliquot_name: tumorID
       normal_analysis_uuid: normal_analysis_uuid
       normal_bam_name: normal_bam_name
       normal_aliquot_uuid: normal_aliquot_uuid
-      normal_aliquot_name: normalID
       platform: platform
       center: center
     out:

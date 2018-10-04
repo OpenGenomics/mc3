@@ -31,18 +31,6 @@ inputs:
     type: Directory
   markVariants:
     type: Directory
-  tumor_analysis_uuid:
-    type: string?
-  tumor_aliquot_uuid:
-    type: string?
-  normal_analysis_uuid:
-    type: string?
-  normal_aliquot_uuid:
-    type: string?
-  platform:
-    type: string?
-  center:
-    type: string?
 
 steps:
   call_variants:
@@ -88,12 +76,6 @@ steps:
       normal_bam_name:
         source: normal
         valueFrom: $(self.basename)
-      tumor_aliquot_uuid: tumor_aliquot_uuid
-      normal_aliquot_uuid: normal_aliquot_uuid
-      tumor_analysis_uuid: tumor_analysis_uuid
-      normal_analysis_uuid: normal_analysis_uuid
-      platform: platform
-      center: center 
 
     out:
       - outmaf

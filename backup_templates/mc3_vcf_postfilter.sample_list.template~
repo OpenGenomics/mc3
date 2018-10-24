@@ -1,0 +1,3 @@
+run_uid:	tumor:	normal:	tumorID:	normalID:	rawIndelocator:	rawMuse:	rawPindel:	rawRadia:	rawSomsniper:	rawVarscans:
+sample_1	/full/path/to/tumor_1.bam	/full/path/to/normal_1.bam	/full/path/to/indel_1.vcf	/full/path/to/muse_1.vcf	/full/path/to/pindel_1.vcf	/full/path/to/radia_1.vcf	/full/path/to/sniper_1.vcf	/full/path/to/vars_1.vcf
+sample_2	/full/path/to/tumor_2.bam	/full/path/to/normal_2.bam	/full/path/to/indel_2.vcf	/full/path/to/muse_2.vcf	/full/path/to/pindel_2.vcf	/full/path/to/radia_2.vcf	/full/path/to/sniper_2.vcf	/full/path/to/vars_2.vcf

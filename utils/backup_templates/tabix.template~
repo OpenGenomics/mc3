@@ -1,0 +1,9 @@
+#####
+# If generating JSON for multiple samples, replace '</full/file/path>' or 'null' with '<>', then complete tabix.sample_list.tab. See
+# ./backup_templates/tabix.sample_list.template for examples. Be certain to provide a unique identifier under the 'run_uid' header to
+# clearly distinguish samples/runs. If *optional* sample-specific values are desired, the appropriate key from this template may be used as
+# a column header in tabix.sample_list.tab (be careful to maintain tab-delimited format).
+####
+vcf: {
+    class: File
+    path: </full/file/path>         # Required file; replace '</full/file/path>' with full path to bgzip-compressed VCF file to be indexed with tabix [e.g., /my/path/to/input.vcf.gz]

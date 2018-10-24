@@ -1,0 +1,10 @@
+#####
+# If generating JSON for multiple samples, replace '</full/file/path>' or 'null' with '<>', then complete cat.sample_list.tab. See
+# ./backup_templates/cat.sample_list.template for examples. Be certain to provide a unique identifier under the 'run_uid' header to
+# clearly distinguish samples/runs. If *optional* sample-specific values are desired, the appropriate key from this template may be used as
+# a column header in cat.sample_list.tab (be careful to maintain tab-delimited format).
+####
+infiles: [
+  - class: File
+  - path: </full/file/path>         # Required file array; replace '</full/file/path>' with double-quoted, comma-delimited full paths to files to be concatenated [e.g., "/my/path/to/fileone.txt","/my/path/to/filetwo.txt","/my/path/to/filethree.txt"]
+outfile: null			    #Optional string; name of output file; 'null' defaults to 'catout.txt'

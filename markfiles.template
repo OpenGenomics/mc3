@@ -1,0 +1,16 @@
+#####
+# If generating JSON for multiple samples, replace '</full/file/path>', '<string>', or 'null' with '<>', then complete markfiles.sample_list.tab.
+# See ./backup_templates/markfiles.sample_list.template for examples. Be certain to provide a unique identifier under the 'run_uid'
+# header to clearly distinguish samples/runs. If *optional* sample-specific values are desired, the appropriate key from this template may
+# be used as a column header in markfiles.sample_list.tab (be careful to maintain tab-delimited format).
+####
+markSamples: {
+    class: Directory
+    path: </full/directory/path/>   # Required directory; replace '</full/directory/path/>' with full path to sample-level markfiles [e.g., /my/path/to/markfiles/mark_samples/]
+markVariants: {
+    class: Directory
+    path: </full/directory/path/>   # Required directory; replace '</full/directory/path/>' with full path to variant-level markfiles [e.g., /my/path/to/markfiles/mark_variants/]
+mergedMAF: {
+    class: File
+    path: </full/file/path>         # Required file; replace '</full/file/path>' with full path to MAF file for sample- and variant-level marking [e.g., /my/path/to/merged.maf]
+sampleID: <string>		    # Required string; replace '<string>' with a sample identifier (must be an exact string present in markfiles) [e.g., TCGA-XX-XXXX]

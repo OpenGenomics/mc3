@@ -1,0 +1,4 @@
+run_uid:	tumor:	normal:	tumorID:	normalID:
+run_id_1	/full/path/to/tumor_1.bam	/full/path/to/normal_1.bam	sample_1
+run_id_2	/full/path/to/tumor_2.bam	/full/path/to/normal_2.bam	sample_2
+run_id_3	/full/path/to/tumor_3.bam	/full/path/to/normal_3.bam	sample_3

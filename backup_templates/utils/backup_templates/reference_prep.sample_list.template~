@@ -1,0 +1,4 @@
+run_uid:	zipped:
+genome_1	/full/path/to/zipped_genome_1.fa.gz
+genome_2	/full/path/to/zipped_genome_2.fa.gz
+genome_3	/full/path/to/zipped_genome_3.fa.gz

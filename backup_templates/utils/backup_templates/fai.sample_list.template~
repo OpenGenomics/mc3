@@ -1,0 +1,4 @@
+run_uid:	to_index:
+fastafile_1	/full/path/to/file_1.fa
+fastafile_2	/full/path/to/file_2.fa
+fastafile_3	/full/path/to/file_3.fa

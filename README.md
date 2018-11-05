@@ -50,10 +50,8 @@ Example Variant Calling input
     },
     "tumor_analysis_uuid" : "cf8c9b38-246d-46aa-b557-6c882e438161",
     "tumor_aliquot_uuid" : "bac6a6d2-8c40-43cd-ab4c-16d3f8a06eb6",
-    "tumor_aliquot_name" : "TCGA-AB-2901-03A-01W-0733-08",
     "normal_analysis_uuid" : "c404dcfb-e580-4cf2-8fe6-6990ce2ce03a",
     "normal_aliquot_uuid" : "22f3f166-41a7-4058-a315-d72e1d7becd6",
-    "normal_aliquot_name" : "TCGA-AB-2901-11A-01W-0732-08",
     "platform" : "illumina",
     "center" : "OHSU"
 }

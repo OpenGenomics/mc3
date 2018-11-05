@@ -2,6 +2,11 @@
 
 The TCGA PanCancer Atlas MC3 set is a re-calling of uniform files to remove batch effects and enable pancancer analysis.
 
+Workflows to reproduce work presented in the paper "Scalable Open Science Approach for Mutation Calling of Tumor Exomes Using Multiple Genomic Pipelines"
+Ellrott K, Bailey MH, Saksena G, Covington KR, Kandoth C, Stewart C, Hess J,
+Ma S, Chiotti KE, McLellan M, Sofia HJ, Hutter C, Getz G, Wheeler D, Ding L; MC3
+Working Group; Cancer Genome Atlas Research Network. Cell Syst. 2018 Mar 28;6(3):271-281.e7. doi: 10.1016/j.cels.2018.03.002. PubMed PMID: 29596782.  (http://www.cell.com/cell-systems/fulltext/S2405-4712(18)30096-6)
+
 Example run:
 
  # Running MC3
@@ -10,13 +15,14 @@ Example run:
  https://www.synapse.org/#!Synapse:syn4977808
 
  ## Obtain GDC download token
+Instructions on how to obtain Controlled Data Access for TCGA data at https://gdc.cancer.gov/access-data/obtaining-access-controlled-data
 
  ## Obtain BAM files
 
  ../tools/gdc-download-tool/gdc-client download -t ../gdc.token fb0bed68-4f2c-400d-8460-a62310fa95bf
 
  ../tools/gdc-download-tool/gdc-client download -t ../gdc.token ded8b01f-5301-49c8-bfdc-fc8343291e6d
- 
+
 Example Variant Calling input
 ```json
 {
@@ -109,4 +115,3 @@ Example Vcf2Maf input
    }
 }
 ```
-

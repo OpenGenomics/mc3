@@ -11,7 +11,7 @@
 			(http://www.cell.com/cell-systems/fulltext/S2405-4712(18)30096-6)
 
 ###############################################################
-	A START-UP GUIDE TO PREPARE FOR USE OF THE MC3 PIPELINE:
+### A START-UP GUIDE TO PREPARE FOR USE OF THE MC3 PIPELINE:
 ###############################################################
 
 ###############################################################

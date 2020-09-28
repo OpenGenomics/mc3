@@ -41,7 +41,7 @@ steps:
       - mutations
 
   fpfilterSomaticSniper:
-    run: ./tools/fpfilter-tool/fpfilter.cwl.yaml
+    run: ./tools/fpfilter-tool/fpfilter.cwl
     in:
       vcf-file: rawSomsniper
       bam-file: tumor
@@ -52,7 +52,7 @@ steps:
       - filtered_vcf
 
   fpfilterVarscans:
-    run: ./tools/fpfilter-tool/fpfilter.cwl.yaml
+    run: ./tools/fpfilter-tool/fpfilter.cwl
     in:
       vcf-file: rawVarscans
       bam-file: tumor

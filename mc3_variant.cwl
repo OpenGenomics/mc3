@@ -49,7 +49,7 @@ steps:
       - prepped_ref
 
   normal_pileup:
-    run: ./tools/samtools-pileup-tool/sam_pileup.cwl.yaml
+    run: ./tools/samtools-pileup-tool/sam_pileup.cwl
     in:
       input: normal
       reference: prep_ref/prepped_ref
@@ -59,7 +59,7 @@ steps:
       - output
 
   tumor_pileup:
-    run: ./tools/samtools-pileup-tool/sam_pileup.cwl.yaml
+    run: ./tools/samtools-pileup-tool/sam_pileup.cwl
     in:
       input: tumor
       reference: prep_ref/prepped_ref
@@ -69,7 +69,7 @@ steps:
       - output
 
   varscan:
-    run: ./tools/varscan-tool/varscan_somatic.cwl.yaml
+    run: ./tools/varscan-tool/varscan_somatic.cwl
     in:
       tumor_pileup: tumor_pileup/output
       normal_pileup: normal_pileup/output
@@ -84,7 +84,7 @@ steps:
       - indel_vcf
 
   muse:
-    run: ./tools/muse-tool/muse.cwl.yaml
+    run: ./tools/muse-tool/muse.cwl
     in:
       tumor: tumor
       normal: normal
@@ -96,7 +96,7 @@ steps:
       - mutations
 
   mutect:
-    run: ./tools/mutect-tool/mutect.cwl.yaml
+    run: ./tools/mutect-tool/mutect.cwl
     in:
       tumor: tumor
       normal: normal
@@ -118,7 +118,7 @@ steps:
       - mutations
 
   somaticsniper:
-    run: ./tools/somaticsniper-tool/somatic_sniper.cwl.yaml
+    run: ./tools/somaticsniper-tool/somatic_sniper.cwl
     in:
       tumor: tumor
       normal: normal
@@ -133,7 +133,7 @@ steps:
       - mutations
 
   pindel:
-    run: ./tools/pindel-tool/pindel-somatic.cwl.yaml
+    run: ./tools/pindel-tool/pindel-somatic.cwl
     in:
       tumor: tumor
       normal: normal

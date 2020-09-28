@@ -1,0 +1,165 @@
+###############################################################
+	A BRIEF GUIDE TO MC3 PIPELINE EXECUTION:
+###############################################################
+
+###############################################################
+	IMPORTANT NOTE: Access to GDC Data Portal controlled-access data is required to obtain many of the
+	reference and other input files. Use the "Instructions for Data Download" section toward the bottom of
+	the page located at https://gdc.cancer.gov/about-data/publications/mc3-2017. Access to Synapse project
+	syn3241088 is also required to obtain the remainder of the required files.
+	
+	Installation of 'docker' and 'cwltool' is required to run this pipeline.
+	
+	The following text provides detailed instructions on setup and execution of the pipeline. Filenames used in the
+	examples are those of the files utilized in the Ellrott, et al. publication. Customization of the pipeline through
+	substitution of any files is possible, given the new files are in the same format as the files being replaced.
+	
+###############################################################
+
+Prepare an input JSON file to be used with the primary MC3 CWL tool, 'mc3_vcf2maf_full.cwl', then execute the pipeline. This 
+can be accomplished in one of two ways:
+
+1) Single sample run:
+	
+	a) Make a copy of 'mc3_vcf2maf_full.template'. This step ensures the original file remains intact while the copy is
+	 edited.
+	 
+		`cp mc3_vcf2maf_full.template v2m.tmplt`
+		
+	b) Using a text editor such as 'vim' or 'emac', edit the template copy following the directions provided within the
+	document.
+	
+	c) Run 'makeJSON.sh', found in the primary MC3 directory (e.g., ./my_mc3), along with the edited template to generate an 
+	input JSON file. The new JSON file will output to the current working directory.
+	
+		`sh <./path/to>/my_mc3/makeJSON.sh -i <./path/to>/v2m.tmplt`
+	
+	In this example, the new JSON file would be named 'v2m.json'. Use the following command for full documentation of
+	'makeJSON.sh'
+	
+		`sh <./path/to>/my_mc3/makeJSON.sh usage`
+	
+	d) Run the pipeline on your sample. The pipeline will output to the current working directory.
+	
+		`cwltool <./path/to>/my_mc3/mc3_vcf2maf_full.cwl <./path/to>/v2m.json`
+
+2) High-throughput run:
+
+	a) Make a copy of 'mc3_vcf2maf_full.template' and 'mc3_vcf2maf_full.sample_list.tab'. This step ensures the original files
+	 remain intact while the copies are edited.
+	 
+		`cp mc3_vcf2maf_full.template v2m.tmplt`
+		`cp mc3_vcf2maf_full.sample_list.tab v2m.sample_list.tab`
+		
+	b) Using a text editor such as 'vim' or 'emac', edit the template copy following the directions provided within the
+	document. Be sure to follow this by adding your sample information to the sample list copy made in the previous step.
+	
+	c) Run 'makeJSON.sh', found in the primary MC3 directory (e.g., ./my_mc3), along with the edited templates to generate
+	input JSON files for each of your samples. The new JSON files will output to a subdirectory named 'json_queue' within the 
+	current working directory.
+	
+		`sh <./path/to>/my_mc3/makeJSON.sh -i <./path/to>/v2m.tmplt -p <./path/to>/v2m.sample_list.tab`
+	
+	In this example, the new JSON files would be named 'sample_1.json', 'sample_2.json', and 'sample_3.json', as indicated by 
+	the 'run_uid' column in the example sample list below. Use the following command for full documentation of 'makeJSON.sh'.
+	
+		`sh <./path/to>/my_mc3/makeJSON.sh usage`
+	
+	d) Run the pipeline on your samples. The pipeline will output to the current working directory. A command similar to the 
+	following can be used to execute a run of each sample individually, or a wrapper script can be written to loop through 
+	each of the JSON files in the 'json_queue' subdirectory.
+	
+		`cwltool <./path/to>/my_mc3/mc3_vcf2maf_full.cwl <./path/to>/json_queue/sample_1.json`
+	
+	
+
+
+###############################################################
+### EXAMPLE: Completed single-sample run template #############
+###############################################################
+
+# If generating JSON for multiple samples, replace '</full/file/path>', '<string>', or 'null' with '<>', then complete mc3_vcf2maf_full.sample_list.tab.
+# See ./backup_templates/mc3_vcf2maf_full.sample_list.template for examples. Be certain to provide a unique identifier under the 'run_uid'
+# header to clearly distinguish samples/runs. If *optional* sample-specific values are desired, the appropriate key from this template may
+# be used as a column header in mc3_vcf2maf_full.sample_list.tab (be careful to maintain tab-delimited format).
+#####
+
+tumor: {
+    class: File
+    path: /my/path/to/tumor.bam         	# Required file; replace '</full/file/path>' with full path to tumor DNA BAM file [e.g., /my/path/to/tumor.bam]
+normal: {
+    class: File
+    path: /my/path/to/normal.bam         	# Required file; replace '</full/file/path>' with full path to normal DNA BAM file [e.g., /my/path/to/normal.bam]
+refFasta: {
+    class: File
+    path: /my/path/to/genome.fa.gz         	# Required file; replace '</full/file/path>' with full path to reference FASTA [e.g., /my/path/to/genome.fa.gz]
+centromere: {
+    class: File
+    path: /my/path/to/centromere.bed        	# Required file; replace '</full/file/path>' with centromere location BED file [e.g., /my/path/to/centromere.bed]
+cosmic: {
+    class: File
+    path: /my/path/to/cosmic.vcf         	# Required file; replace '</full/file/path>' with full path to COSMIC VCF file [e.g., /my/path/to/cosmic.vcf]
+dbsnp: {
+    class: File
+    path: /my/path/to/dbsnp.vcf         	# Required file; replace '</full/file/path>' with full path to dbSNP VCF file [e.g., /my/path/to/dbsnp.vcf]
+markSamples: {
+    class: Directory
+    path: /my/path/to/markfiles/mark_samples    # Required directory; replace '</full/directory/path/>' with full path to sample-level markfiles [e.g., /my/path/to/markfiles/mark_samples]
+markVariants: {
+    class: Directory
+    path: /my/path/to/markfiles/mark_variants   # Required directory; replace '</full/directory/path/>' with full path to variant-level markfiles [e.g., /my/path/to/markfiles/mark_variants]
+vepData: {
+    class: Directory
+    path: /my/path/to/vep>   			# Required directory; replace '</full/directory/path/>' with full path to VEP's base cache/plugin directory [e.g., /my/path/to/vep]
+tumorID: TCGA-AB-2901-03A-01W-0733-08           # Required string; replace '<string>' with unique indentifier for tumor sample [e.g., TCGA-AB-2901-03A-01W-0733-08]
+normalID: TCGA-AB-2901-11A-01W-0732-08          # Required string; replace '<string>' with unique indentifier for matched normal sample [e.g., TCGA-AB-2901-11A-01W-0732-08]
+bed_file: {
+    class: File
+    path: /my/path/to/gaf.bed                   # Optional file; replace '</full/file/path>' with full path to GAF BED file for filtering
+
+
+###############################################################
+### EXAMPLE: Completed high-throughput run template ###########
+###############################################################
+
+tumor: {
+    class: File
+    path: <>         				# Required file; replace '</full/file/path>' with full path to tumor DNA BAM file [e.g., /my/path/to/tumor.bam]
+normal: {
+    class: File
+    path: <>         				# Required file; replace '</full/file/path>' with full path to normal DNA BAM file [e.g., /my/path/to/normal.bam]
+refFasta: {
+    class: File
+    path: /my/path/to/genome.fa.gz      	# Required file; replace '</full/file/path>' with full path to reference FASTA [e.g., /my/path/to/genome.fa.gz]
+centromere: {
+    class: File
+    path: /my/path/to/centromere.bed    	# Required file; replace '</full/file/path>' with centromere location BED file [e.g., /my/path/to/centromere.bed]
+cosmic: {
+    class: File
+    path: /my/path/to/cosmic.vcf        	# Required file; replace '</full/file/path>' with full path to COSMIC VCF file [e.g., /my/path/to/cosmic.vcf]
+dbsnp: {
+    class: File
+    path: /my/path/to/dbsnp.vcf         	# Required file; replace '</full/file/path>' with full path to dbSNP VCF file [e.g., /my/path/to/dbsnp.vcf]
+markSamples: {
+    class: Directory
+    path: /my/path/to/markfiles/mark_samples/   # Required directory; replace '</full/directory/path/>' with full path to sample-level markfiles [e.g., /my/path/to/markfiles/mark_samples/]
+markVariants: {
+    class: Directory
+    path: /my/path/to/markfiles/mark_variants/  # Required directory; replace '</full/directory/path/>' with full path to variant-level markfiles [e.g., /my/path/to/markfiles/mark_variants/]
+vepData: {
+    class: Directory
+    path: /my/path/to/vep/   			# Required directory; replace '</full/directory/path/>' with full path to VEP's base cache/plugin directory [e.g., /my/path/to/vep/]
+tumorID: <>                   			# Required string; replace '<string>' with unique indentifier for tumor sample [e.g., TCGA-AB-2901-03A-01W-0733-08]
+normalID: <>                  			# Required string; replace '<string>' with unique indentifier for matched normal sample [e.g., TCGA-AB-2901-11A-01W-0732-08]
+bed_file: {
+    class: File
+    path: null                      		# Optional file; replace '</full/file/path>' with full path to GAF BED file for filtering
+    
+    
+###############################################################
+### EXAMPLE: Completed high-throughput sample list ############
+###############################################################
+run_uid:	tumor:	normal:	tumorID:	normalID:
+sample_1	/full/path/to/tumor_1.bam	/full/path/to/normal_1.bam	tumor_1	normal_1
+sample_2	/full/path/to/tumor_2.bam	/full/path/to/normal_2.bam	tumor_2	normal_2
+sample_3	/full/path/to/tumor_3.bam	/full/path/to/normal_3.bam	tumor_3	normal_3

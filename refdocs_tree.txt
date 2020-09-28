@@ -1,0 +1,64 @@
+my_mc3
+|-- mc3
+#------Directory tree removed for brevity----------------
+`-- ref
+    |-- 1000G_phase1.indels.hg19.sites.vcf
+    |-- 1000G_phase1.indels.hg19.sites.vcf.idx
+    |-- b37_cosmic_v54_120711.vcf.gz
+    |-- b37_cosmic_v54_120711.vcf.gz.tbi
+    |-- centromere_hg19.bed
+    |-- dbsnp_132_b37.leftAligned.vcf.gz
+    |-- dbsnp_132_b37.leftAligned.vcf.gz.tbi
+    |-- gaf_20111020+broad_wex_1.1_hg19.bed
+    |-- gencode.v19.basic.exome.bed
+    |-- gencode.v19.basic.exome.bed.idx
+    |-- Homo_sapiens_assembly19.dict
+    |-- Homo_sapiens_assembly19.dict.gz
+    |-- Homo_sapiens_assembly19.fasta
+    |-- Homo_sapiens_assembly19.fasta.fai
+    |-- Homo_sapiens_assembly19.fasta.gz
+    |-- Homo_sapiens_assembly19.fasta.gz.fai
+    |-- Homo_sapiens_assembly19.fasta.gz.gzi
+    |-- markfiles
+    |   |-- mark_samples
+    |   |   |-- contestkeys.txt
+    |   |   |-- mark_bitgt.txt
+    |   |   |-- mark_nonexonic.txt
+    |   |   |-- pancan.merged.v0.2.exac_pon_tagged.txt
+    |   |   |-- pancan.merged.v0.2.pfiltered.broad_pon_tagged_v2.txt
+    |   |   |-- pcadontusekeys.txt
+    |   |   `-- strandBias.filter_v2.txt
+    |   `-- mark_variants
+    |       |-- ndp.mark.txt
+    |       |-- nonpreferredpair_maf_keys.txt
+    |       |-- oxog.annotation
+    |       `-- wga_maf_keys.txt
+    |-- Mills_and_1000G_gold_standard.indels.hg19.sites.vcf
+    |-- Mills_and_1000G_gold_standard.indels.hg19.sites.vcf.idx
+    |-- oxog_filter
+    |   |-- ref_data_for_oxog_all_permissions.tar.gz
+    |   `-- ref_data_for_oxog.tar
+    `-- vep
+        |-- ExAC_nonTCGA.r0.3.1.sites.vep.vcf.gz
+        |-- ExAC_nonTCGA.r0.3.1.sites.vep.vcf.gz.tbi
+        `-- homo_sapiens
+            |-- 86_GRCh37
+            |   |-- 1
+            |   |   |-- 100000001-101000000.gz
+            |   |   |-- 100000001-101000000_reg.gz
+            |   |   |-- 100000001-101000000_var.gz
+            |   |   |-- 10000001-11000000.gz
+            |   |   |-- 10000001-11000000_reg.gz
+            |   |   |-- 10000001-11000000_var.gz
+ 
+#------Portion of tree removed for brevity----------------
+ 
+            |       |-- 8000001-9000000.gz
+            |       |-- 8000001-9000000_reg.gz
+            |       |-- 8000001-9000000_var.gz
+            |       |-- 9000001-10000000.gz
+            |       |-- 9000001-10000000_reg.gz
+            |       `-- 9000001-10000000_var.gz
+            |-- Homo_sapiens.GRCh37.75.dna.primary_assembly.fa.gz
+            |-- Homo_sapiens.GRCh37.75.dna.primary_assembly.fa.gz.fai
+            `-- Homo_sapiens.GRCh37.75.dna.primary_assembly.fa.gz.gzi

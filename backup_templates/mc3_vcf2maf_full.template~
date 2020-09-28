@@ -24,7 +24,7 @@ dbsnp: {
     path: </full/file/path>         # Required file; replace '</full/file/path>' with full path to dbSNP VCF file [e.g., /my/path/to/dbsnp.vcf]
 markSamples: {
     class: Directory
-    path: default/directory/path    # Required directory; replace '</full/directory/path/>' with full path to sample-level markfiles [e.g., /my/path/to/markfiles/mark_samples/]
+    path: </full/directory/path>    # Required directory; replace '</full/directory/path/>' with full path to sample-level markfiles [e.g., /my/path/to/markfiles/mark_samples/]
 markVariants: {
     class: Directory
     path: </full/directory/path/>   # Required directory; replace '</full/directory/path/>' with full path to variant-level markfiles [e.g., /my/path/to/markfiles/mark_variants/]
@@ -35,4 +35,4 @@ tumorID: <string>                   # Required string; replace '<string>' with u
 normalID: <string>                  # Required string; replace '<string>' with unique indentifier for matched normal sample [e.g., TCGA-AB-2901-11A-01W-0732-08]
 bed_file: {
     class: File
-    path: null                      # Optional file; replace '</full/file/path>' with full path to GAF BED file for filtering
+    path: null                      # Optional file; replace 'null' with full path to GAF BED file for filtering

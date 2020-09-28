@@ -1,4 +1,0 @@
-run_uid:	to_dict:
-genome_1	/full/path/to/file_1.fasta
-genome_2	/full/path/to/file_2.fasta
-genome_3	/full/path/to/file_3.fa

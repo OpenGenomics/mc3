@@ -1,4 +1,0 @@
-run_uid:	pattern:	infile:
-grep.round1	TCGA-XX-XXXX	/full/path/to/grepfile_1.ext
-grep.round1     TCGA-XX-XXXX    /full/path/to/grepfile_2.tab
-grep.round1     TCGA-YY-YYYY    /full/path/to/grepfile_3.ext

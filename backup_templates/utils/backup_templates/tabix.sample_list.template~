@@ -1,4 +1,0 @@
-run_uid:	vcf:
-indexed_1	/full/path/to/bgzipped_1.vcf.gz
-indexed_2	/full/path/to/bgzipped_2.vcf.gz
-indexed_3	/full/path/to/bgzipped_3.vcf.gz

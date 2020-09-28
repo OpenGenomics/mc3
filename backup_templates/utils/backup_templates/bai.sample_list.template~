@@ -1,4 +1,0 @@
-run_uuid:	to_index:
-sample_1	/full/path/to/input_1.bam
-sample_2	/full/path/to/input_2.bam
-sample_3	/full/path/to/input_3.bam

@@ -17,9 +17,9 @@ function usage()
         echo "  [-i INPUT_TEMPLATE]  - Full path to CWL Workflow Tool file."
         echo
         echo "Optional:"
-        echo "  [-o OUTPUT_PREFIX]   - Prefix for output JSON filename [defaults to 'input' when $SAMPLE_LIST is NOT provided,"
-        echo "                         ignored when $SAMPLE_LIST is provided]"
-        echo "  [-p SAMPLE_LIST]     - Required if using SAMPLE_LIST; full path to a tab-delimited file"
+        echo "  [-o OUTPUT_PREFIX]   - Prefix for output JSON filename [defaults to 'input' when \$SAMPLE_LIST is NOT provided,"
+        echo "                         ignored when \$SAMPLE_LIST is provided]"
+        echo "  [-p SAMPLE_LIST]     - Required if using \$SAMPLE_LIST; full path to a tab-delimited file"
         exit
 }
 
@@ -63,7 +63,7 @@ fi
 ABS_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ignore=("class" "path")
 num=`wc -l $INPUT_TEMPLATE | cut -d' ' -f1`
-snum=`wc -l $SAMPLE_LIST | cut -d' ' -f1`
+#snum=`wc -l $SAMPLE_LIST | cut -d' ' -f1`
 
 ##########################################################################
 ###### FUNCTIONS #########################################################
@@ -276,7 +276,7 @@ function multi_json()
 ###### MAIN ##############################################################
 ##########################################################################
 
-uid=`date +%Y%m%d-%R%S | sed 's/://g'`
+uid=`date +%Y%m%d | sed 's/://g'`_makeJSON
 logfile="$uid.log.txt"
 {
 

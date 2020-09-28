@@ -7,3 +7,4 @@
 to_index: {
     class: File
     path: </full/file/path>         # Required file; replace '</full/file/path>' with full path to BAM file to be indexed [e.g., /my/path/to/input.bam]
+
